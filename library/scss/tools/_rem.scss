@@ -1,0 +1,144 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "sass:string";
+@use "sass:math";
+@use "../settings/general";
+
+/// Function that, given a list of properties, returns them separated by the corresponding separator character
+///
+/// @argument {list} $list
+///   Property list 
+/// @argument {string} $separator [false]
+///   Character separator
+/// @example scss
+///     
+///     rem-separator($list)
+///
+/// @group rem
+
+@function rem-separator($list, $separator: false) {
+  @if $separator == "comma" or $separator == "space" {
+    @return list.append($list, null, $separator);
+  }
+
+  @if meta.function-exists("list-separator") == true {
+    @return list-separator($list);
+  }
+
+  $test-list: ();
+  @each $item in $list {
+    $test-list: list.append($test-list, $item, space);
+  }
+
+  @return if($test-list == $list, space, comma);
+}
+
+/// Mixin that based on the $rem-baseline variable returns the percentage to which the font-size must attend. By default it is declared in the html selector of the library
+///
+/// @argument {string} $zoom [100%]
+/// @requires $rem-baseline Variable that defines the reference unit in order to transform px into rem. [16px]
+/// @example scss
+///     html {
+///         @include rem-baseline();
+///     }
+/// @example css
+///     html {
+///         font-size: 100%;
+///     }
+/// @group rem
+@mixin rem-baseline($zoom: 100%) {
+  font-size: (math.div($zoom,16px)) * general.$rem-baseline;
+}
+
+/// Function that returns the value of the pixels in rem.
+///
+/// @argument {string} $to Relative unit
+/// @argument {list} $values Properties CSS to transform rem
+/// @requires {boolean} $rem-baseline Variable that defines the unit of measure of the rem. [16px]
+/// @requires {function} rem-separator Function that, given a list of properties, returns them separated by the corresponding separator character.
+/// @example scss
+///     rem-convert(rem,(10px,5px))
+/// @group rem
+
+@function rem-convert($to, $values...) {
+  $result: ();
+  $separator: rem-separator($values);
+  @debug $to;
+  @debug $values;
+  @each $value in $values {
+    @if meta.type-of($value) == "number" and math.unit($value) == "rem" and $to == "px" {
+      $result: list.append($result, $value / 1rem * general.$rem-baseline, $separator);
+    } @else if meta.type-of($value) == "number" and math.unit($value) == "px" and $to == "rem" {
+      $result: list.append($result, $value / general.$rem-baseline * 1rem, $separator);
+    } @else if meta.type-of($value) == "list" {
+      $value-separator: rem-separator($value);
+      $value: rem-convert($to, $value...);
+      $value: rem-separator($value, $value-separator);
+      $result: list.append($result, $value, $separator);
+    } @else {
+      $result: list.append($result, $value, $separator);
+    }
+  }
+
+  @return if(length($result) == 1, list.nth($result, 1), $result);
+}
+
+/// Function that transforms pixels into rem. If the $rem-px-only variable is set to true, Internet Explorer 9 compatibility applies.
+/// @argument {map} $properties Properties
+/// @argument {list} $values Values in px to transform rem
+/// @requires {boolean} $rem-px-only Variable that provides compatibility to Internet Explorer 9. [false]
+/// @requires {function} rem-convert Function that returns the value of the pixels in rem.
+/// @example scss
+/// .test{
+///     font-size: rem(16px);
+/// }
+/// @example css
+/// .test{
+///     font-size: 1rem;
+/// }
+/// @group rem
+@function rem($values...) {
+    @if $rem-px-only {
+      @return rem-convert(px, $values...);
+    } @else {
+      @return rem-convert(rem, $values...);
+    }
+}
+
+/// Mixin that transforms the pixels into rem of the CSS properties entered as arguments. If the $rem-px-only variable is set to true, Internet Explorer 9 compatibility applies.
+/// @argument {list} $values Values in px to transform rem
+/// @requires {boolean} $rem-px-only Variable that provides compatibility to Internet Explorer 9. [false]
+/// @requires {function} rem-convert Function that returns the value of the pixels in rem
+/// @example scss
+/// .test{
+///     @include rem((
+///         margin: 10px 5px,
+///         text-shadow: (1px 1px #eee, -1px -1px #eee),
+///         padding: 5px
+///     ));
+/// }
+/// @example css
+/// .test{
+///      margin: 1rem 0.5rem;
+///      text-shadow: 0.1rem 0.1rem #eee, -0.1rem -0.1rem #eee;
+///      padding: 0.5rem;
+/// }
+/// @group rem
+
+@mixin rem($properties, $values...) {
+  @if meta.type-of($properties) == "map" {
+    @each $property in map.keys($properties) {
+      @include rem($property, map.get($properties, $property));
+    }
+  } @else {
+    @each $property in $properties {
+      @if general.$rem-fallback or general.$rem-px-only {
+        #{$property}: rem-convert(px, $values...);
+      }
+      @if not general.$rem-px-only {
+        #{$property}: rem-convert(rem, $values...);
+      }
+    }
+  }
+}

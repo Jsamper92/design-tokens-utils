@@ -1,0 +1,79 @@
+@use "sass:map";
+@use "sass:math";
+@use "../settings/settings.scss";
+
+/// Mixin that, starting from the breakpoints established in the configuration file, generates the classes of the grid system.
+///
+/// @argument {map}  $breakpoints [$breakpoints] Map set in initial setup
+/// @requires $breakpoints Map defining break, gutter and offset points
+///
+/// @example scss
+///     @include get-grid();
+///
+/// @example css
+///     @media only screen and (min-width: 0px) {
+///      .col-sm-1 {
+///        box-sizing: border-box;
+///        padding: 0 30px;
+///        flex: 0 0 25%;
+///        min-width: 25%;
+///        max-width: 25%;
+///      }
+///     }...
+///     @media only screen and (min-width: 768px) {
+///      .col-md-1 {
+///        box-sizing: border-box;
+///        padding: 0 30px;
+///        flex: 0 0 16.6666666667%;
+///        min-width: 16.6666666667%;
+///        max-width: 16.6666666667%;
+///      }
+///     }...
+///     @media only screen and (min-width: 1440px) {
+///      .col-lg-1 {
+///        box-sizing: border-box;
+///        padding: 0 30px;
+///        flex: 0 0 8.3333333333%;
+///        min-width: 8.3333333333%;
+///        max-width: 8.3333333333%;
+///      }
+///     }...
+///
+///
+/// @group grid
+
+@mixin get-grid($breakpoints: $grid) {
+    @each $break, $breakpoint in $breakpoints {
+        $columns: map.get($breakpoint, "columns");
+        $container: map.get($breakpoint, "container");
+        @media only screen and (min-width: $container) {
+            .wrapper {
+                width: $container;
+                padding-right: $container;
+                padding-left: $container;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+        @media only screen and (min-width: $container) {
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                margin-right: calc(map.get($breakpoint, "gutter") * -0.5);
+                margin-left: calc(map.get($breakpoint, "gutter") * -0.5);
+            }
+        }
+        @media only screen and (min-width: $container) {
+            @for $i from 1 through $columns {
+                $valor: unquote(((math.div(100, $columns)) * $i) + "%");
+                .col-#{$break}-#{$i} {
+                    box-sizing: border-box;
+                    padding: 0 map.get($breakpoint, "gutter");
+                    flex: 0 0 $valor;
+                    min-width: $valor;
+                    max-width: $valor;
+                }
+            }
+        }
+    }
+}

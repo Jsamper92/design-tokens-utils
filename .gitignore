@@ -1,0 +1,11 @@
+
+node_modules/
+docs/
+dist/
+
+.npmrc 
+.idea
+
+assets/
+build/
+.frontech.json
