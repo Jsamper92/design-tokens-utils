@@ -5,6 +5,7 @@ dist/
 
 .npmrc 
 .idea
+.env
 
 assets/
 build/

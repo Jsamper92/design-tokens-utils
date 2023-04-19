@@ -1,4 +1,4 @@
-@use '../tools/rem';
+@use '../tools/rem' as *;
 /*--------------------------------
 	#RESET
 --------------------------------*/
@@ -320,5 +320,5 @@ select {
 }
 
 html{
-	@include rem.rem-baseline;;
+	@include rem-baseline;
 }

@@ -1,9 +1,12 @@
+// Do not edit directly
+// Generated on 15/4/2023 14:37:44
+
 @use "sass:map";
 @use "sass:list";
 @use "sass:meta";
 @use "sass:string";
 @use "sass:math";
-@use "../settings/general";
+@use "../settings/general" as *;
 
 /// Function that, given a list of properties, returns them separated by the corresponding separator character
 ///
@@ -48,7 +51,7 @@
 ///     }
 /// @group rem
 @mixin rem-baseline($zoom: 100%) {
-  font-size: (math.div($zoom,16px)) * general.$rem-baseline;
+  font-size: (math.div($zoom,16px)) * $rem-baseline;
 }
 
 /// Function that returns the value of the pixels in rem.
@@ -68,9 +71,9 @@
   @debug $values;
   @each $value in $values {
     @if meta.type-of($value) == "number" and math.unit($value) == "rem" and $to == "px" {
-      $result: list.append($result, $value / 1rem * general.$rem-baseline, $separator);
+      $result: list.append($result, $value / 1rem * $rem-baseline, $separator);
     } @else if meta.type-of($value) == "number" and math.unit($value) == "px" and $to == "rem" {
-      $result: list.append($result, $value / general.$rem-baseline * 1rem, $separator);
+      $result: list.append($result, calc($value / $rem-baseline) * 1rem, $separator);
     } @else if meta.type-of($value) == "list" {
       $value-separator: rem-separator($value);
       $value: rem-convert($to, $value...);
@@ -133,10 +136,10 @@
     }
   } @else {
     @each $property in $properties {
-      @if general.$rem-fallback or general.$rem-px-only {
+      @if $rem-fallback or $rem-px-only {
         #{$property}: rem-convert(px, $values...);
       }
-      @if not general.$rem-px-only {
+      @if not $rem-px-only {
         #{$property}: rem-convert(rem, $values...);
       }
     }

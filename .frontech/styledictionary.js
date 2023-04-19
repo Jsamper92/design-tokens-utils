@@ -14,6 +14,12 @@ const buildCore = (path) => {
   const paths = [
     {
       root,
+      force: false,
+      name: `_icons.scss`,
+      path: route.resolve(root, `library/scss/utilities/`),
+    },
+    {
+      root,
       force: true,
       name: `_grid.scss`,
       path: route.resolve(root, `library/scss/utilities/`),
@@ -70,7 +76,6 @@ const buildCore = (path) => {
     }
   });
   const partials = createImportDynamicPartials(path);
-
   Promise.all([...files, ...partials]
     .map(({ origin, name, data, force }) => createFile(origin, name, data, force)));
 
@@ -244,6 +249,13 @@ const styleDictionary = (file, path) => {
           }
         },
         {
+          destination: "settings/_spacing.scss",
+          format: "custom/spacing",
+          filter: {
+            type: "spacing"
+          }
+        },
+        {
           destination: "settings/_border.scss",
           format: "custom/variables",
           filter: ({ attributes }) => attributes.category.includes('border')
@@ -278,6 +290,26 @@ const styleDictionary = (file, path) => {
       const _tokens = createCustomProperties(allTokens);
 
       return `${setCreationTimeFile()}:root{\n${_tokens}}`
+    }
+  });
+
+  StyleDictionary.registerFormat({
+    name: 'custom/spacing',
+    formatter: ({ dictionary: { allTokens } }) => {
+
+      const _tokens = createCustomProperties(allTokens);
+      const _spacing = _tokens.split(';')
+        .map(token => {
+          if (token.includes('inset')) {
+            const value = token.split(':')[1];
+            const _calc = value.split(' ').map((item) => !item.includes('auto') ? `calc(${item} - 1px)` : item).join(' ');
+            return `${token.split(':')[0]}:${_calc}`
+          }
+
+          return token
+        });
+
+      return `${setCreationTimeFile()}:root{\n${_spacing}}`
     }
   });
 

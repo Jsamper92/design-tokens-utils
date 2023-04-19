@@ -1,6 +1,6 @@
 {
   "name": "design-tokens-utils",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "description": "Design Tokens Utils aims to provide a series of common utilities at the start of any web project, which will make it easier and faster to start the architecture.",
   "main": "./lib/index.js",
   "bin": {
@@ -20,6 +20,7 @@
     ".frontech",
     "templates",
     "bin",
+    "library",
     "lib",
     "README.md",
     "LICENSE"
@@ -35,11 +36,10 @@
   ],
   "dependencies": {
     "colors": "1.4.0",
-    "fantasticon": "^2.0.0",
-    "figma-icons-tokens": "^1.4.2",
-    "minimist": "^1.2.5",
-    "style-dictionary": "^3.7.2",
-    "svg-spreact": "^1.3.2",
-    "token-transformer": "^0.0.30"
+    "fantasticon": "1.2.3",
+    "figma-icons-tokens": "1.4.4",
+    "style-dictionary": "3.7.2",
+    "svg-spreact": "1.3.2",
+    "token-transformer": "0.0.30"
   }
 }

@@ -1,7 +1,7 @@
-const [utils, styleDictionary] = [
+const [utils, styleDictionary, route] = [
     require('./utils'),
     require("../.frontech/styledictionary"),
-
+    require('path')
 ];
 
 const { messages, createFile, generateIconFont, getIcons, buildTokens, getKeyIcons } = utils;
@@ -19,39 +19,47 @@ const createTokens = async (data, dictionary, path, theme) => {
         const tokens = await buildTokens(data);
         const icons = getKeyIcons(data, tokens, theme);
         if (icons) {
-            await getIcons(icons.icons, theme, path)
-                .then(async (response) => {
-                    if (response !== 'no_icons') {
-                        messages.print('process transformation icons to icon font started');
-                        await generateIconFont(path, icons?.size)
-                            .then((response) => {
-                                if (response) {
-                                    console.log(
-                                        `\nIconic font creation based on the svg files in the path ${path}`
-                                    );
-                                    response.forEach(async ({ folder, file, data }) => {
-                                        messages.success(`✔︎ ${folder}/${file}`);
-                                        createFile(folder, file, data, true);
-                                    });
-
-                                    messages.print('process transformation icons to icon font finished');
-                                    buildStyleDictionary(dictionary, path);
-                                }
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                            })
-                    } else {
-                        buildStyleDictionary(dictionary, path);
-                    }
-                })
+            const _icons = await getIcons(icons.icons, theme, path);
+            if (_icons) {
+                const _iconFont = await buildIconFont(path);
+                if (_iconFont) buildStyleDictionary(dictionary, path);
+            }
         } else {
-            console.log(dictionary, path);
-            if (tokens) buildStyleDictionary(dictionary, path);
+            const _iconFont = await buildIconFont(path);
+            if (tokens && _iconFont) buildStyleDictionary(dictionary, path);
         }
     } catch (error) {
         console.error(error)
     }
+}
+
+/**
+ * @description This function is used to build icon font
+ * @param {String} path 
+ */
+const buildIconFont = async (path) => {
+    return new Promise(async (resolve) => {
+        messages.print('process transformation icons to icon font started');
+        await generateIconFont(path)
+            .then((response) => {
+                if (response) {
+                    console.log(
+                        `\nIconic font creation based on the svg files in the path ${route.resolve(path, 'fonts', 'icomoon')}`
+                    );
+                    response.forEach(async ({ folder, file, data }) => {
+                        messages.success(`✔︎ ${folder}/${file}`);
+                        createFile(folder, file, data, true);
+                    });
+
+                    messages.print('process transformation icons to icon font finished');
+                    resolve(true);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                resolve(true);
+            })
+    })
 }
 
 module.exports = {

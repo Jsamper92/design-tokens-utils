@@ -1,18 +1,28 @@
 
-const [fs, route, colors, translateTokens, svgSpreact, webfont, figma, argv] = [
+const [fs, route, colors, translateTokens, svgSpreact, webfont, figma] = [
   require("fs"),
   require('path'),
   require("colors"),
   require("./tokens"),
   require('svg-spreact'),
   require("fantasticon"),
-  require('figma-icons-tokens'),
-  require('minimist')(process.argv.slice(2)),
+  require('figma-icons-tokens')
 ];
 
 const { generateFonts, FontAssetType, OtherAssetType } = webfont;
 const { tokensResolved } = translateTokens;
 const { figmaIconsTokens } = figma;
+
+/**
+ * @description Get argv config npm script
+ * @returns {{theme: string; path: string; file: string; key: string; bin: boolean}}
+ */
+const argv = process.argv.slice(2).reduce((acc, current) => {
+  const key = new RegExp(/(--)(.*)(\=)/).exec(current)[2];
+  const value = new RegExp(/(\=)(.*)/).exec(current)[2];
+
+  return { ...acc, [key]: value };
+}, {});
 
 /**
  * @descriptions This util is used to print types of messages
@@ -215,12 +225,11 @@ const buildCore = (path) => {
  * @param {String} path 
  * @returns {Promise<{folder: String; file: String; data: String}[]>}
  */
-const generateIconFont = async (path, mediaqueries) => {
+const generateIconFont = async (path) => {
   return new Promise(async (resolve, reject) => {
     const outputDir = route.resolve(process.cwd(), path, 'fonts', 'icomoon');
     const inputDir = route.resolve(process.cwd(), path, 'images', 'icons');
     const utilities = route.resolve(process.cwd(), path, 'library/scss/utilities');
-    const dest = route.resolve(process.cwd(), path, 'library/scss/settings/_icons.scss');
 
     await generateFonts({
       inputDir,
@@ -249,7 +258,7 @@ const generateIconFont = async (path, mediaqueries) => {
           {
             folder: utilities,
             file: `_icons.scss`,
-            data: scss
+            data: `${setCreationTimeFile()}\n${scss}`
           },
           {
             folder: outputDir,
@@ -288,7 +297,7 @@ const generateIconFont = async (path, mediaqueries) => {
           `_icons.scss`,
           `// To generate the iconic font, check the configuration file`
         );
-        reject('error');
+        resolve(true);
       });
   })
 
@@ -341,7 +350,7 @@ const handlelocalSvgSprites = async (_iconsPath, response, path) => {
       messages.error('✖ There are no new icons to import');
       messages.print('process import icons tokens finished');
       messages.print('icon sprit svg process started');
-      messages.error(`✖ There are no icons to create file ${path}/images/sprites/sprites.svg`);
+      messages.error(`✖ There are no icons to create file ${route.resolve(path, 'images/sprites/sprites.svg')}`);
       messages.print('icon sprit svg process finished');
       resolve(true);
     }
@@ -424,13 +433,13 @@ const getIcons = async (data, theme, path) => {
         } else {
           if (existIcons) {
             const icons = await handlelocalSvgSprites(_iconsPath, [], path);
-            if (icons) resolve('no_icons');
+            if (icons) resolve(true);
           } else {
             messages.print('process import icons tokens finished');
             messages.print('icon sprit svg process started');
             messages.error(`✖ There are no icons to create file ${path}/images/sprites/sprites.svg`);
             messages.print('icon sprit svg process finished');
-            resolve('no_icons');
+            resolve(true);
           }
         }
 

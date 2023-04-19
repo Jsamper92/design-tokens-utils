@@ -27,17 +27,17 @@ For the proper functioning of the library, it is necessary to create a configura
 
 ```
 {
-    "_palette-brand-example": {
-      "_icons": {
-        "ds": {
-          "icon": {
-            "close": {
-              "value": "https://www.figma.com/file/OydaDnZc16mulAMyxZcsMJ/%5Bexample<%5D-_icons?node-id=47-2299&t=SwiaYNlv9zVpdq6i-4",
-              "type": "asset"
-            }
+  "_icons": {
+      "ds": {
+        "icon": {
+          "close": {
+            "value": "https://www.figma.com/file/OydaDnZc16mulAMyxZcsMJ/%5Bexample<%5D-_icons?node-id=47-2299&t=SwiaYNlv9zVpdq6i-4",
+            "type": "asset"
           }
         }
-      },
+      }
+  },
+  "_palette-brand-example": {
       "color": {
         "white": {
           "value": "#ffffff",
@@ -89,7 +89,14 @@ For the proper functioning of the library, it is necessary to create a configura
             "type": "color"
           }
         },
-      }
+    }
+  },
+  "$themes": [],
+  "$metadata": {
+    "tokenSetOrder": [
+      "_palette-brand-example",
+      "_icons",
+    ]
   }
 }
 ```
