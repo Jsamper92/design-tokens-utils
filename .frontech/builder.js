@@ -5,7 +5,7 @@ const [fs, utils, styleDictionary, route] = [
     require('path')
 ];
 
-const { messages, createFile, generateIconFont, getIcons, buildTokens, getKeyIcons } = utils;
+const { messages, handleCreateAsset, generateIconFont, getIcons, buildTokens, getKeyIcons } = utils;
 const { buildStyleDictionary } = styleDictionary;
 
 /**
@@ -43,24 +43,40 @@ const createTokens = async (data, dictionary, path, theme, disableIconFont, disa
  * @param {String} path 
  */
 const buildIconFont = async (path, disableIconFont, disableIconSprites) => {
+
     return new Promise(async (resolve) => {
-        messages.print('process transformation icons to icon font started');
-        await generateIconFont(path, disableIconFont, disableIconSprites)
-            .then((response) => {
-                response.forEach(async ({ input, output, file, copy, data }) => {
-                    if (!copy) {
-                        const oldPath = route.resolve(input, file);
-                        const _file = fs.readFileSync(oldPath, 'utf8').toString();
-                        const _data = data ? `${data}\n${_file}` : _file;
-                        createFile(output, file, _data, true);
+        if (!disableIconFont) messages.print('process transformation icons to icon font started');
+
+        if (!(disableIconFont && disableIconSprites)) {
+            await generateIconFont(path, disableIconFont, disableIconSprites)
+                .then(async (response) => {
+                    console.log('\n');
+                    const iconFont = response.filter(({ file }) => !new RegExp(/symbol.svg/).test(file));
+                    const _iconFont = await Promise.all(iconFont.map(handleCreateAsset))
+
+                    if (_iconFont && !disableIconFont) {
+                        messages.print('process transformation icons to icon font finished');
                     }
-                });
-                resolve(true);
-            })
-            .catch((error) => {
-                console.error(error);
-                resolve(true);
-            })
+
+                    if (!disableIconSprites) messages.print('process transformation icons to icon sprite started');
+
+                    const iconSprite = response.filter(({ file }) => new RegExp(/symbol.svg/).test(file));
+                    const _iconSprite = await Promise.all(iconSprite.map(handleCreateAsset));
+
+                    if (_iconSprite && !disableIconSprites) {
+                        messages.print('process transformation icons to icon sprite finished');
+                    }
+
+                    resolve(true);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    resolve(true);
+                })
+        } else {
+            resolve(true);
+        }
+
     })
 }
 

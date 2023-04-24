@@ -331,7 +331,7 @@ const styleDictionary = (file, path) => {
           }
 
           return token
-        });
+        }).join(';');
 
       return `${setCreationTimeFile()}:root{\n${_spacing}}`
     }

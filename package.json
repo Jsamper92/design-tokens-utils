@@ -36,10 +36,10 @@
   "dependencies": {
     "chroma-js": "2.4.2",
     "colors": "1.4.0",
-    "figma-icons-tokens": "^1.4.5",
+    "figma-icons-tokens": "1.4.5",
     "fs-extra": "^11.1.1",
     "style-dictionary": "3.7.2",
-    "svgtofont": "^3.23.0",
+    "svgtofont": "3.23.0",
     "token-transformer": "0.0.30"
   }
 }

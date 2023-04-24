@@ -232,7 +232,7 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
     const outputSprites = route.resolve(process.cwd(), path, 'images', 'sprites');
     const outputScss = route.resolve(process.cwd(), path, 'library/scss/utilities');
     const logger = (msg) => {
-      if (msg.toLocaleLowerCase().includes('found')) console.log(`❗${msg}`);
+      if (msg.toLocaleLowerCase().includes('found') && !disableIconFont) console.log(`❗${msg}`);
     };
 
     svgtofont({
@@ -295,7 +295,6 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
             output: outputSprites,
             file: `${fontName}.symbol.svg`,
             copy: disableIconSprites,
-            data: ''
           }
         ]
 
@@ -328,31 +327,6 @@ const buildTokens = (tokens) => {
 
 }
 
-const generateSvgSprites = (icons, path) => {
-  return new Promise((resolve) => {
-    try {
-      const _icons = icons.map(({ data }) => data);
-      const names = icons.map(({ name }) => name);
-      const processId = n => `${names[n]}`;
-
-      svgSpreact(_icons, { tidy: true, optimize: true, processId })
-        .then(async ({ defs }) => {
-          const files = await createFile(route.resolve(path, 'images/sprites'), 'sprites.svg', defs, true);
-
-          if (files) {
-            messages.print('process import icons tokens finished');
-            messages.print('icon sprit svg process started');
-            messages.success(`✔︎ file ${path}/images/sprites/sprites.svg successfully created`);
-            messages.print('icon sprit svg process finished');
-            resolve(true);
-          }
-        })
-        .catch(error => console.error(error))
-    } catch (error) {
-      console.error('error');
-    }
-  })
-}
 
 const getKeyIcons = (data, tokens, themes) => {
   const _keyIcons = typeof themes !== 'string' && themes.filter(icon => icon.includes('icon'));
@@ -406,8 +380,25 @@ const getIcons = async (data, theme, path) => {
  */
 const config = (args) => args ? { ...args } : argv
 
+/**
+ * This function is used to return string timestamp
+ * @returns {String} 
+ */
 const setCreationTimeFile = () => `/**\n* Do not edit directly\n* Generated on ${new Date().toUTCString()}\n*/\n`;
 
+/**
+ * This function is used to create file fonts
+ * @param {{input: String;output: String; file: String; copy: Boolean; data: String}} param 
+ */
+const handleCreateAsset = async ({ input, output, file, copy, data }) => {
+  if (!copy) {
+      const _path = route.resolve(input, file);
+      const _file = fs.readFileSync(_path, 'utf8').toString();
+      const _data = data ? `${data}\n${_file}` : _file;
+      const response = await createFile(output, file, _data, true);
+      if (response) await messages.success(`✔︎ ${output}/${file}`);
+  }
+}
 module.exports = {
   config,
   getIcons,
@@ -417,6 +408,6 @@ module.exports = {
   buildTokens,
   getKeyIcons,
   generateIconFont,
-  generateSvgSprites,
+  handleCreateAsset,
   setCreationTimeFile
 }
