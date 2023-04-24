@@ -16,12 +16,14 @@ design-tokens-utils --tokens=.frontech.json --path=assets
 
 Options flags command line:
 
-| Flags | Description                                         |
-| ----- | --------------------------------------------------- |
-| tokens  | File Configuration Tokens                                  |
-| theme | Set of tokens specific to the configuration file. Otherwise, it will select all those defined in the metadata.. |
-| platforms   | [Style dictionary](https://amzn.github.io/style-dictionary/#/config) config to other plataforms.          |
-| path  | Path to build architecture.    |
+| Flags              | Description                                                                                                    |
+| ------------------ | -------------------------------------------------------------------------------------------------------------- |
+| tokens             | File Configuration Tokens                                                                                      |
+| theme              | Set of tokens specific to the configuration file. Otherwise, it will select all those defined in the metadata. |
+| platforms          | [Style dictionary](https://amzn.github.io/style-dictionary/#/config) config to other plataforms.               |
+| path               | Path to build architecture.                                                                                    |
+| disableIconFont    | Variable to don´t create icon font. By Default it`s created.                                                   |
+| disableIconSprites | Variable to don´t create icon sprites. By Default it`s created.                                                |
 
 For the proper functioning of the library, it is necessary to create a configuration file in the project. This configuration must maintain [Tokens Studio Figma](https://docs.tokens.studio/tokens/json-schema) structure:
 

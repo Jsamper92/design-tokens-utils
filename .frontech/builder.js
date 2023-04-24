@@ -1,4 +1,5 @@
-const [utils, styleDictionary, route] = [
+const [fs, utils, styleDictionary, route] = [
+    require('fs-extra'),
     require('./utils'),
     require("../.frontech/styledictionary"),
     require('path')
@@ -13,19 +14,23 @@ const { buildStyleDictionary } = styleDictionary;
  * @param {String} dictionary 
  * @param {String} path 
  * @param {String} theme 
+ * @param {disableIconFont} boolean
  */
-const createTokens = async (data, dictionary, path, theme) => {
+const createTokens = async (data, dictionary, path, theme, disableIconFont, disableIconSprites) => {
     try {
         const tokens = await buildTokens(data);
         const icons = getKeyIcons(data, tokens, theme);
+        const _disableIconFont = disableIconFont === 'true';
+        const _disableIconSprites = disableIconSprites === 'true';
+
         if (icons) {
             const _icons = await getIcons(icons.icons, theme, path);
             if (_icons) {
-                const _iconFont = await buildIconFont(path);
-                if (_iconFont) buildStyleDictionary(dictionary, path);
+                const _iconFont = await buildIconFont(path, _disableIconFont, _disableIconSprites);
+                if (tokens && _iconFont) buildStyleDictionary(dictionary, path);
             }
         } else {
-            const _iconFont = await buildIconFont(path);
+            const _iconFont = await buildIconFont(path, _disableIconFont, _disableIconSprites);
             if (tokens && _iconFont) buildStyleDictionary(dictionary, path);
         }
     } catch (error) {
@@ -37,23 +42,20 @@ const createTokens = async (data, dictionary, path, theme) => {
  * @description This function is used to build icon font
  * @param {String} path 
  */
-const buildIconFont = async (path) => {
+const buildIconFont = async (path, disableIconFont, disableIconSprites) => {
     return new Promise(async (resolve) => {
         messages.print('process transformation icons to icon font started');
-        await generateIconFont(path)
+        await generateIconFont(path, disableIconFont, disableIconSprites)
             .then((response) => {
-                if (response) {
-                    console.log(
-                        `\nIconic font creation based on the svg files in the path ${route.resolve(path, 'fonts', 'icomoon')}`
-                    );
-                    response.forEach(async ({ folder, file, data }) => {
-                        messages.success(`✔︎ ${folder}/${file}`);
-                        createFile(folder, file, data, true);
-                    });
-
-                    messages.print('process transformation icons to icon font finished');
-                    resolve(true);
-                }
+                response.forEach(async ({ input, output, file, copy, data }) => {
+                    if (!copy) {
+                        const oldPath = route.resolve(input, file);
+                        const _file = fs.readFileSync(oldPath, 'utf8').toString();
+                        const _data = data ? `${data}\n${_file}` : _file;
+                        createFile(output, file, _data, true);
+                    }
+                });
+                resolve(true);
             })
             .catch((error) => {
                 console.error(error);

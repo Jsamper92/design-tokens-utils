@@ -1,21 +1,19 @@
 
-const [fs, route, colors, translateTokens, svgSpreact, webfont, figma] = [
+const [fs, route, colors, translateTokens, svgtofont, figma] = [
   require("fs"),
   require('path'),
   require("colors"),
   require("./tokens"),
-  require('svg-spreact'),
-  require("fantasticon"),
+  require('svgtofont'),
   require('figma-icons-tokens')
 ];
 
-const { generateFonts, FontAssetType, OtherAssetType } = webfont;
 const { tokensResolved } = translateTokens;
 const { figmaIconsTokens } = figma;
 
 /**
  * @description Get argv config npm script
- * @returns {{theme: string; path: string; file: string; key: string; bin: boolean}}
+ * @returns {{theme: string; path: string; file: string; tokens: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean}}
  */
 const argv = process.argv.slice(2).reduce((acc, current) => {
   const key = new RegExp(/(--)(.*)(\=)/).exec(current)[2];
@@ -223,67 +221,81 @@ const buildCore = (path) => {
 /**
  * This function is used to create an icon font using figma icons defined in the configuration file.
  * @param {String} path 
- * @returns {Promise<{folder: String; file: String; data: String}[]>}
+ * @returns {Promise<{input: String;output: String; file: String; copy: Boolean; data: String}[]>}
  */
-const generateIconFont = async (path) => {
+const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
   return new Promise(async (resolve, reject) => {
-    const outputDir = route.resolve(process.cwd(), path, 'fonts', 'icomoon');
-    const inputDir = route.resolve(process.cwd(), path, 'images', 'icons');
-    const utilities = route.resolve(process.cwd(), path, 'library/scss/utilities');
+    const fontName = 'icomoon';
+    const dist = route.resolve(__dirname, '..', 'build', 'fonts');
+    const src = route.resolve(process.cwd(), path, 'images/icons');
+    const outputFont = route.resolve(process.cwd(), path, 'fonts', 'icomoon');
+    const outputSprites = route.resolve(process.cwd(), path, 'images', 'sprites');
+    const outputScss = route.resolve(process.cwd(), path, 'library/scss/utilities');
+    const logger = (msg) => {
+      if (msg.toLocaleLowerCase().includes('found')) console.log(`❗${msg}`);
+    };
 
-    await generateFonts({
-      inputDir,
-      name: 'icomoon',
-      fontTypes: [
-        FontAssetType.EOT,
-        FontAssetType.TTF,
-        FontAssetType.SVG,
-        FontAssetType.WOFF,
-        FontAssetType.WOFF2,
-      ],
-      assetTypes: [OtherAssetType.SCSS],
-      formatOptions: { json: { indent: 2 } },
-      templates: {
-        'scss': route.resolve(__dirname, '..', 'templates', 'icomoon.hbs')
+    svgtofont({
+      src,
+      dist,
+      fontName,
+      log: false,
+      logger,
+      css: {
+        cssPath: '#{$font-path}/icomoon/',
       },
-      fontHeight: '800',
-      tag: 'i',
-      prefix: 'icon',
-      fontsUrl: '#{$font-path}',
+      styleTemplates: route.resolve(__dirname, '..', "templates"),
+      classNamePrefix: 'icon',
+      svgicons2svgfont: {
+        fontHeight: 1000,
+        normalize: true
+      }
     })
-      .then((response) => {
-        const { assetsOut } = response;
-        const { scss, svg, eot, ttf, woff2, woff } = assetsOut;
+      .then(() => {
         const _files = [
           {
-            folder: utilities,
+            input: dist,
+            output: outputScss,
             file: `_icons.scss`,
-            data: `${setCreationTimeFile()}\n${scss}`
+            copy: disableIconFont,
+            data: setCreationTimeFile()
           },
           {
-            folder: outputDir,
-            file: `iconmoon.svg`,
-            data: svg
+            input: dist,
+            output: outputFont,
+            file: `${fontName}.svg`,
+            copy: disableIconFont,
           },
           {
-            folder: outputDir,
-            file: `iconmoon.ttf`,
-            data: ttf.toString()
+            input: dist,
+            output: outputFont,
+            file: `${fontName}.ttf`,
+            copy: disableIconFont,
           },
           {
-            folder: outputDir,
-            file: `iconmoon.eot`,
-            data: eot.toString()
+            input: dist,
+            output: outputFont,
+            file: `${fontName}.eot`,
+            copy: disableIconFont,
           },
           {
-            folder: outputDir,
-            file: `iconmoon.woff`,
-            data: woff.toString()
+            input: dist,
+            output: outputFont,
+            file: `${fontName}.woff`,
+            copy: disableIconFont,
           },
           {
-            folder: outputDir,
-            file: `iconmoon.woff2`,
-            data: woff2.toString()
+            input: dist,
+            output: outputFont,
+            file: `${fontName}.woff2`,
+            copy: disableIconFont,
+          },
+          {
+            input: dist,
+            output: outputSprites,
+            file: `${fontName}.symbol.svg`,
+            copy: disableIconSprites,
+            data: ''
           }
         ]
 
@@ -314,47 +326,6 @@ const buildTokens = (tokens) => {
     }
   })
 
-}
-
-const handlelocalSvgSprites = async (_iconsPath, response, path) => {
-
-  return new Promise(async (resolve, reject) => {
-    const icons = fs.readdirSync(_iconsPath)
-      .map(file => {
-        const _file = route.resolve(_iconsPath, file);
-        const data = fs.readFileSync(_file).toString();
-        const name = file;
-        return { data, name };
-      })
-      .map(({ name, data }) => {
-        if (response.length) {
-          if (response.find(file => file.name === name)) {
-            const _data = response.filter(file => file.name === name)[0].data;
-            return {
-              name,
-              data: _data
-            }
-          }
-        }
-
-        return {
-          name,
-          data
-        }
-      });
-
-    if (icons.length) {
-      const sprite = await generateSvgSprites(icons, path);
-      if (sprite) resolve(true);
-    } else {
-      messages.error('✖ There are no new icons to import');
-      messages.print('process import icons tokens finished');
-      messages.print('icon sprit svg process started');
-      messages.error(`✖ There are no icons to create file ${route.resolve(path, 'images/sprites/sprites.svg')}`);
-      messages.print('icon sprit svg process finished');
-      resolve(true);
-    }
-  })
 }
 
 const generateSvgSprites = (icons, path) => {
@@ -418,43 +389,20 @@ const getIcons = async (data, theme, path) => {
   return new Promise(async (resolve) => {
     messages.print('process import icons tokens started');
 
-    await figmaIconsTokens({ theme, path: route.resolve(path, 'images/icons'), file: null, key: 'icons', data })
-      .then(async (response) => {
-        const _iconsPath = route.resolve(process.cwd(), path, 'images', 'icons');
-        const existIcons = fs.existsSync(_iconsPath);
+    const response = await figmaIconsTokens({ theme, path: route.resolve(path, 'images/icons'), file: null, key: 'icons', data })
 
-        if (typeof response === 'object' && response.length) {
-          if (!existIcons) {
-            generateSvgSprites(response, path);
-          } else {
-            const icons = await handlelocalSvgSprites(_iconsPath, response, path);
-            if (icons) resolve(true);
-          }
-        } else {
-          if (existIcons) {
-            const icons = await handlelocalSvgSprites(_iconsPath, [], path);
-            if (icons) resolve(true);
-          } else {
-            messages.print('process import icons tokens finished');
-            messages.print('icon sprit svg process started');
-            messages.error(`✖ There are no icons to create file ${path}/images/sprites/sprites.svg`);
-            messages.print('icon sprit svg process finished');
-            resolve(true);
-          }
-        }
-
-      })
-      .catch(error => {
-        console.error(error)
-      })
+    if (response) {
+      messages.print('process import icons tokens finished');
+      resolve(true);
+    }
 
   })
 }
 
 /**
  * @description This function is used to return config to init script design systems utils
- * @param {{theme: string; path: string; file: string; key: string;}} args 
- * @returns {{theme: string; path: string; file: string; key: string;}}
+ * @param {{theme: string; path: string; file: string; key: string; disableIconFont: Boolean}} args 
+ * @returns {{theme: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean}}
  */
 const config = (args) => args ? { ...args } : argv
 

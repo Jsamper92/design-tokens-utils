@@ -1,10 +1,10 @@
-
-const [fs, utils, route] = [
+const [fs, utils, route, chroma] = [
   require('fs'),
   require("./utils"),
-  require("path")
+  require("path"),
+  require('chroma-js')
 ];
-const { createFile } = utils;
+const { createFile, config } = utils;
 const setCreationTimeFile = () => `// Do not edit directly\n// Generated on ${new Date().toLocaleString()}\n\n`;
 
 const buildCore = (path) => {
@@ -109,7 +109,7 @@ const createSettingsPartials = (path) => {
     {
       origin: route.resolve(_root),
       name: '_general.scss',
-      data: `${setCreationTimeFile()}/// Variable path by default of the sources defined in the .frontech.json file.\n/// To modify the path, simply set the variable in the import as follows: @use '~@front-tech/design-systems-utils/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts/" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '~@front-tech/design-systems-utils/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n/// Variable that transforms pixels into rem for browsers that support rem as well as if they do not. By default false.\n/// @group rem\n$rem-fallback: false !default;\n/// Variable that provides compatibility with Internet Explorer 9 and does not convert pixels into rem, as it is not compatible. By default, it is false.\n/// @group rem\n$rem-px-only: false !default;`,
+      data: `${setCreationTimeFile()}/// Variable path by default of the sources defined in the .frontech.json file.\n/// To modify the path, simply set the variable in the import as follows: @use '~@front-tech/design-systems-utils/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '~@front-tech/design-systems-utils/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n/// Variable that transforms pixels into rem for browsers that support rem as well as if they do not. By default false.\n/// @group rem\n$rem-fallback: false !default;\n/// Variable that provides compatibility with Internet Explorer 9 and does not convert pixels into rem, as it is not compatible. By default, it is false.\n/// @group rem\n$rem-px-only: false !default;`,
       force: false
     }
   ]
@@ -179,6 +179,7 @@ const createCustomProperties = (tokens) => {
           .reduce((acc, [key, _value]) => (acc += `--${name}-${key}: ${_value};\n`), '')
       }
     }
+
     customVar += `--${name}:${value};\n`;
     return tokens += isString ? customVar : customVarAdvanced;
   }, '');
@@ -203,7 +204,7 @@ const styleDictionary = (file, path) => {
       files: [
         {
           destination: "settings/_color.scss",
-          format: "css/variables",
+          format: "custom/variables-colors",
           filter: {
             type: "color"
           }
@@ -288,6 +289,29 @@ const styleDictionary = (file, path) => {
     formatter: ({ dictionary: { allTokens } }) => {
 
       const _tokens = createCustomProperties(allTokens);
+
+      return `${setCreationTimeFile()}:root{\n${_tokens}}`
+    }
+  });
+
+  StyleDictionary.registerFormat({
+    name: 'custom/variables-colors',
+    formatter: ({ dictionary: { allTokens } }) => {
+
+      const _tokens = allTokens.reduce((tokens, prop) => {
+        const { name, original } = prop;
+        const isColorAlpha = original.value.split(' ');
+        const getValueToken = () => {
+          if (isColorAlpha.length === 2) {
+            const [main, alpha] = isColorAlpha;
+            return `rgba(${chroma(main).rgb()},${alpha})`
+          }
+
+          return original.value;
+        }
+
+        return tokens += `--${name}: ${getValueToken()};\n`;
+      }, '');
 
       return `${setCreationTimeFile()}:root{\n${_tokens}}`
     }
@@ -478,22 +502,22 @@ const styleDictionary = (file, path) => {
 
 };
 
-const buildStyleDictionary = (file, path) => {
+const buildStyleDictionary = (dictionary, path) => {
   const _tokens = route.resolve(process.cwd(), path, 'library/scss', 'settings');
   const isSettings = fs.existsSync(_tokens);
+  const { tokens,  } = config();
   utils.messages.print("Settings creation process started");
 
 
   utils.messages.warning(
-    `\nBased on the information provided in the configuration file ${file} the following files are generated: \n`
+    `\nBased on the information provided in the configuration file ${tokens} the following files are generated: \n`
   );
 
   if (isSettings) fs.rmSync(_tokens, { recursive: true });
-  styleDictionary(file, path);
+
+  styleDictionary(dictionary, path);
   buildCore(path);
 }
-
-
 
 module.exports = {
   styleDictionary,

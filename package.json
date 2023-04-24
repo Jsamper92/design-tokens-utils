@@ -1,6 +1,6 @@
 {
   "name": "design-tokens-utils",
-  "version": "0.0.10",
+  "version": "0.0.15",
   "description": "Design Tokens Utils aims to provide a series of common utilities at the start of any web project, which will make it easier and faster to start the architecture.",
   "main": "./lib/index.js",
   "bin": {
@@ -11,17 +11,16 @@
     "url": "https://github.com/Jsamper92/design-tokens-utils.git"
   },
   "scripts": {
-    "build": "node bin/index.js --tokens=.frontech.json --path=assets",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node bin/index.js --tokens=.frontech.json --path=assets"
   },
   "author": "Javier Samper arias",
   "license": "ISC",
   "files": [
     ".frontech",
-    "templates",
     "bin",
     "library",
     "lib",
+    "templates",
     "README.md",
     "LICENSE"
   ],
@@ -35,11 +34,12 @@
     "figma-icons-tokens"
   ],
   "dependencies": {
+    "chroma-js": "2.4.2",
     "colors": "1.4.0",
-    "fantasticon": "1.2.3",
-    "figma-icons-tokens": "1.4.4",
+    "figma-icons-tokens": "^1.4.5",
+    "fs-extra": "^11.1.1",
     "style-dictionary": "3.7.2",
-    "svg-spreact": "1.3.2",
+    "svgtofont": "^3.23.0",
     "token-transformer": "0.0.30"
   }
 }

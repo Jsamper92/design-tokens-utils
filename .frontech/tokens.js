@@ -14,7 +14,7 @@ const tokensResolved = async (tokens) => {
     try {
         return new Promise(async (resolve) => {
             const resolved = transformTokens(tokens, Object.keys(tokens), excludes, transformerOptions);
-            
+
             if (resolved) resolve(resolved);
         })
     } catch (error) {
