@@ -1,141 +1,104 @@
-# Figma-icons-tokens
+# Design Tokens Utils
 
-Figma-icons-tokens aims to import figma icons given a design tokens configuration file exposed by [Tokens Studio Figma](https://tokens.studio/).
+Design Tokens Utils aims to provide a series of common utilities at the start of any web project, which will make it easier and faster to start the architecture.
 
 ## Installation
 
 ```
-npm install figma-icons-tokens
+npm install design-tokens-utils -D
 ```
 
 ## Example
 
 ```
-figma-icons-tokens --file=tokens.json --theme=global --key=icon --path=assets
+design-tokens-utils --tokens=.frontech.json --path=assets --disableIconFont --disableIconSprites
 ```
 
 Options flags command line:
 
-| Flags | Description                                         |
-| ----- | --------------------------------------------------- |
-| file  | File Configuration                                  |
-| theme | Theme name where the icons to import are specified. |
-| key   | Key where the icons to import are located.          |
-| path  | Path where the imported icons should be exposed.    |
+| Flags              | Description                                                                                                    |
+| ------------------ | -------------------------------------------------------------------------------------------------------------- |
+| tokens             | File Configuration Tokens                                                                                      |
+| theme              | Set of tokens specific to the configuration file. Otherwise, it will select all those defined in the metadata. |
+| platforms          | [Style dictionary](https://amzn.github.io/style-dictionary/#/config) config to other plataforms.               |
+| path               | Path to build architecture.                                                                                    |
+| disableIconFont    | Variable to don´t create icon font. By Default it`s created.                                                   |
+| disableIconSprites | Variable to don´t create icon sprites. By Default it`s created.                                                |
 
-Initially, the link to be copied must be the node above the vector that defines the icon. To guarantee the correct display of the icon, it must be a single vector.
-
-Define an environment variables file with the authorization token and figma file id:
-
-```
-
-FIGMA_TOKEN=figX_XXXXXXXXXXXXXXXXXXX-XXX
+For the proper functioning of the library, it is necessary to create a configuration file in the project. This configuration must maintain [Tokens Studio Figma](https://docs.tokens.studio/tokens/json-schema) structure:
 
 ```
-
-For the correct operation of the library, It is necessary to present a configuration file with the structure defined in the Figma Studio Tokens standard and the link obtained from the icons to import. It is also possible to nest the same icons based on the different sizes by breaking points of this.
-
-```
-
 {
-"global": {
-    "icon": {
-        "delete": {
-            "xs": {
-                "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
-                "type": "asset"
-            },
-            "md": {
-                "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
-                "type": "asset"
-            },
-            "lg": {
-                "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
-                "type": "asset"
-            }
-        },
-        "add": {
-            "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
+  "_icons": {
+      "ds": {
+        "icon": {
+          "close": {
+            "value": "https://www.figma.com/file/OydaDnZc16mulAMyxZcsMJ/%5Bexample<%5D-_icons?node-id=47-2299&t=SwiaYNlv9zVpdq6i-4",
             "type": "asset"
-        },
-        "next": {
-            "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
-            "type": "asset"
-        },
-        "previous": {
-            "value": "https://www.figma.com/file/XXXXXXXXXXX/An%C3%A1lisis-componentes-visuales-%2B-Figma?node-id=6%3A87&t=vc9GOS1lovXQoneW-4",
-            "type": "asset"
+          }
         }
+      }
+  },
+  "_palette-brand-example": {
+      "color": {
+        "white": {
+          "value": "#ffffff",
+          "type": "color"
+        },
+              "black": {
+        "value": "#0A0A0A",
+        "type": "color"
+      },
+        "gray": {
+          "50": {
+            "value": "#f6f6f6",
+            "type": "color"
+          },
+          "100": {
+            "value": "#e8e8e8",
+            "type": "color"
+          },
+          "200": {
+            "value": "#d9d9d9",
+            "type": "color"
+          },
+          "300": {
+            "value": "#bfbfbf",
+            "type": "color"
+          },
+          "400": {
+            "value": "#a6a6a6",
+            "type": "color"
+          },
+          "500": {
+            "value": "#8c8c8c",
+            "type": "color"
+          },
+          "600": {
+            "value": "#737373",
+            "type": "color"
+          },
+          "700": {
+            "value": "#4D4D4D",
+            "type": "color"
+          },
+          "800": {
+            "value": "#373737",
+            "type": "color"
+          },
+          "900": {
+            "value": "#1C1C1C",
+            "type": "color"
+          }
+        },
     }
-},
-"$themes": [],
-"$metadata": {
-        "tokenSetOrder": [
-            "global"
-        ]
-    }
+  },
+  "$themes": [],
+  "$metadata": {
+    "tokenSetOrder": [
+      "_palette-brand-example",
+      "_icons",
+    ]
+  }
 }
-
 ```
-
-## Node.js API
-
-You can use this module as a node module.
-
-```
-const figma = require('figma-icons-tokens');
-```
-
-### figmaIconsTokens ({theme: string, path: string, file: string, key: string, data: Object}) : Promise<{path: string; name: string; data: Object}[]>
-
-```
-const [figma, argv] = [
-  require('figma-icons-tokens')
-  require('minimist')(process.argv.slice(2)),
-];
-
-const { tokens, theme, path } = argv;
-const { figmaIconsTokens } = figma;
-
-figmaIconsTokens({
-        theme,
-        path,
-        file: tokens,
-        key: 'icons',
-        data: {
-                "ICON_X": {
-                    "value": "https://www.figma.com/file/XX",
-                    "type": "asset"
-                }
-            }
-    })
-  .then((ev) => console.log(ev))
-  .catch((error) => console.error(error))
-```
-
-| Args  | Type                   | Description                                         |
-| ----- | ---------------------- | --------------------------------------------------- |
-| file  | String                 | File Configuration                                  |
-| theme | String                 | Theme name where the icons to import are specified. |
-| key   | String                 | Key where the icons to import are located.          |
-| path  | String                 | Path where the imported icons should be exposed.    |
-| data  | Object <br/>(Optional) | Object with icons to import files svg               |
-
-## Changelog
-
-[Github Releases](https://github.com/Jsamper92/figma-icons-tokens/tags)
-
-## Contributing
-
-Thanks for contributing to figma-icons-tokens development!
-Feature requests and bug reports can be filed on [Github](https://github.com/Jsamper92/figma-icons-tokens)
-
-If you are contributing code with new features or bug-fixes:
-
-- Fork the project, and create a branch for your contribution.
-- Follow the development guide below to get figma-icons-tokens to work.
-- Open a pull request on [Github](https://github.com/Jsamper92/figma-icons-tokens/issues)
-
-## License
-
-[MIT License](LICENSE) © [Javier Samper Arias](https://github.com/Jsamper92)
