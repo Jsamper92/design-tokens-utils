@@ -20,17 +20,15 @@ const createTokens = async (data, dictionary, path, theme, disableIconFont, disa
     try {
         const tokens = await buildTokens(data);
         const icons = getKeyIcons(data, tokens, theme);
-        const _disableIconFont = disableIconFont === 'true';
-        const _disableIconSprites = disableIconSprites === 'true';
 
         if (icons) {
             const _icons = await getIcons(icons.icons, theme, path);
             if (_icons) {
-                const _iconFont = await buildIconFont(path, _disableIconFont, _disableIconSprites);
+                const _iconFont = await buildIconFont(path, disableIconFont, disableIconSprites);
                 if (tokens && _iconFont) buildStyleDictionary(dictionary, path);
             }
         } else {
-            const _iconFont = await buildIconFont(path, _disableIconFont, _disableIconSprites);
+            const _iconFont = await buildIconFont(path, disableIconFont, disableIconSprites);
             if (tokens && _iconFont) buildStyleDictionary(dictionary, path);
         }
     } catch (error) {
@@ -50,7 +48,7 @@ const buildIconFont = async (path, disableIconFont, disableIconSprites) => {
         if (!(disableIconFont && disableIconSprites)) {
             await generateIconFont(path, disableIconFont, disableIconSprites)
                 .then(async (response) => {
-                    console.log('\n');
+                    if (disableIconFont) console.log('\n');
                     const iconFont = response.filter(({ file }) => !new RegExp(/symbol.svg/).test(file));
                     const _iconFont = await Promise.all(iconFont.map(handleCreateAsset))
 

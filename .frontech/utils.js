@@ -16,8 +16,11 @@ const { figmaIconsTokens } = figma;
  * @returns {{theme: string; path: string; file: string; tokens: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean}}
  */
 const argv = process.argv.slice(2).reduce((acc, current) => {
-  const key = new RegExp(/(--)(.*)(\=)/).exec(current)[2];
-  const value = new RegExp(/(\=)(.*)/).exec(current)[2];
+  const _key = new RegExp(/(--)(.*)(\=)/).exec(current);
+  const _value = new RegExp(/(\=)(.*)/).exec(current);
+  
+  const key = _key ? new RegExp(/(--)(.*)(\=)/).exec(current)[2] : current.replace('--', '');
+  const value = _value ? new RegExp(/(\=)(.*)/).exec(current)[2] : true;
 
   return { ...acc, [key]: value };
 }, {});

@@ -5,13 +5,13 @@ Design Tokens Utils aims to provide a series of common utilities at the start of
 ## Installation
 
 ```
-npm install design-tokens-utils
+npm install design-tokens-utils -D
 ```
 
 ## Example
 
 ```
-design-tokens-utils --tokens=.frontech.json --path=assets
+design-tokens-utils --tokens=.frontech.json --path=assets --disableIconFont --disableIconSprites
 ```
 
 Options flags command line:

@@ -219,11 +219,6 @@ const styleDictionary = (file, path) => {
           },
         },
         {
-          destination: "base/_fonts.scss",
-          format: "custom/fonts",
-          filter: ({ type }) => ['typography', 'fontWeights'].includes(type),
-        },
-        {
           destination: "base/_font-face.scss",
           format: "custom/font-face",
           filter: ({ type }) => ['fontFamilies', 'fontWeights'].includes(type),
@@ -277,7 +272,7 @@ const styleDictionary = (file, path) => {
     formatter: ({ dictionary: { allTokens } }) => {
 
       const filterTokens = allTokens.filter(({ type }) => !['fontFamilies', 'typography'].includes(type));
-      const _tokens = createCustomProperties(filterTokens);
+      const _tokens = createCustomProperties(allTokens);
 
       return `${setCreationTimeFile()}:root{\n${_tokens}}`
     }
@@ -334,39 +329,6 @@ const styleDictionary = (file, path) => {
         }).join(';');
 
       return `${setCreationTimeFile()}:root{\n${_spacing}}`
-    }
-  });
-
-  StyleDictionary.registerFormat({
-    name: 'custom/fonts',
-    formatter: ({ dictionary: { allTokens } }) => {
-      const _weights = allTokens
-        .filter(({ type }) => type === 'fontWeights')
-        .reduce((acc, { path, value }) => ({ ...acc, [value]: [path[path.length - 1]] }), {});
-
-      const _tokens = allTokens
-        .filter(({ type }) => type === 'typography')
-        .reduce((classes, prop) => {
-          const { value, name } = prop;
-          const { fontFamily, fontWeight, fontSize, letterSpacing, lineHeight } = value;
-
-          const pathFolder = route.resolve(process.cwd(), path, 'fonts', fontFamily.split(',')[0]);
-          const isFolder = fs.existsSync(pathFolder);
-          const [_font, ...callbacks] = fontFamily.split(',');
-          const _fontName = `'${_font}-${_weights[fontWeight]}'`.toLocaleLowerCase();
-          const _fontFamily = `${_fontName},${callbacks.join(',')}`
-          const isIcon = prop.path.includes('icon');
-          const _classesIcon = `\nfont-size: ${fontSize};\nline-height: ${lineHeight};\n`;
-          const _classesFont = `\nfont-family:${_fontFamily};\nfont-weight:${fontWeight};\nfont-size:${fontSize};\nletter-spacing: ${letterSpacing};\nline-height: ${lineHeight};\n`;
-          const _properties = isIcon ? _classesIcon : _classesFont;
-
-          const classCSS = `\n.${name} {${_properties}}\n`;
-          classes += !isFolder && !isIcon ? `\n// The font-face of this font has not been created as it is not found in the project.\n// Include the font file in /${path}/fonts. ${classCSS}` : classCSS;
-
-          return classes;
-        }, '');
-
-      return `${setCreationTimeFile()}${_tokens}`
     }
   });
 
@@ -428,7 +390,8 @@ const styleDictionary = (file, path) => {
         return fontFace
       }, '');
 
-      const content = _tokens.length ? `@use '../settings/general' as *;${_tokens}` : `\n// Please include the source file in the ${path}/fonts to create the font-faces.`;
+      const _paths = _families.reduce((acc, value, index) => (acc+= `${path}/fonts/${value}${index !== _families.length - 1 ? ',' : ''}`), '');
+      const content = _tokens.length ? `@use '../settings/general' as *;${_tokens}` : `\n// Please include the source file in the ${_paths} to create the font-faces.`;
       return `${setCreationTimeFile()}${content}`
     }
   });
