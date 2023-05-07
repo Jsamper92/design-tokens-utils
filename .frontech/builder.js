@@ -5,7 +5,7 @@ const [fs, utils, styleDictionary, route] = [
     require('path')
 ];
 
-const { messages, handleCreateAsset, generateIconFont, getIcons, buildTokens, getKeyIcons } = utils;
+const { messages, generateIconFont, generateSvgSprites, getIcons, buildTokens, getKeyIcons } = utils;
 const { buildStyleDictionary } = styleDictionary;
 
 /**
@@ -43,38 +43,27 @@ const createTokens = async (data, dictionary, path, theme, disableIconFont, disa
 const buildIconFont = async (path, disableIconFont, disableIconSprites) => {
 
     return new Promise(async (resolve) => {
-        if (!disableIconFont) messages.print('process transformation icons to icon font started');
+        const icons = fs.readdirSync(route.resolve(path, 'images', 'icons'))
+            .map(icon => ({ name: icon.replace('.svg', ''), data: fs.readFileSync(route.resolve(path, 'images', 'icons', icon), 'utf8') }));
 
-        if (!(disableIconFont && disableIconSprites)) {
-            await generateIconFont(path, disableIconFont, disableIconSprites)
-                .then(async (response) => {
-                    if (!disableIconFont) console.log('\n');
-                    const iconFont = response.filter(({ file }) => !new RegExp(/symbol.svg/).test(file));
-                    const _iconFont = await Promise.all(iconFont.map(handleCreateAsset))
-
-                    if (_iconFont && !disableIconFont) {
-                        messages.print('process transformation icons to icon font finished');
-                    }
-
-                    if (!disableIconSprites) messages.print('process transformation icons to icon sprite started');
-
-                    const iconSprite = response.filter(({ file }) => new RegExp(/symbol.svg/).test(file));
-                    const _iconSprite = await Promise.all(iconSprite.map(handleCreateAsset));
-
-                    if (_iconSprite && !disableIconSprites) {
-                        messages.print('process transformation icons to icon sprite finished');
-                    }
-
+        if (!disableIconFont) {
+            const iconFont = await generateIconFont(path, disableIconFont, disableIconSprites);
+            if (iconFont) {
+                if (!disableIconSprites) {
+                    const iconSprites = await generateSvgSprites(icons, path);
+                    if (iconSprites) resolve(true);
+                } else {
                     resolve(true);
-                })
-                .catch((error) => {
-                    console.error(error);
-                    resolve(true);
-                })
+                }
+            }
         } else {
-            resolve(true);
+            if (!disableIconSprites) {
+                const iconSprites = await generateSvgSprites(icons, path);
+                if (iconSprites) resolve(true);
+            } else {
+                resolve(true);
+            }
         }
-
     })
 }
 

@@ -1,15 +1,16 @@
-
-const [fs, route, colors, translateTokens, svgtofont, figma] = [
+const [fs, route, colors, translateTokens, svgSpreact, figma, shelljs] = [
   require("fs"),
   require('path'),
   require("colors"),
   require("./tokens"),
-  require('svgtofont'),
-  require('figma-icons-tokens')
+  require('svg-spreact'),
+  require('figma-icons-tokens'),
+  require('shelljs')
 ];
 
 const { tokensResolved } = translateTokens;
 const { figmaIconsTokens } = figma;
+const { exec } = shelljs;
 
 /**
  * @description Get argv config npm script
@@ -18,7 +19,7 @@ const { figmaIconsTokens } = figma;
 const argv = process.argv.slice(2).reduce((acc, current) => {
   const _key = new RegExp(/(--)(.*)(\=)/).exec(current);
   const _value = new RegExp(/(\=)(.*)/).exec(current);
-  
+
   const key = _key ? new RegExp(/(--)(.*)(\=)/).exec(current)[2] : current.replace('--', '');
   const value = _value ? new RegExp(/(\=)(.*)/).exec(current)[2] : true;
 
@@ -221,99 +222,82 @@ const buildCore = (path) => {
   Promise.all(files.map(({ origin, name, data }) => createFile(origin, name, data)));
 };
 
+const generateSvgSprites = (icons, path) => {
+  return new Promise((resolve) => {
+    try {
+      const _icons = icons.map(({ data }) => data);
+      const names = icons.map(({ name }) => name);
+      const processId = n => `${names[n]}`;
+
+      svgSpreact(_icons, { tidy: true, optimize: true, processId })
+        .then(async ({ defs }) => {
+          const files = await createFile(route.resolve(path, 'images/sprites'), 'sprites.svg', defs, true);
+
+          if (files) {
+            messages.print('icon sprit svg process started');
+            messages.success(`✔︎ file ${path}/images/sprites/sprites.svg successfully created`);
+            messages.print('icon sprit svg process finished');
+            resolve(true);
+          }
+        })
+        .catch(error => console.error(error))
+    } catch (error) {
+      console.error(error);
+    }
+  })
+}
+
+
 /**
  * This function is used to create an icon font using figma icons defined in the configuration file.
  * @param {String} path 
  * @returns {Promise<{input: String;output: String; file: String; copy: Boolean; data: String}[]>}
  */
 const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
-  return new Promise(async (resolve, reject) => {
+
+  return new Promise(resolve => {
     const fontName = 'icomoon';
-    const dist = route.resolve(__dirname, '..', 'build', 'fonts');
-    const src = route.resolve(process.cwd(), path, 'images/icons');
-    const outputFont = route.resolve(process.cwd(), path, 'fonts', 'icomoon');
-    const outputSprites = route.resolve(process.cwd(), path, 'images', 'sprites');
-    const outputScss = route.resolve(process.cwd(), path, 'library/scss/utilities');
-    const logger = (msg) => {
-      if (msg.toLocaleLowerCase().includes('found') && !disableIconFont) console.log(`❗${msg}`);
-    };
+    const icons = route.resolve(process.cwd(), path, 'images/icons');
+    const fonts = route.resolve(process.cwd(), path, 'fonts', fontName);
+    const config = route.resolve(__dirname, '..', 'build', 'fonts', 'webfonts.json');
+    const buildFont = route.resolve(__dirname, '..', 'build', 'fonts');
 
-    svgtofont({
-      src,
-      dist,
+    const dataConfig = {
       fontName,
-      log: false,
-      logger,
-      css: {
-        cssPath: '#{$font-path}/icomoon/',
-      },
-      styleTemplates: route.resolve(__dirname, '..', "templates"),
-      classNamePrefix: 'icon',
-      svgicons2svgfont: {
-        fontHeight: 1000,
-        normalize: true
-      }
-    })
-      .then(() => {
-        const _files = [
-          {
-            input: dist,
-            output: outputScss,
-            file: `_icons.scss`,
-            copy: disableIconFont,
-            data: setCreationTimeFile()
-          },
-          {
-            input: dist,
-            output: outputFont,
-            file: `${fontName}.svg`,
-            copy: disableIconFont,
-          },
-          {
-            input: dist,
-            output: outputFont,
-            file: `${fontName}.ttf`,
-            copy: disableIconFont,
-          },
-          {
-            input: dist,
-            output: outputFont,
-            file: `${fontName}.eot`,
-            copy: disableIconFont,
-          },
-          {
-            input: dist,
-            output: outputFont,
-            file: `${fontName}.woff`,
-            copy: disableIconFont,
-          },
-          {
-            input: dist,
-            output: outputFont,
-            file: `${fontName}.woff2`,
-            copy: disableIconFont,
-          },
-          {
-            input: dist,
-            output: outputSprites,
-            file: `${fontName}.symbol.svg`,
-            copy: disableIconSprites,
+      "template": "css",
+      "dest": fonts,
+      "destTemplate": buildFont,
+      "templateClassName": "icon",
+      "templateFontPath": `#{$font-path}/${fontName}/`,
+      "fontHeight": 800,
+      "normalize": true,
+      "centerHorizontally": false,
+      "fixedWidth": false
+    }
+    const file = createFile(route.resolve(__dirname, '..', 'build', 'fonts'), 'webfonts.json', JSON.stringify(dataConfig, null, 2), true);
+    fs.mkdirSync(route.resolve(process.cwd(), path, 'fonts', fontName), { recursive: true });
+    if (!disableIconFont) {
+      messages.print('process transformation icons to icon font started');
+      if (file) {
+        exec(`node_modules/webfont/dist/cli.js ${icons}/*.svg --config ${config}`, { async: true, silent: false }, (code) => {
+          const success = code === 0;
+          if (success) {
+            const _file = fs.readFileSync(route.resolve(buildFont, 'icomoon.css')).toString();
+            const _data = `${setCreationTimeFile()}@use '../settings/general';\n\n${_file}`;
+            const creation = createFile(route.resolve(process.cwd(), path, 'library/scss/utilities'), '_icons.scss', _data, true);
+            const files = fs.readdirSync(fonts);
+            
+            files.forEach(file => messages.success(`✔︎ ${fonts}/${file}`));
+            messages.print('process transformation icons to icon font finished');
+
+            if (creation) resolve(success);
           }
-        ]
-
-        resolve(_files);
-      })
-      .catch((e) => {
-        console.error(e);
-
-        createFile(
-          `${process.cwd()}/library/scss/utilities`,
-          `_icons.scss`,
-          `// To generate the iconic font, check the configuration file`
-        );
-        resolve(true);
-      });
-  })
+        });
+      }
+    } else {
+      resolve(true);
+    }
+  });
 
 };
 
@@ -389,19 +373,6 @@ const config = (args) => args ? { ...args } : argv
  */
 const setCreationTimeFile = () => `/**\n* Do not edit directly\n* Generated on ${new Date().toUTCString()}\n*/\n`;
 
-/**
- * This function is used to create file fonts
- * @param {{input: String;output: String; file: String; copy: Boolean; data: String}} param 
- */
-const handleCreateAsset = async ({ input, output, file, copy, data }) => {
-  if (!copy) {
-      const _path = route.resolve(input, file);
-      const _file = fs.readFileSync(_path, 'utf8').toString();
-      const _data = data ? `${data}\n${_file}` : _file;
-      const response = await createFile(output, file, _data, true);
-      if (response) await messages.success(`✔︎ ${output}/${file}`);
-  }
-}
 module.exports = {
   config,
   getIcons,
@@ -411,6 +382,6 @@ module.exports = {
   buildTokens,
   getKeyIcons,
   generateIconFont,
-  handleCreateAsset,
+  generateSvgSprites,
   setCreationTimeFile
 }
