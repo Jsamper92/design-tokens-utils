@@ -257,29 +257,28 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
 
   return new Promise(resolve => {
     const fontName = 'icomoon';
-    const icons = route.resolve(process.cwd(), path, 'images/icons');
     const fonts = route.resolve(process.cwd(), path, 'fonts', fontName);
     const config = route.resolve(__dirname, '..', 'build', 'fonts', 'webfonts.json');
     const buildFont = route.resolve(__dirname, '..', 'build', 'fonts');
-
+    const files = `./${path}/images/icons/*.svg`;
     const dataConfig = {
       fontName,
-      "template": "css",
-      "dest": fonts,
-      "destTemplate": buildFont,
-      "templateClassName": "icon",
-      "templateFontPath": `#{$font-path}/${fontName}/`,
-      "fontHeight": 800,
-      "normalize": true,
-      "centerHorizontally": false,
-      "fixedWidth": false
+      template: "css",
+      dest: fonts,
+      destTemplate: buildFont,
+      templateClassName: "icon",
+      templateFontPath: `#{$font-path}/${fontName}/`,
+      fontHeight: 800,
+      normalize: true,
+      centerHorizontally: false,
+      fixedWidth: false
     }
     const file = createFile(route.resolve(__dirname, '..', 'build', 'fonts'), 'webfonts.json', JSON.stringify(dataConfig, null, 2), true);
     fs.mkdirSync(route.resolve(process.cwd(), path, 'fonts', fontName), { recursive: true });
     if (!disableIconFont) {
       messages.print('process transformation icons to icon font started');
       if (file) {
-        exec(`node_modules/webfont/dist/cli.js ${icons}/*.svg --config ${config}`, { async: true, silent: false }, (code) => {
+        exec(`node node_modules/webfont/dist/cli.js ${files} --config ${config}`, { async: true, silent: false }, (code) => {
           const success = code === 0;
           if (success) {
             const _file = fs.readFileSync(route.resolve(buildFont, 'icomoon.css')).toString();
