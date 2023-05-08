@@ -267,7 +267,7 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
       dest: fonts,
       destTemplate: buildFont,
       templateClassName: "icon",
-      templateFontPath: `#{$font-path}/${fontName}/`,
+      templateFontPath: `#{general.$font-path}/${fontName}/`,
       fontHeight: 800,
       normalize: true,
       centerHorizontally: false,
