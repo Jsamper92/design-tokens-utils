@@ -212,16 +212,12 @@ const styleDictionary = (file, path) => {
         {
           destination: "settings/_typography.scss",
           format: "custom/variables-fonts",
-          filter: {
-            attributes: {
-              category: 'font',
-            }
-          },
+          filter: ({attributes, type}) => (['fontFamilies', 'fontWeights'].includes(type) || attributes.category === 'font')
         },
         {
           destination: "base/_font-face.scss",
           format: "custom/font-face",
-          filter: ({ type }) => ['fontFamilies', 'fontWeights'].includes(type),
+          filter: ({ type }) => ['lineHeights', 'fontWeights', 'fontSizes'].includes(type),
         },
         {
           destination: "settings/_grid.scss",
