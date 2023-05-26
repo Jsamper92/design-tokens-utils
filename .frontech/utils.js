@@ -265,6 +265,7 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
       fontName,
       template: "css",
       dest: fonts,
+      template: route.resolve(__dirname, '..', 'templates', '_icons.css.njk'),
       destTemplate: buildFont,
       templateClassName: "icon",
       templateFontPath: `#{general.$font-path}/${fontName}/`,
@@ -281,7 +282,7 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
         exec(`node node_modules/webfont/dist/cli.js ${files} --config ${config}`, { async: true, silent: false }, (code) => {
           const success = code === 0;
           if (success) {
-            const _file = fs.readFileSync(route.resolve(buildFont, 'icomoon.css')).toString();
+            const _file = fs.readFileSync(route.resolve(buildFont, '_icons.css')).toString();
             const _data = `${setCreationTimeFile()}@use '../settings/general';\n\n${_file}`;
             const creation = createFile(route.resolve(process.cwd(), path, 'library/scss/utilities'), '_icons.scss', _data, true);
             const files = fs.readdirSync(fonts);
