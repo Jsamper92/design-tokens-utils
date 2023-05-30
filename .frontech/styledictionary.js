@@ -161,9 +161,10 @@ const createImportDynamicPartials = (path) => {
  * @param {Array<StyleDictionaryToken>} tokens 
  * @returns {string}
  */
-const createCustomProperties = (tokens) => {
+const createCustomProperties = (tokens, boolean) => {
   return tokens.reduce((tokens, prop) => {
     const { name, value } = prop;
+    const validation = boolean && name === 'font-weight-action-sm';
     const _tokenCompositionLenght = Object.values(value).length === 1;
     const isString = typeof value === 'string';
 
@@ -175,10 +176,15 @@ const createCustomProperties = (tokens) => {
       if (_tokenCompositionLenght) {
         customVarAdvanced += `--${name}: ${Object.values(value).map((item) => item).join('')};\n`
       } else {
-        customVarAdvanced += Object.entries(value)
-          .reduce((acc, [key, _value]) => (acc += `--${name}-${key}: ${_value};\n`), '')
+        if (typeof value === 'object') {
+          customVarAdvanced += Object.entries(value)
+            .reduce((acc, [key, _value]) => (acc += `--${name}-${key}: ${_value};\n`), '')
+        } else {
+          customVarAdvanced += `--${name}: ${value};\n`
+        }
       }
     }
+
 
     customVar += `--${name}:${value};\n`;
     return tokens += isString ? customVar : customVarAdvanced;
@@ -212,7 +218,7 @@ const styleDictionary = (file, path) => {
         {
           destination: "settings/_typography.scss",
           format: "custom/variables-fonts",
-          filter: ({attributes, type}) => (['fontFamilies', 'fontWeights'].includes(type) || attributes.category === 'font')
+          filter: ({ attributes, type, ...params }) => (['fontFamilies', 'fontWeights'].includes(type) || attributes.category === 'font')
         },
         {
           destination: "base/_font-face.scss",
@@ -267,9 +273,9 @@ const styleDictionary = (file, path) => {
     name: 'custom/variables-fonts',
     formatter: ({ dictionary: { allTokens } }) => {
 
-      const filterTokens = allTokens.filter(({ type }) => !['fontFamilies', 'typography'].includes(type));
-      const _tokens = createCustomProperties(allTokens);
+      const _tokens = createCustomProperties(allTokens, true);
 
+      fs.writeFileSync(route.resolve(process.cwd(), 'build', 'tokens', 'tokens-fonts.json'), JSON.stringify(_tokens, null, 2));
       return `${setCreationTimeFile()}:root{\n${_tokens}}`
     }
   });
@@ -386,7 +392,7 @@ const styleDictionary = (file, path) => {
         return fontFace
       }, '');
 
-      const _paths = _families.reduce((acc, value, index) => (acc+= `${path}/fonts/${value}${index !== _families.length - 1 ? ',' : ''}`), '');
+      const _paths = _families.reduce((acc, value, index) => (acc += `${path}/fonts/${value}${index !== _families.length - 1 ? ',' : ''}`), '');
       const content = _tokens.length ? `@use '../settings/general' as *;${_tokens}` : `\n// Please include the source file in the ${_paths} to create the font-faces.`;
       return `${setCreationTimeFile()}${content}`
     }
@@ -464,7 +470,7 @@ const styleDictionary = (file, path) => {
 const buildStyleDictionary = (dictionary, path) => {
   const _tokens = route.resolve(process.cwd(), path, 'library/scss', 'settings');
   const isSettings = fs.existsSync(_tokens);
-  const { tokens,  } = config();
+  const { tokens, } = config();
   utils.messages.print("Settings creation process started");
 
 
