@@ -275,7 +275,6 @@ const styleDictionary = (file, path) => {
 
       const _tokens = createCustomProperties(allTokens, true);
 
-      fs.writeFileSync(route.resolve(process.cwd(), 'build', 'tokens', 'tokens-fonts.json'), JSON.stringify(_tokens, null, 2));
       return `${setCreationTimeFile()}:root{\n${_tokens}}`
     }
   });
