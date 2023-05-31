@@ -210,7 +210,6 @@ const buildCore = (path) => {
   const files = paths.map((file) => {
     const { name } = file;
     const origin = route.resolve(route.resolve(process.cwd(), path), file.path.replace(file.root, ''))
-    console.log('entro')
     const data = managementData(file);
 
     return {
@@ -220,7 +219,6 @@ const buildCore = (path) => {
     }
   });
 
-  console.log(files)
   Promise.all(files.map(({ origin, name, data }) => createFile(origin, name, data)));
 };
 
