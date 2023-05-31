@@ -4,8 +4,10 @@ const [fs, utils, route, chroma] = [
   require("path"),
   require('chroma-js')
 ];
-const { createFile, config } = utils;
-const setCreationTimeFile = () => `// Do not edit directly\n// Generated on ${new Date().toLocaleString()}\n\n`;
+const { createFile, config, dataFilesScss } = utils;
+const { tokens, file, path } = config();
+
+const setCreationTimeFile = () => dataFilesScss({ file, path }).timestamp;
 
 const buildCore = (path) => {
 
@@ -55,19 +57,36 @@ const buildCore = (path) => {
       path: route.resolve(root, `library/scss/tools/`),
     },
     {
+      data: dataFilesScss(config()).defaultVariables,
       root,
       force: false,
+      name: `_general.scss`,
+      path: route.resolve(root, `library/scss/settings/`),
+    },
+    {
+      data: dataFilesScss(config()).settingsGeneral,
+      root,
+      force: true,
       name: `abstracts.scss`,
       path: route.resolve(root, `library/scss/`),
     }
   ];
 
+  const managementData = (item) => {
+    const _file = fs
+      .readFileSync(route.resolve(item.path, item.name))
+      .toString();
+
+    if (item.name === 'abstracts.scss') {
+      return `${dataFilesScss(config()).defaultVariables}${dataFilesScss(config()).settingsGeneral}\n`
+    }
+    return `${setCreationTimeFile()}${_file}`
+  };
+
   const files = paths.map((file) => {
     const { name, force } = file;
     const origin = route.resolve(route.resolve(process.cwd(), path), file.path.replace(file.root, ''))
-    const data = `${setCreationTimeFile()}${fs
-      .readFileSync(route.resolve(file.path, file.name))
-      .toString()}`;
+    const data = managementData(file);
     return {
       name,
       data,
@@ -76,12 +95,13 @@ const buildCore = (path) => {
     }
   });
   const partials = createImportDynamicPartials(path);
+
   Promise.all([...files, ...partials]
     .map(({ origin, name, data, force }) => createFile(origin, name, data, force)));
 
 };
 
-const createSettingsPartials = (path) => {
+const createSettingsPartials = (path, file) => {
   const _root = route.resolve(process.cwd(), path, 'library/scss', 'settings');
   const _nameSettingsPartials = fs.readdirSync(_root)
     .filter(file => file.includes('_'));
@@ -101,17 +121,11 @@ const createSettingsPartials = (path) => {
     {
       origin: route.resolve(_root),
       name: 'settings.scss',
-      data: `${setCreationTimeFile()}${[..._nameSettingsPartials, '_general.scss']
+      data: `${setCreationTimeFile()}${[..._nameSettingsPartials]
         .map(file => file.replace('_', '').replace('.scss', ''))
         .reduce((acc, current) => (acc += `@forward '${current}';\n`), '')}`,
       force: true
     },
-    {
-      origin: route.resolve(_root),
-      name: '_general.scss',
-      data: `${setCreationTimeFile()}/// Variable path by default of the sources defined in the .frontech.json file.\n/// To modify the path, simply set the variable in the import as follows: @use '~@front-tech/design-systems-utils/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '~@front-tech/design-systems-utils/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n/// Variable that transforms pixels into rem for browsers that support rem as well as if they do not. By default false.\n/// @group rem\n$rem-fallback: false !default;\n/// Variable that provides compatibility with Internet Explorer 9 and does not convert pixels into rem, as it is not compatible. By default, it is false.\n/// @group rem\n$rem-px-only: false !default;`,
-      force: false
-    }
   ]
 
   return [..._settingsPartials, ..._settingsPartialsRequired];
@@ -149,8 +163,8 @@ const createBasePartials = (path) => {
   return [..._basePartials, ..._basePartialsRequired];
 }
 
-const createImportDynamicPartials = (path) => {
-  const settings = createSettingsPartials(path);
+const createImportDynamicPartials = (path, file) => {
+  const settings = createSettingsPartials(path, file);
   const base = createBasePartials(path);
 
   return [...settings, ...base];
@@ -164,7 +178,6 @@ const createImportDynamicPartials = (path) => {
 const createCustomProperties = (tokens, boolean) => {
   return tokens.reduce((tokens, prop) => {
     const { name, value } = prop;
-    const validation = boolean && name === 'font-weight-action-sm';
     const _tokenCompositionLenght = Object.values(value).length === 1;
     const isString = typeof value === 'string';
 
@@ -223,7 +236,7 @@ const styleDictionary = (file, path) => {
         {
           destination: "base/_font-face.scss",
           format: "custom/font-face",
-          filter: ({ type }) => ['lineHeights', 'fontWeights', 'fontSizes'].includes(type),
+          filter: ({ type }) => ['lineHeights', 'fontWeights', 'fontSizes', 'fontFamilies'].includes(type),
         },
         {
           destination: "settings/_grid.scss",
@@ -365,13 +378,11 @@ const styleDictionary = (file, path) => {
               .map((file) => file.replace(/\.[^/.]+$/, "").toLocaleLowerCase() === name.toLocaleLowerCase() ? file : null)
               .filter(Boolean);
 
-            if (Boolean(isFile)) {
-              return ({ ...acc, [file]: value })
-            }
+            return Boolean(isFile) ? ({ ...acc, [file]: value }) : acc
+
           }, {})
         })
         .filter(Boolean)
-
 
       const _tokens = _fonts.reduce((fontFace, prop, index) => {
         fontFace += Object.entries(prop)
@@ -382,7 +393,7 @@ const styleDictionary = (file, path) => {
             const extensions = name
               .reduce((acc, value) => {
                 const _extension = new RegExp(/\.[^/.]+$/).exec(value)[0];
-                return acc += `url('#{$font-path}/${_families[index]}/${value}') format('${_formats[_extension]}'),\n`;
+                return acc += `url('#{general.$font-path}/${_families[index]}/${value}') format('${_formats[_extension]}'),\n`;
               }, '');
 
             return acc += `\n\n@font-face {\nfont-family: '${_name}';\nfont-weight: ${value};\nsrc: ${extensions}}\n`;
@@ -392,7 +403,7 @@ const styleDictionary = (file, path) => {
       }, '');
 
       const _paths = _families.reduce((acc, value, index) => (acc += `${path}/fonts/${value}${index !== _families.length - 1 ? ',' : ''}`), '');
-      const content = _tokens.length ? `@use '../settings/general' as *;${_tokens}` : `\n// Please include the source file in the ${_paths} to create the font-faces.`;
+      const content = _tokens.length ? `@use '../settings/general';${_tokens}` : `\n// Please include the source file in the ${_paths} to create the font-faces.`;
       return `${setCreationTimeFile()}${content}`
     }
   });
@@ -469,7 +480,6 @@ const styleDictionary = (file, path) => {
 const buildStyleDictionary = (dictionary, path) => {
   const _tokens = route.resolve(process.cwd(), path, 'library/scss', 'settings');
   const isSettings = fs.existsSync(_tokens);
-  const { tokens, } = config();
   utils.messages.print("Settings creation process started");
 
 
@@ -480,7 +490,7 @@ const buildStyleDictionary = (dictionary, path) => {
   if (isSettings) fs.rmSync(_tokens, { recursive: true });
 
   styleDictionary(dictionary, path);
-  buildCore(path);
+  buildCore(path, file);
 }
 
 module.exports = {

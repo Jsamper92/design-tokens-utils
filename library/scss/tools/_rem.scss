@@ -11,11 +11,11 @@
 /// Function that, given a list of properties, returns them separated by the corresponding separator character
 ///
 /// @argument {list} $list
-///   Property list 
+///   Property list
 /// @argument {string} $separator [false]
 ///   Character separator
 /// @example scss
-///     
+///
 ///     rem-separator($list)
 ///
 /// @group rem
@@ -51,7 +51,7 @@
 ///     }
 /// @group rem
 @mixin rem-baseline($zoom: 100%) {
-  font-size: (math.div($zoom,16px)) * $rem-baseline;
+  font-size: (math.div($zoom, 16px)) * general.$rem-baseline;
 }
 
 /// Function that returns the value of the pixels in rem.
@@ -71,9 +71,9 @@
   @debug $values;
   @each $value in $values {
     @if meta.type-of($value) == "number" and math.unit($value) == "rem" and $to == "px" {
-      $result: list.append($result, $value / 1rem * $rem-baseline, $separator);
+      $result: list.append($result, $value / 1rem * general.$rem-baseline, $separator);
     } @else if meta.type-of($value) == "number" and math.unit($value) == "px" and $to == "rem" {
-      $result: list.append($result, calc($value / $rem-baseline) * 1rem, $separator);
+      $result: list.append($result, calc($value / general.$rem-baseline) * 1rem, $separator);
     } @else if meta.type-of($value) == "list" {
       $value-separator: rem-separator($value);
       $value: rem-convert($to, $value...);
@@ -90,7 +90,6 @@
 /// Function that transforms pixels into rem. If the $rem-px-only variable is set to true, Internet Explorer 9 compatibility applies.
 /// @argument {map} $properties Properties
 /// @argument {list} $values Values in px to transform rem
-/// @requires {boolean} $rem-px-only Variable that provides compatibility to Internet Explorer 9. [false]
 /// @requires {function} rem-convert Function that returns the value of the pixels in rem.
 /// @example scss
 /// .test{
@@ -102,16 +101,11 @@
 /// }
 /// @group rem
 @function rem($values...) {
-    @if $rem-px-only {
-      @return rem-convert(px, $values...);
-    } @else {
-      @return rem-convert(rem, $values...);
-    }
+  @return rem-convert(rem, $values...);
 }
 
-/// Mixin that transforms the pixels into rem of the CSS properties entered as arguments. If the $rem-px-only variable is set to true, Internet Explorer 9 compatibility applies.
+/// Mixin that transforms the pixels into rem of the CSS properties entered as arguments.
 /// @argument {list} $values Values in px to transform rem
-/// @requires {boolean} $rem-px-only Variable that provides compatibility to Internet Explorer 9. [false]
 /// @requires {function} rem-convert Function that returns the value of the pixels in rem
 /// @example scss
 /// .test{
@@ -136,12 +130,7 @@
     }
   } @else {
     @each $property in $properties {
-      @if $rem-fallback or $rem-px-only {
-        #{$property}: rem-convert(px, $values...);
-      }
-      @if not $rem-px-only {
-        #{$property}: rem-convert(rem, $values...);
-      }
+      #{$property}: rem-convert(rem, $values...);
     }
   }
 }

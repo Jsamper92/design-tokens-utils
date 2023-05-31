@@ -206,12 +206,13 @@ const buildCore = (path) => {
       name: `abstracts.scss`
     }
   ];
+
   const files = paths.map((file) => {
     const { name } = file;
     const origin = route.resolve(route.resolve(process.cwd(), path), file.path.replace(file.root, ''))
-    const data = `${setCreationTimeFile()}${fs
-      .readFileSync(route.resolve(file.path, file.name))
-      .toString()}`;
+    console.log('entro')
+    const data = managementData(file);
+
     return {
       origin,
       name,
@@ -219,6 +220,7 @@ const buildCore = (path) => {
     }
   });
 
+  console.log(files)
   Promise.all(files.map(({ origin, name, data }) => createFile(origin, name, data)));
 };
 
@@ -286,7 +288,7 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
             const _data = `${setCreationTimeFile()}@use '../settings/general';\n\n${_file}`;
             const creation = createFile(route.resolve(process.cwd(), path, 'library/scss/utilities'), '_icons.scss', _data, true);
             const files = fs.readdirSync(fonts);
-            
+
             files.forEach(file => messages.success(`✔︎ ${fonts}/${file}`));
             messages.print('process transformation icons to icon font finished');
 
@@ -373,6 +375,14 @@ const config = (args) => args ? { ...args } : argv
  */
 const setCreationTimeFile = () => `/**\n* Do not edit directly\n* Generated on ${new Date().toUTCString()}\n*/\n`;
 
+const dataFilesScss = ({ file, path }) => {
+  return {
+    'timestamp': `// Do not edit directly\n// Generated on ${new Date().toLocaleString()}\n\n`,
+    'defaultVariables': `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
+    "settingsGeneral": `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";`,
+  }
+}
+
 module.exports = {
   config,
   getIcons,
@@ -381,6 +391,7 @@ module.exports = {
   createFile,
   buildTokens,
   getKeyIcons,
+  dataFilesScss,
   generateIconFont,
   generateSvgSprites,
   setCreationTimeFile

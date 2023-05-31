@@ -1,4 +1,8 @@
-@use 'base/base.scss';
-@use 'tools/tools.scss';
-@use 'settings/settings.scss';
-@use 'utilities/utilities.scss';
+@use "settings/general" with (
+    $font-path: "../fonts/",
+    $rem-baseline: 16px
+);
+@use "base/base.scss";
+@use "tools/tools.scss";
+@use "settings/settings.scss";
+@use "utilities/utilities.scss";

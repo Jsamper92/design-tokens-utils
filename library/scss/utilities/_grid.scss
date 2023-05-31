@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "sass:math";
-@use "../settings/settings.scss";
+@use "../settings/general" as *;
 
 /// Mixin that, starting from the breakpoints established in the configuration file, generates the classes of the grid system.
 ///
