@@ -6,7 +6,7 @@
 @use "sass:meta";
 @use "sass:string";
 @use "sass:math";
-@use "../settings/general" as *;
+@use "../settings/general";
 
 /// Function that, given a list of properties, returns them separated by the corresponding separator character
 ///
