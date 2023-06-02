@@ -256,9 +256,9 @@ const generateSvgSprites = (icons, path) => {
 const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
 
   return new Promise(resolve => {
-    const fontName = 'icomoon';
+    const fontName = config().fontNameIcons ?? 'icomoon';
     const fonts = route.resolve(process.cwd(), path, 'fonts', fontName);
-    const config = route.resolve(__dirname, '..', 'build', 'fonts', 'webfonts.json');
+    const webfonts = route.resolve(__dirname, '..', 'build', 'fonts', 'webfonts.json');
     const buildFont = route.resolve(__dirname, '..', 'build', 'fonts');
     const files = `./${path}/images/icons/*.svg`;
     const dataConfig = {
@@ -279,7 +279,7 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
     if (!disableIconFont) {
       messages.print('process transformation icons to icon font started');
       if (file) {
-        exec(`node node_modules/webfont/dist/cli.js ${files} --config ${config}`, { async: true, silent: false }, (code) => {
+        exec(`node node_modules/webfont/dist/cli.js ${files} --config ${webfonts}`, { async: true, silent: false }, (code) => {
           const success = code === 0;
           if (success) {
             const _file = fs.readFileSync(route.resolve(buildFont, '_icons.css')).toString();
@@ -362,8 +362,8 @@ const getIcons = async (data, theme, path) => {
 
 /**
  * @description This function is used to return config to init script design systems utils
- * @param {{theme: string; path: string; file: string; key: string; disableIconFont: Boolean; disableIconsFigma: Boolean}} args 
- * @returns {{theme: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean}}
+ * @param {{theme: string; path: string; file: string; key: string; disableIconFont: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}} args 
+ * @returns {{theme: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}}
  */
 const config = (args) => args ? { ...args } : argv
 
