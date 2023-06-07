@@ -117,111 +117,6 @@ const createFile = (folder, file, data, force = false) => {
   })
 };
 
-/**
- * @description This function is used to create core utils sass
- * @param {String} path 
- */
-const buildCore = (path) => {
-
-  const root = __dirname.replace('.frontech', '');
-  const paths = [
-    {
-      root,
-      path: route.resolve(root, `library/scss/utilities/`),
-      name: `_grid.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/utilities/`),
-      name: `utilities.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/tools/`),
-      name: `_animations.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/tools/`),
-      name: `_functions.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/base/`),
-      name: `_fonts.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/base/`),
-      name: `_reset.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/base/`),
-      name: `base.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/settings/`),
-      name: `_color.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/settings/`),
-      name: `_typography.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/settings/`),
-      name: `_general.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/settings/`),
-      name: `_general.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/settings/`),
-      name: `settings.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/tools/`),
-      name: `tools.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/tools/`),
-      name: `_rem.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/utilities/`),
-      name: `utilities.scss`
-    },
-    {
-      root,
-      path: route.resolve(root, `library/scss/`),
-      name: `abstracts.scss`
-    }
-  ];
-
-  const files = paths.map((file) => {
-    const { name } = file;
-    const origin = route.resolve(route.resolve(process.cwd(), path), file.path.replace(file.root, ''))
-    const data = managementData(file);
-
-    return {
-      origin,
-      name,
-      data
-    }
-  });
-
-  Promise.all(files.map(({ origin, name, data }) => createFile(origin, name, data)));
-};
-
 const generateSvgSprites = (icons, path) => {
   return new Promise((resolve) => {
     try {
@@ -246,6 +141,19 @@ const generateSvgSprites = (icons, path) => {
     }
   })
 }
+
+const generateJSUtils = ({ icons, path }) => {
+  return new Promise(async (resolve) => {
+    const output = route.resolve(process.cwd(), path, 'library/js');
+    const content = `export const icons = ${JSON.stringify(icons, null, 2)};`;
+    const files = await createFile(output, 'utils.ts', content, true);
+
+    if (files) {
+      messages.success(`✔︎ ${route.resolve(output, 'utils.ts')}`);
+      resolve(true);
+    }
+  })
+};
 
 
 /**
@@ -279,18 +187,21 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
     if (!disableIconFont) {
       messages.print('process transformation icons to icon font started');
       if (file) {
-        exec(`node node_modules/webfont/dist/cli.js ${files} --config ${webfonts}`, { async: true, silent: false }, (code) => {
+        exec(`node node_modules/webfont/dist/cli.js ${files} --config ${webfonts}`, { async: true, silent: false }, async (code) => {
           const success = code === 0;
           if (success) {
             const _file = fs.readFileSync(route.resolve(buildFont, '_icons.css')).toString();
             const _data = `${setCreationTimeFile()}@use '../settings/general';\n\n${_file}`;
             const creation = createFile(route.resolve(process.cwd(), path, 'library/scss/utilities'), '_icons.scss', _data, true);
             const files = fs.readdirSync(fonts);
-
+            const icons = fs.readdirSync(route.resolve(process.cwd(), path, 'images/icons')).map(file => file.replace('.svg', ''));
+            const utils = await generateJSUtils({ path, icons });
             files.forEach(file => messages.success(`✔︎ ${fonts}/${file}`));
-            messages.print('process transformation icons to icon font finished');
 
-            if (creation) resolve(success);
+            if (utils && creation) {
+              messages.print('process transformation icons to icon font finished');
+              resolve(success);
+            }
           }
         });
       }
@@ -385,7 +296,6 @@ module.exports = {
   config,
   getIcons,
   messages,
-  buildCore,
   createFile,
   buildTokens,
   getKeyIcons,
