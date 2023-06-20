@@ -1,6 +1,6 @@
 {
   "name": "design-tokens-utils",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Design Tokens Utils aims to provide a series of common utilities at the start of any web project, which will make it easier and faster to start the architecture.",
   "main": "./lib/index.js",
   "bin": {
@@ -11,7 +11,7 @@
     "url": "https://github.com/Jsamper92/design-tokens-utils.git"
   },
   "scripts": {
-    "build": "node bin/index.js --tokens=.frontech.json --path=assets --fontNameIcons=aletehia"
+    "build": "node bin/index.js --tokens=.frontech.json --path=assets --fontNameIcons=aletehia --disableIconsFigma"
   },
   "author": "Javier Samper arias",
   "license": "ISC",

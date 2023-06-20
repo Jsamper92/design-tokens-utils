@@ -284,6 +284,11 @@ const config = (args) => args ? { ...args } : argv
  */
 const setCreationTimeFile = () => `/**\n* Do not edit directly\n* Generated on ${new Date().toUTCString()}\n*/\n`;
 
+/**
+ * This function is used to agroup data files scss
+ * @param {{file: string; path: string}} param - Data file and path
+ * @returns {string}
+ */
 const dataFilesScss = ({ file, path }) => {
   return {
     'timestamp': `// Do not edit directly\n// Generated on ${new Date().toLocaleString()}\n\n`,
@@ -292,15 +297,66 @@ const dataFilesScss = ({ file, path }) => {
   }
 }
 
+/**
+ * This function is used to convert color hex to rgba
+ * @param {string} rgba 
+ * @returns {string}
+ */
+function RGBAToHex(rgba) {
+  if (rgba.length != 6) {
+    throw "Only six-digit hex colors are allowed.";
+  }
+
+  var aRgbHex = rgba.match(/.{1,2}/g);
+  var aRgb = [
+    parseInt(aRgbHex[0], 16),
+    parseInt(aRgbHex[1], 16),
+    parseInt(aRgbHex[2], 16)
+  ];
+  return aRgb;
+}
+
+/**
+ * This function is used to check if token is reference token studio
+ * @param {string} token 
+ * @returns {boolean}
+ */
+const isReferenceTokenStudio = (token) => /^[$]/.test(token);
+
+/**
+ * This function is used to translate token to custom property
+ * @param {string} token - token name
+ * @returns {string}
+ */
+const translateReferenceToCustomProperty = (token, name) => {
+
+  let varCSS = '';
+  const isCompositionToken = token.split(' ');
+  const createVarCSS = (_token) => _token.split('.')
+    .reduce((acc, cur) => (acc += isReferenceTokenStudio(cur) ? cur.replace('$', '--') : `-${cur}`), '')
+
+
+  if (isCompositionToken.length === 1) {
+    varCSS = typeof token === 'string' && isReferenceTokenStudio(token) ? `var(${createVarCSS(token)})` : token;
+  } else {
+    varCSS = token.split(' ').map((item) => isReferenceTokenStudio(item) ? `var(${createVarCSS(item)})` : item).join(' ');
+  }
+
+  return varCSS;
+}
+
 module.exports = {
   config,
   getIcons,
   messages,
+  RGBAToHex,
   createFile,
   buildTokens,
   getKeyIcons,
   dataFilesScss,
   generateIconFont,
   generateSvgSprites,
-  setCreationTimeFile
+  setCreationTimeFile,
+  isReferenceTokenStudio,
+  translateReferenceToCustomProperty
 }
