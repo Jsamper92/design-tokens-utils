@@ -273,7 +273,7 @@ const getIcons = async (data, theme, path) => {
 
 /**
  * @description This function is used to return config to init script design systems utils
- * @param {{theme: string; path: string; file: string; key: string; disableIconFont: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}} args 
+ * @param {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}} args 
  * @returns {{theme: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}}
  */
 const config = (args) => args ? { ...args } : argv

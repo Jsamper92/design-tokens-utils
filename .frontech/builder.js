@@ -16,7 +16,7 @@ const { buildStyleDictionary } = styleDictionary;
  * @param {String} theme 
  * @param {disableIconFont} boolean
  */
-const createTokens = async (data, dictionary, path, theme, disableIconFont, disableIconSprites, disableIconsFigma) => {
+const createTokens = async (data, path, theme, disableIconFont, disableIconSprites, disableIconsFigma) => {
     try {
         const tokens = await buildTokens(data);
         const icons = getKeyIcons(data, tokens, theme);
@@ -25,11 +25,11 @@ const createTokens = async (data, dictionary, path, theme, disableIconFont, disa
             const _icons = await getIcons(icons.icons, theme, path);
             if (_icons) {
                 const _iconFont = await buildIconFont(path, disableIconFont, disableIconSprites);
-                if (tokens && _iconFont) buildStyleDictionary(dictionary, path);
+                if (tokens && _iconFont) buildStyleDictionary(path);
             }
         } else {
             const _iconFont = await buildIconFont(path, disableIconFont, disableIconSprites);
-            if (tokens && _iconFont) buildStyleDictionary(dictionary, path);
+            if (tokens && _iconFont) buildStyleDictionary(path);
         }
     } catch (error) {
         console.error(error)

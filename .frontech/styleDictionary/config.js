@@ -4,14 +4,15 @@ const [fs, route, utils] = [
     require("../utils")
 ];
 const { config } = utils;
-const { file, path } = config();
+const { path, platforms } = config();
 const buildPath = route.resolve(process.cwd(), path);
-const dictionary = file && fs.readFileSync(route.resolve(process.cwd(), file)).toString();
+const dictionary = platforms && fs.readFileSync(route.resolve(process.cwd(), platforms)).toString();
 const configSTD = {
     options: {
         outputReferences: true,
     },
 };
+
 const scss = {
     scss: {
         transformGroup: "scss",
@@ -78,7 +79,9 @@ const scss = {
         ]
     }
 };
+
 const tokensConfig = dictionary ? { scss, ...(JSON.parse(dictionary)) } : scss;
+
 
 module.exports = {
     tokensConfig

@@ -24,11 +24,8 @@ const { tokens, file } = config();
 
 /**
  * This function is used to build tokens platforms by styledictionary
- * @param {string} file - name file tokens
- * @param {string} path - path export tokens
  */
 const styleDictionary = () => {
-  const _path = route.resolve(__dirname, '..', 'build', 'tokens', 'tokens-parsed.json');
 
   StyleDictionary.registerTransform({
     name: 'size/px',
@@ -75,7 +72,7 @@ const styleDictionary = () => {
 
   const styleDictionaryExtended = StyleDictionary.extend(
     {
-      source: [_path],
+      source: [route.resolve(__dirname, '..', 'build', 'tokens', 'tokens-parsed.json')],
       platforms: tokensConfig
     }
   );
@@ -84,7 +81,11 @@ const styleDictionary = () => {
   utils.messages.print("Settings creation process finished");
 };
 
-const buildStyleDictionary = (dictionary, path) => {
+/**
+ * This function is used to build tokens platforms by styledictionary
+ * @param {string} path 
+ */
+const buildStyleDictionary = (path) => {
   const _tokens = route.resolve(process.cwd(), path, 'library/scss', 'settings');
   const isSettings = fs.existsSync(_tokens);
   utils.messages.print("Settings creation process started");
@@ -95,7 +96,7 @@ const buildStyleDictionary = (dictionary, path) => {
 
   if (isSettings) fs.rmSync(_tokens, { recursive: true });
 
-  styleDictionary(dictionary, path);
+  styleDictionary();
   buildCore(path, file);
 }
 
