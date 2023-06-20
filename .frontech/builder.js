@@ -5,7 +5,7 @@ const [fs, utils, styleDictionary, route] = [
     require('path')
 ];
 
-const { messages, generateIconFont, generateSvgSprites, getIcons, buildTokens, getKeyIcons } = utils;
+const { generateIconFont, generateSvgSprites, getIcons, buildTokens, getKeyIcons } = utils;
 const { buildStyleDictionary } = styleDictionary;
 
 /**

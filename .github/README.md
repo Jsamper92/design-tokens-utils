@@ -24,6 +24,7 @@ Options flags command line:
 | path               | Path to build architecture.                                                                                    |
 | disableIconFont    | Variable to don´t create icon font. By Default it`s created.                                                   |
 | disableIconSprites | Variable to don´t create icon sprites. By Default it`s created.                                                |
+| disableIconsFigma  | Variable to don´t import icons figma. By Default it`s created.                                                 |
 
 For the proper functioning of the library, it is necessary to create a configuration file in the project. This configuration must maintain [Tokens Studio Figma](https://docs.tokens.studio/tokens/json-schema) structure:
 

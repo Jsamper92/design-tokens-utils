@@ -291,11 +291,28 @@ const setCreationTimeFile = () => `/**\n* Do not edit directly\n* Generated on $
  */
 const dataFilesScss = ({ file, path }) => {
   return {
-    'timestamp': `// Do not edit directly\n// Generated on ${new Date().toLocaleString()}\n\n`,
+    'timestamp': setCreationTimeFile(),
     'defaultVariables': `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
     "settingsGeneral": `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";`,
   }
 }
+
+/**
+ * This function is used to create data files scss
+ * @param {{file: string; path: string}} param - Data file and path
+ * @returns {string}
+ */
+const managementDataFileScss = (item) => {
+  const _file = fs
+      .readFileSync(route.resolve(item.path, item.name))
+      .toString();
+
+  if (item.name === 'abstracts.scss') {
+      return `${dataFilesScss(config()).defaultVariables}${dataFilesScss(config()).settingsGeneral}\n`
+  }
+
+  return _file;
+};
 
 /**
  * This function is used to convert color hex to rgba
@@ -328,21 +345,62 @@ const isReferenceTokenStudio = (token) => /^[$]/.test(token);
  * @param {string} token - token name
  * @returns {string}
  */
-const translateReferenceToCustomProperty = (token, name) => {
+const translateReferenceToCustomProperty = (token) => {
 
-  let varCSS = '';
-  const isCompositionToken = token.split(' ');
+  let varCSS = null;
   const createVarCSS = (_token) => _token.split('.')
     .reduce((acc, cur) => (acc += isReferenceTokenStudio(cur) ? cur.replace('$', '--') : `-${cur}`), '')
 
 
-  if (isCompositionToken.length === 1) {
-    varCSS = typeof token === 'string' && isReferenceTokenStudio(token) ? `var(${createVarCSS(token)})` : token;
-  } else {
-    varCSS = token.split(' ').map((item) => isReferenceTokenStudio(item) ? `var(${createVarCSS(item)})` : item).join(' ');
+  if (typeof token === 'string') {
+    const lenghtItemsToken = token.split(' ');
+    if (lenghtItemsToken.length === 1) {
+      varCSS = typeof token === 'string' && isReferenceTokenStudio(token) ? `var(${createVarCSS(token)})` : token;
+    } else {
+      varCSS = token.split(' ').map((item) => isReferenceTokenStudio(item) ? `var(${createVarCSS(item)})` : item).join(' ');
+    }
   }
 
-  return varCSS;
+  return varCSS ?? token;
+}
+
+/**
+ * This function is used to create custom properties by array of tokens.
+ * @param {Array<StyleDictionaryToken>} tokens 
+ * @returns {string}
+ */
+const createCustomProperties = (tokens) => {
+  return tokens.reduce((tokens, prop) => {
+    const { name, value } = prop;
+    const _tokenCompositionLenght = Object.values(value).length === 1;
+    const isString = typeof value === 'string';
+
+    let customVar = '';
+    let customVarAdvanced = '';
+
+
+    if (!isString) {
+      if (_tokenCompositionLenght) {
+        customVarAdvanced += `--${name}: ${Object.values(value).map((item) => translateReferenceToCustomProperty(item)).join('')};\n`
+      } else {
+        if (typeof value === 'object') {
+          customVarAdvanced += Object.entries(value)
+            .reduce((acc, [key, _value]) => {
+
+              return acc += `--${name}-${key}: ${translateReferenceToCustomProperty(_value)};\n`
+            }, '')
+        } else {
+          customVarAdvanced += `--${name}: ${translateReferenceToCustomProperty(value)};\n`
+        }
+      }
+    } else {
+      customVar += `--${name}:${translateReferenceToCustomProperty(value)};\n`;
+    }
+
+
+    return tokens += isString ? customVar : customVarAdvanced;
+  }, '');
+
 }
 
 module.exports = {
@@ -358,5 +416,7 @@ module.exports = {
   generateSvgSprites,
   setCreationTimeFile,
   isReferenceTokenStudio,
+  createCustomProperties,
+  managementDataFileScss,
   translateReferenceToCustomProperty
 }
