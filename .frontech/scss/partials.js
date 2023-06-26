@@ -149,7 +149,7 @@ const buildCore = (path) => {
         {
             data: dataFilesScss(config()).settingsGeneral,
             root,
-            force: true,
+            force: false,
             name: `abstracts.scss`,
             path: route.resolve(root, `library/scss/`),
         }
