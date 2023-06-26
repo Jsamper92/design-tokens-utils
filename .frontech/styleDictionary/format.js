@@ -1,3 +1,5 @@
+const { dataFilesScss } = require("../utils");
+
 const [fs, route, utils] = [
     require("fs"),
     require("path"),
@@ -94,14 +96,15 @@ const customFontFace = ({ dictionary: { allTokens } }) => {
         .filter(({ type }) => type === 'fontWeights')
         .reduce((acc, { path, value }) => ({ ...acc, [path[path.length - 1]]: value }), {});
 
-    const _fonts = _families
+
+    const isExistFontLocal = _families
         .map((family) => {
             return Object.entries(_weights).reduce((acc, [key, value]) => {
                 const name = `${family}-${key}`;
                 const pathFolder = route.resolve(process.cwd(), path, 'fonts', family);
                 const isFolder = fs.existsSync(pathFolder);
                 const files = isFolder && fs.readdirSync(pathFolder)
-                const isFile = files.length && files.some((file) => file.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
+                const isFile = files.length && files.some((file) => file.replace(/\.[^/.]+$/, "").toLocaleLowerCase() === name.toLocaleLowerCase());
                 const file = files.length && files
                     .map((file) => file.replace(/\.[^/.]+$/, "").toLocaleLowerCase() === name.toLocaleLowerCase() ? file : null)
                     .filter(Boolean);
@@ -112,9 +115,16 @@ const customFontFace = ({ dictionary: { allTokens } }) => {
         })
         .filter(Boolean)
 
-    const _tokens = _fonts.reduce((fontFace, prop, index) => {
+    const isNotExistFontlocal = _families.filter((family) => {
+        const pathFont = route.resolve(process.cwd(), path, 'fonts', family);
+        const folderExist = fs.existsSync(pathFont);
+        const folderEmpty = folderExist && fs.readdirSync(pathFont).length;
+
+        return !folderExist || !folderEmpty;
+    });
+
+    const _tokens = isExistFontLocal.reduce((fontFace, prop, index) => {
         fontFace += Object.entries(prop)
-            .filter(Boolean)
             .reduce((acc, [key, value]) => {
                 const name = key.split(',');
                 const _name = name[0].replace(/\.[^/.]+$/, "").toLocaleLowerCase();
@@ -129,9 +139,8 @@ const customFontFace = ({ dictionary: { allTokens } }) => {
 
         return fontFace
     }, '');
-
-    const _paths = _families.reduce((acc, value, index) => (acc += `${path}/fonts/${value}${index !== _families.length - 1 ? ',' : ''}`), '');
-    const content = _tokens.length ? `@use '../settings/general';${_tokens}` : `\n// Please include the source file in the ${_paths} to create the font-faces.`;
+    const _paths = isNotExistFontlocal.reduce((acc, value, index) => (acc += `${path}/fonts/${value}${isNotExistFontlocal.length > 1 && index !== isNotExistFontlocal.length - 1 ? ', ' : ''}`), '');
+    const content = `@use '../settings/general';\n${dataFilesScss({ file: _paths }).fonts}\n${_tokens}`
     return `${setCreationTimeFile()}${content}`
 }
 /**

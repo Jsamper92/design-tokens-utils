@@ -274,7 +274,7 @@ const getIcons = async (data, theme, path) => {
 /**
  * @description This function is used to return config to init script design systems utils
  * @param {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}} args 
- * @returns {{theme: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}}
+ * @returns {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}}
  */
 const config = (args) => args ? { ...args } : argv
 
@@ -291,6 +291,7 @@ const setCreationTimeFile = () => `/**\n* Do not edit directly\n* Generated on $
  */
 const dataFilesScss = ({ file, path }) => {
   return {
+    'fonts': `\n// Please include the source file in the ${file} to create the font-faces.`,
     'timestamp': setCreationTimeFile(),
     'defaultVariables': `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
     "settingsGeneral": `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";`,
@@ -351,13 +352,15 @@ const translateReferenceToCustomProperty = (token) => {
   const createVarCSS = (_token) => _token.split('.')
     .reduce((acc, cur) => (acc += isReferenceTokenStudio(cur) ? cur.replace('$', '--') : `-${cur}`), '')
 
-
   if (typeof token === 'string') {
     const lenghtItemsToken = token.split(' ');
+    const needCalcCSS = token.includes('*');
+
     if (lenghtItemsToken.length === 1) {
-      varCSS = typeof token === 'string' && isReferenceTokenStudio(token) ? `var(${createVarCSS(token)})` : token;
+      varCSS = typeof token === 'string' && isReferenceTokenStudio(token) ?  `var(${createVarCSS(token)})` : token;
     } else {
-      varCSS = token.split(' ').map((item) => isReferenceTokenStudio(item) ? `var(${createVarCSS(item)})` : item).join(' ');
+      const _token = token.split(' ').map((item) => isReferenceTokenStudio(item) ? `var(${createVarCSS(item)})` : item).join(' ');
+      varCSS = needCalcCSS ? `calc(${_token})` : _token;
     }
   }
 
@@ -390,10 +393,12 @@ const createCustomProperties = (tokens) => {
               return acc += `--${name}-${key}: ${translateReferenceToCustomProperty(_value)};\n`
             }, '')
         } else {
+
           customVarAdvanced += `--${name}: ${translateReferenceToCustomProperty(value)};\n`
         }
       }
     } else {
+
       customVar += `--${name}:${translateReferenceToCustomProperty(value)};\n`;
     }
 
