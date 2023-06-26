@@ -94,7 +94,7 @@ const createImportDynamicPartials = (path, file) => {
  */
 const buildCore = (path) => {
 
-    const root = __dirname.replace('.frontech/scss', '');
+    const root = route.dirname(__dirname).replace('.frontech', '');
 
     const paths = [
         {
