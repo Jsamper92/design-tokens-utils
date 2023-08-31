@@ -187,7 +187,9 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
     if (!disableIconFont) {
       messages.print('process transformation icons to icon font started');
       if (file) {
-        exec(`node node_modules/webfont/dist/cli.js ${files} --config ${webfonts}`, { async: true, silent: false }, async (code) => {
+        const _cli = route.resolve(route.dirname(__dirname), 'node_modules/webfont/dist/cli.js')
+
+        exec(`node ${_cli} ${files} --config ${webfonts}`, { async: true, silent: false }, async (code) => {
           const success = code === 0;
           if (success) {
             const _file = fs.readFileSync(route.resolve(buildFont, '_icons.css')).toString();
