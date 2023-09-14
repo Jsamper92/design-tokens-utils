@@ -72,7 +72,9 @@ const customVariablesColors = ({ dictionary: { allTokens, usesReference, getRefe
                 } else {
                     const _nameReference = path.reduce((acc, cur, index) => (acc += index === 0 ? `$${cur}` : `.${cur}`), '');
                     if (_isTokenTransformReference[_nameReference]) {
-                        return `rgb(${RGBAToHex(original.value)})`
+                        console.log(original.value, _isTokenTransformReference, _nameReference);
+                        const _original = translateReferenceToCustomProperty(original.value)
+                        return `rgb(${RGBAToHex(_original)})`
                     } else {
                         if (usesReference(original, /^[$]/)) {
                             return translateReferenceToCustomProperty(original.value)
