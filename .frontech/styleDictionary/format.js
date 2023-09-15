@@ -39,26 +39,6 @@ const customVariablesColors = ({ dictionary: { allTokens, usesReference, getRefe
             const { name, original, path } = prop;
             const isColorAlpha = original.value.split(' ');
 
-            const _tokensRGBAReference = getReferences(original, allTokens)
-                .filter(({ original }) => original.value.split(' ').length === 2)
-                .reduce((acc, cur) => {
-                    const { original } = cur;
-                    if (!acc[original.value]) {
-                        acc[original.value] = [];
-                    }
-                    acc[original.value] = cur;
-                    return acc;
-                }, {});
-            const _isTokenTransformReference = Object.entries(_tokensRGBAReference)
-                .reduce((acc, [key, value]) => {
-                    const _key = key.split(' ');
-                    if (!acc[_key[0]]) {
-                        acc[_key[0]] = [];
-                    }
-                    acc[_key[0]] = value;
-                    return acc;
-                }, {});
-
             const getValueToken = () => {
                 if (isColorAlpha.length === 2) {
                     const [main, alpha] = isColorAlpha;
@@ -70,17 +50,10 @@ const customVariablesColors = ({ dictionary: { allTokens, usesReference, getRefe
                         : `rgba(${RGBAToHex(_main)},${_alpha})`;
 
                 } else {
-                    const _nameReference = path.reduce((acc, cur, index) => (acc += index === 0 ? `$${cur}` : `.${cur}`), '');
-                    if (_isTokenTransformReference[_nameReference]) {
-                        console.log(original.value, _isTokenTransformReference, _nameReference);
-                        const _original = translateReferenceToCustomProperty(original.value)
-                        return `rgb(${RGBAToHex(_original)})`
+                    if (usesReference(original, /^[$]/)) {
+                        return translateReferenceToCustomProperty(original.value)
                     } else {
-                        if (usesReference(original, /^[$]/)) {
-                            return translateReferenceToCustomProperty(original.value)
-                        } else {
-                            return original.value
-                        }
+                        return original.value
                     }
                 }
             }
