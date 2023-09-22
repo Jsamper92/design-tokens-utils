@@ -1,0 +1,52 @@
+{
+  "name": "design-tokens-utils",
+  "version": "0.3.9",
+  "description": "Design Tokens Utils aims to provide a series of common utilities at the start of any web project, which will make it easier and faster to start the architecture.",
+  "main": "./lib/index.js",
+  "bin": {
+    "design-tokens-utils": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jsamper92/design-tokens-utils.git"
+  },
+  "scripts": {
+    "build": "node bin/index.js --tokens=.frontech.json --path=assets --fontNameIcons=aletehia --disableIconsFigma"
+  },
+  "author": "Javier Samper arias",
+  "license": "ISC",
+  "files": [
+    ".frontech",
+    "bin",
+    "library",
+    "lib",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "cli",
+    "Style Dictionary",
+    "tokens",
+    "Design Tokens",
+    "Design System",
+    "Tokens Studio Figma",
+    "figma-icons-tokens"
+  ],
+  "dependencies": {
+    "colors": "1.4.0",
+    "figma-icons-tokens": "^1.5.0",
+    "fs-extra": "11.1.1",
+    "shelljs": "0.8.5",
+    "style-dictionary": "3.8.0",
+    "svg-spreact": "1.3.2",
+    "token-transformer": "0.0.33",
+    "webfont": "11.2.26",
+    "oslllo-svg-fixer": "^3.0.0"
+  },
+  "overrides": {
+    "webfont": {
+      "xml2js": "0.5.0"
+    }
+  }
+}

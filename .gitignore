@@ -1,0 +1,13 @@
+
+node_modules/
+docs/
+dist/
+
+.DS_Store
+.npmrc 
+.idea
+.env
+
+assets/
+build/
+.frontech.json
