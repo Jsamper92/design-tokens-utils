@@ -207,7 +207,6 @@ const generateIconFont = async (path, disableIconFont, disableIconSprites) => {
     fs.mkdirSync(route.resolve(process.cwd(), path, 'fonts', fontName), { recursive: true });
     if (!disableIconFont) {
       messages.print('process transformation icons to icon font started');
-      const fixer = await fixerSvgs(path);
 
       if (file && fixer) {
         const _cli = route.resolve(route.dirname(__dirname), 'node_modules/webfont/dist/cli.js')
