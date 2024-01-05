@@ -107,7 +107,6 @@ const createImportDynamicPartials = (path, brand) => {
  */
 const buildCore = (path, brands) => {
   const root = route.dirname(__dirname).replace(".frontech", "");
-
   createCoreFiles(root, path);
   createCustomFiles(root, path, brands);
 };
@@ -175,14 +174,14 @@ const createCoreFiles = (root, path) => {
       path: route.resolve(root, `library/scss/core/elements/`),
     },
     {
-      data: dataFilesScss(config()).defaultVariables,
+      data: dataFilesScss(config(), "core").defaultVariables,
       root,
       force: false,
       name: `_general.scss`,
       path: route.resolve(root, `library/scss/core/settings/`),
     },
     {
-      data: dataFilesScss(config()).settingsGeneral,
+      data: getAbstractsData("core"),
       root,
       force: false,
       name: `abstracts.scss`,
@@ -211,7 +210,6 @@ const createCoreFiles = (root, path) => {
       origin,
     };
   });
-
   const partials = createImportDynamicPartials(path, "core");
 
   createFiles(files, partials);
@@ -229,14 +227,14 @@ const createCustomFiles = (root, path, brands) => {
           path: route.resolve(root, `library/scss/custom/icons/`),
         },
         {
-          data: dataFilesScss(config()).defaultVariables,
+          data: dataFilesScss(config(), brand).defaultVariables,
           root,
           force: false,
           name: `_general.scss`,
           path: route.resolve(root, `library/scss/custom/settings/`),
         },
         {
-          data: dataFilesScss(config()).settingsGeneral,
+          data: getAbstractsData(brand),
           root,
           force: false,
           name: `abstracts.scss`,
@@ -265,7 +263,6 @@ const createCustomFiles = (root, path, brands) => {
           origin,
         };
       });
-
       const partials = createImportDynamicPartials(path, brand);
 
       createFiles(files, partials);
@@ -279,6 +276,11 @@ const createFiles = (files, partials) => {
     )
   );
 };
+
+const getAbstractsData = (brand) =>
+  `${dataFilesScss(config(), brand).defaultVariables}${
+    dataFilesScss(config()).settingsGeneral
+  }\n`;
 
 module.exports = {
   buildCore,

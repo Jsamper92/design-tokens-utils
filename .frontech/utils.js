@@ -174,20 +174,20 @@ const generateJSUtils = ({ icons, path, brand }) => {
   });
 };
 
-const fixerSvgs = async (path) => {
-  return new Promise(async (resolve) => {
-    const source = route.resolve(path, "images/icons");
-    const destination = route.resolve(process.cwd(), path, "images/test");
-    const options = {
-      showProgressBar: false,
-      throwIfDestinationDoesNotExist: true,
-      traceResolution: 600,
-    };
-    const icons = await SVGFixer(source, destination, options).fix();
+// const fixerSvgs = async (path) => {
+//   return new Promise(async (resolve) => {
+//     const source = route.resolve(path, "images/icons");
+//     const destination = route.resolve(process.cwd(), path, "images/test");
+//     const options = {
+//       showProgressBar: false,
+//       throwIfDestinationDoesNotExist: true,
+//       traceResolution: 600,
+//     };
+//     const icons = await SVGFixer(source, destination, options).fix();
 
-    if (icons) resolve(true);
-  });
-};
+//     if (icons) resolve(true);
+//   });
+// };
 
 /**
  * This function is used to create an icon font using figma icons defined in the configuration file.
@@ -202,7 +202,8 @@ const generateIconFont = async (
 ) => {
   return new Promise(async (resolve) => {
     let fontName = brand;
-    // TODO fontNameIcons = [] o fontNameIconsKEY
+    // TODO fontNameIcons = [] o fontNameIconsKEY o archivo de configuración
+    // por el momento se pone el brand como nombre de la fuente
     // if (brand === "core") {
     //   fontName = config().fontNameIcons ?? "icomoon";
     // }
@@ -326,7 +327,6 @@ const getKeyIcons = (data, tokens) => {
   if (Object.keys(data).length > 0) {
     const icons = Object.entries(data).reduce((acc, cur) => {
       const [key, value] = cur;
-
       if (key === "size") acc["size"] = tokens["size"];
       if (key !== "size") {
         acc["icons"] = {
@@ -336,19 +336,17 @@ const getKeyIcons = (data, tokens) => {
       }
       return acc;
     }, {});
-
     return icons;
   }
-
   return null;
 };
 
-const getIcons = async (data, theme, path, brand) => {
+const getIcons = async (data, tokenSetOrder, path, brand) => {
   return new Promise(async (resolve) => {
     messages.print("process import icons tokens started");
 
     const response = await figmaIconsTokens({
-      theme,
+      tokenSetOrder,
       path: route.resolve(path, `images/icons/${brand}`),
       file: null,
       key: "icons",
@@ -381,36 +379,21 @@ const setCreationTimeFile = () =>
  * @param {{file: string; path: string}} param - Data file and path
  * @returns {string}
  */
-const dataFilesScss = ({ file, path }, brand) => {
-  return {
-    fonts: `\n// Please include the source file in the ${file} to create the font-faces.`,
-    timestamp: setCreationTimeFile(),
-    defaultVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts/${brand}}" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
-    settingsGeneral: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "elements/elements.scss";`,
-    mainScss: `@use "${brand}/abstracts.scss" with (\n\t$font-path: './${path}/fonts/${brand}/'\n);`,
-  };
-};
+const dataFilesScss = ({ file, path }, brand) => ({
+  fonts: `\n// Please include the source file in the ${file} to create the font-faces.`,
+  timestamp: setCreationTimeFile(),
+  defaultVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts/${brand}" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
+  settingsGeneral: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "elements/elements.scss";`,
+  mainScss: `@use "${brand}/abstracts.scss" with (\n\t$font-path: './${path}/fonts/${brand}/'\n);`,
+});
 
 /**
  * This function is used to create data files scss
  * @param {{file: string; path: string}} param - Data file and path
  * @returns {string}
  */
-const managementDataFileScss = (item) => {
-  if (item.name === "core.scss" || item.name === "brand-1.scss") {
-    return item.data;
-  }
-
-  if (item.name === "abstracts.scss") {
-    return `${dataFilesScss(config()).defaultVariables}${
-      dataFilesScss(config()).settingsGeneral
-    }\n`;
-  }
-
-  const _file = fs.readFileSync(route.resolve(item.path, item.name)).toString();
-
-  return _file;
-};
+const managementDataFileScss = (item) =>
+  item.data || fs.readFileSync(route.resolve(item.path, item.name)).toString();
 
 /**
  * This function is used to convert color hex to rgba

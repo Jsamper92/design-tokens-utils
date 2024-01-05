@@ -35,7 +35,7 @@ const { tokens } = config();
 /**
  * This function is used to build tokens platforms by styledictionary
  */
-const styleDictionary = (brandsMode, brands) => {
+const styleDictionary = (modes, brands) => {
   StyleDictionary.registerTransform({
     name: "size/px",
     type: "value",
@@ -85,7 +85,7 @@ const styleDictionary = (brandsMode, brands) => {
     formatter: customMode,
   });
 
-  brandsMode.forEach((brandMode) => {
+  modes.forEach((brandMode) => {
     StyleDictionary.extend({
       source: [
         route.resolve(
@@ -108,20 +108,18 @@ const styleDictionary = (brandsMode, brands) => {
  * This functions include to styleDictionary the *-base-tokens-parsed.json for dark/light mode
  * @param {Object} brandMode
  */
-const getIncludes = (brandMode) => {
-  if (brandMode.mode !== "base") {
-    return [
-      route.resolve(
-        __dirname,
-        "..",
-        "build",
-        "tokens",
-        `${brandMode.brand}-base-tokens-parsed.json`
-      ),
-    ];
-  }
-  return [];
-};
+const getIncludes = (brandMode) =>
+  brandMode.mode !== "base"
+    ? [
+        route.resolve(
+          __dirname,
+          "..",
+          "build",
+          "tokens",
+          `${brandMode.brand}-base-tokens-parsed.json`
+        ),
+      ]
+    : [];
 
 /**
  * This function is used to return style dictionary configuration by brand
@@ -133,7 +131,6 @@ const setTokensConfig = (brandMode) => {
       ? coreTokensConfig
       : customTokensConfig(brandMode.brand);
   }
-
   return modeTokensConfig(brandMode.brand, brandMode.mode);
 };
 
@@ -141,20 +138,13 @@ const setTokensConfig = (brandMode) => {
  * This function is used to build tokens platforms by styledictionary
  * @param {string} path
  * @param {string[]} brands
- * @param {Array} brandsMode
+ * @param {Array} modes
  */
-const buildStyleDictionary = (path, brands, brandsMode) => {
-  const brandsPath = [];
-  brands.forEach((brand) => {
-    brandsPath.push(
-      route.resolve(process.cwd(), path, `library/scss/${brand}`, "settings")
-    );
-  });
-
-  const haveSettings = [];
-  brandsPath.forEach((path) => {
-    haveSettings.push(fs.existsSync(path));
-  });
+const buildStyleDictionary = (path, brands, modes) => {
+  const brandsPath = brands.map((brand) =>
+    route.resolve(process.cwd(), path, `library/scss/${brand}`, "settings")
+  );
+  const haveSettings = brandsPath.map((path) => fs.existsSync(path));
 
   utils.messages.print("Settings creation process started");
   utils.messages.warning(
@@ -165,7 +155,7 @@ const buildStyleDictionary = (path, brands, brandsMode) => {
     if (haveSettings[i]) fs.rmSync(path, { recursive: true });
   });
 
-  styleDictionary(brandsMode, brands);
+  styleDictionary(modes, brands);
   buildCore(path, brands);
 };
 

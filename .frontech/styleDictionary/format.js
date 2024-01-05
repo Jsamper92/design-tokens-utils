@@ -20,7 +20,6 @@ const {
  */
 const customVariablesCommon = ({ dictionary: { allTokens } }) => {
   const _tokens = createCustomProperties(allTokens);
-
   return `${setCreationTimeFile()}:root{\n${_tokens}}`;
 };
 
@@ -252,6 +251,7 @@ const customMode = ({ dictionary: { allTokens, usesReference } }) => {
   );
 
   const _tokens = _tokensColor + _otherTokens;
+
   return `${setCreationTimeFile()}:root{\n${_tokens}}`;
 };
 

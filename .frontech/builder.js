@@ -20,60 +20,67 @@ const { buildStyleDictionary } = styleDictionary;
  * @param {Object} data
  * @param {String} dictionary
  * @param {String} path
- * @param {String} theme
+ * @param {String} tokenSetOrder
  * @param {disableIconFont} boolean
  */
 const createTokens = async (
   data,
   path,
-  theme,
+  tokenSetOrder,
   disableIconFont,
   disableIconSprites,
   disableIconsFigma
 ) => {
   try {
-    const { tokensBrandMode, iconsBrand, brands, brandsMode } =
-      _getBrandMode(data);
-    const tokens = await _buildTokens(tokensBrandMode);
-    const icons = _getIcons(tokens, iconsBrand, theme);
+    messages.print(`Create tokens started`);
+    const { tokensBrand, iconsBrand, brands, modes } = getTokensBrand(data);
+    const _tokens = await _buildTokens(tokensBrand);
+    const _icons = _getIcons(_tokens, iconsBrand);
 
-    if (icons.length > 0 && !disableIconsFigma) {
-      const _icons = [];
-      for (const icon of icons) {
-        for (const [brand, value] of Object.entries(icon)) {
-          const i = await getIcons(value.icons, theme, path, brand);
-          _icons.push(i);
-        }
-      }
-      const iconsFonts = [];
-      for (const [index, brand] of brands.entries()) {
-        if (_icons[index]) {
-          const iconFont = await buildIconFont(
+    modes.forEach((bm) => {
+      messages.success(`${utils.config().theme || bm.brand} - ${bm.mode}`);
+    });
+
+    let _iconsFonts;
+
+    if (_icons.length > 0 && !disableIconsFigma) {
+      const icons = await Promise.all(
+        _icons.map(async (_icon) => {
+          const [brand, value] = Object.entries(_icon)[0];
+          return await getIcons(value.icons, tokenSetOrder, path, brand);
+        })
+      );
+      _iconsFonts = await Promise.all(
+        brands.map(async (brand, index) => {
+          if (icons[index]) {
+            return await buildIconFont(
+              path,
+              disableIconFont,
+              disableIconSprites,
+              brand
+            );
+          }
+        })
+      );
+    } else {
+      _iconsFonts = await Promise.all(
+        brands.map(async (brand) => {
+          return await buildIconFont(
             path,
             disableIconFont,
             disableIconSprites,
             brand
           );
-          iconsFonts.push(iconFont);
-        }
-      }
-      if (tokens.length > 0 && iconsFonts.length > 0) {
-        buildStyleDictionary(path, brands, brandsMode);
-      }
+        })
+      );
+    }
+
+    if (_tokens.length > 0 && _iconsFonts.length > 0) {
+      buildStyleDictionary(path, brands, modes);
+      messages.print(`Create tokens finished`);
+      messages.success("Successfully");
     } else {
-      const iconsFonts = [];
-      for (const brand of brands) {
-        const iconFont = await buildIconFont(
-          path,
-          disableIconFont,
-          disableIconSprites,
-          brand
-        );
-        iconsFonts.push(iconFont);
-      }
-      if (tokens.length > 0 && iconsFonts.length > 0) {
-        buildStyleDictionary(path, brands, brandsMode);
-      }
+      messages.error("No tokens or fonts found");
     }
   } catch (error) {
     console.error(error);
@@ -84,59 +91,54 @@ const createTokens = async (
  * @description This function returns the tokens by brand and mode, icons by brand, brands and modes
  * @param {Object} data
  */
-const _getBrandMode = (data) => {
-  const tokensBrandMode = {};
+const getTokensBrand = (data) => {
+  const tokensBrand = {};
   const iconsBrand = {};
   const brands = [];
   const modes = [];
 
   for (const [key, value] of Object.entries(data)) {
-    let { theme, mode, tokens } = value;
+    let { brand, mode, tokens } = value;
+    // Vamos a buscar los iconos en el objeto ds
     // TODO hacer el tokens.ds generico
-    if (tokens.ds && !iconsBrand[theme]) iconsBrand[theme] = tokens.ds;
+    if (tokens.ds && !iconsBrand[brand]) iconsBrand[brand] = tokens.ds;
     if (!mode) mode = "base";
-    if (!tokensBrandMode[theme]) {
-      tokensBrandMode[theme] = {};
-      brands.push(theme);
+    if (!tokensBrand[brand]) {
+      tokensBrand[brand] = {};
+      brands.push(brand);
     }
-    if (!tokensBrandMode[theme][mode]) {
-      tokensBrandMode[theme][mode] = {};
+    if (!tokensBrand[brand][mode]) {
+      tokensBrand[brand][mode] = {};
       if (!modes.find((f) => f === mode)) {
         modes.push(mode);
       }
     }
-    tokensBrandMode[theme][mode][key] = tokens;
+    tokensBrand[brand][mode][key] = tokens;
   }
 
   return {
-    tokensBrandMode,
+    tokensBrand,
     iconsBrand,
     brands,
-    brandsMode: _getBrandsWithMode(brands, modes),
+    modes: getBrandsWithMode(brands, modes),
   };
 };
 
 /**
+ * @description This function returns all modes and their brand
  * @param {Array} brands
  * @param {Array} modes
  */
-const _getBrandsWithMode = (brands, modes) => {
-  const brandsMode = [];
-  brands.forEach((brand) => {
-    modes.forEach((mode) => {
-      brandsMode.push({ brand, mode });
-    });
-  });
-  return brandsMode;
-};
+const getBrandsWithMode = (brands, modes) =>
+  brands.flatMap((brand) => modes.map((mode) => ({ brand, mode })));
 
 /**
  * @description This function transform tokens and create *-tokens-parsed.json
- * @param {Object} tokensBrandMode
+ * @param {Object} tokensBrand
  */
-const _buildTokens = async (tokensBrandMode) => {
+const _buildTokens = async (tokensBrand) => {
   const tokens = [];
-  for (const [brand, value] of Object.entries(tokensBrandMode)) {
+  for (const [brand, value] of Object.entries(tokensBrand)) {
     for (const [mode, val] of Object.entries(value)) {
       const token = await buildTokens(val, brand, mode);
       tokens.push(token);
@@ -149,22 +151,13 @@ const _buildTokens = async (tokensBrandMode) => {
  * @description This function is used to get the list of icons
  * @param {Object} tokens
  * @param {Object} iconsBrand
- * @param {String} theme
  */
-const _getIcons = (tokens, iconsBrand, theme) => {
-  const icons = [];
-  tokens.forEach((token) => {
-    if (iconsBrand[token.brand] && token.mode === "base") {
-      const keyIcons = getKeyIcons(
-        iconsBrand[token.brand].icon,
-        token.tokens,
-        theme
-      );
-      icons.push({ [token.brand]: keyIcons });
-    }
-  });
-  return icons;
-};
+const _getIcons = (tokens, iconsBrand) =>
+  tokens
+    .filter((token) => iconsBrand[token.brand] && token.mode === "base")
+    .map((token) => ({
+      [token.brand]: getKeyIcons(iconsBrand[token.brand].icon, token.tokens),
+    }));
 
 /**
  * @description This function is used to build icon font
