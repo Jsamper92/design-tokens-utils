@@ -132,7 +132,9 @@ const createFile = (folder, file, data, force = false) => {
 const generateSvgSprites = (icons, path, brand) => {
   return new Promise((resolve) => {
     try {
-      const _icons = icons.map(({ data }) => data);
+      const _icons = icons.map(({ data }) =>
+        data.replaceAll('fill="black"', 'fill="currentColor"')
+      );
       const names = icons.map(({ name }) => name);
       const processId = (n) => `${names[n]}`;
 
