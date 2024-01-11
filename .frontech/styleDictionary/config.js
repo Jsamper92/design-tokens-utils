@@ -140,8 +140,8 @@ const customModeScss = (brand, mode) => ({
     buildPath: `${buildPath}/library/scss/${brand}/`,
     files: [
       {
-        destination: `settings/_color-${mode}.scss`,
-        format: "custom/mode",
+        destination: `settings/_mode-${mode}.scss`,
+        format: `custom/mode-${mode}`,
         filter: ({ filePath }) =>
           filePath.endsWith(`/${brand}-${mode}-tokens-parsed.json`),
         ...configSTD,

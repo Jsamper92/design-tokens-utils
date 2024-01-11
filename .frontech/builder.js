@@ -95,7 +95,6 @@ const getTokensBrand = (data) => {
   const tokensBrand = {};
   const iconsBrand = {};
   const brands = [];
-  const modes = [];
 
   for (const [key, value] of Object.entries(data)) {
     let { brand, mode, tokens } = value;
@@ -109,9 +108,6 @@ const getTokensBrand = (data) => {
     }
     if (!tokensBrand[brand][mode]) {
       tokensBrand[brand][mode] = {};
-      if (!modes.find((f) => f === mode)) {
-        modes.push(mode);
-      }
     }
     tokensBrand[brand][mode][key] = tokens;
   }
@@ -120,7 +116,7 @@ const getTokensBrand = (data) => {
     tokensBrand,
     iconsBrand,
     brands,
-    modes: getBrandsWithMode(brands, modes),
+    modes: getBrandsWithMode(tokensBrand),
   };
 };
 
@@ -129,8 +125,10 @@ const getTokensBrand = (data) => {
  * @param {Array} brands
  * @param {Array} modes
  */
-const getBrandsWithMode = (brands, modes) =>
-  brands.flatMap((brand) => modes.map((mode) => ({ brand, mode })));
+const getBrandsWithMode = (tokensBrand) =>
+  Object.keys(tokensBrand).flatMap((brand) =>
+    Object.keys(tokensBrand[brand]).map((mode) => ({ brand, mode }))
+  );
 
 /**
  * @description This function transform tokens and create *-tokens-parsed.json

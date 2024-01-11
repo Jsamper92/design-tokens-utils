@@ -80,10 +80,15 @@ const styleDictionary = (modes, brands) => {
     formatter: customMediaQueries,
   });
 
-  StyleDictionary.registerFormat({
-    name: "custom/mode",
-    formatter: customMode,
-  });
+  const uniqueMode = [...new Set(modes.map((item) => item.mode))];
+  uniqueMode
+    .filter((f) => f !== "base")
+    .forEach((mode) => {
+      StyleDictionary.registerFormat({
+        name: `custom/mode-${mode}`,
+        formatter: (dictionary) => customMode(dictionary, mode),
+      });
+    });
 
   modes.forEach((brandMode) => {
     StyleDictionary.extend({

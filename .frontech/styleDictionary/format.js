@@ -223,7 +223,7 @@ const customMediaQueries = () => {
  * This function is used to translate tokens mode
  * @returns {string}
  */
-const customMode = ({ dictionary: { allTokens, usesReference } }) => {
+const customMode = ({ dictionary: { allTokens, usesReference } }, mode) => {
   const _tokensColor = allTokens
     .filter(({ type }) => type === "color")
     .map((item) => {
@@ -252,7 +252,11 @@ const customMode = ({ dictionary: { allTokens, usesReference } }) => {
 
   const _tokens = _tokensColor + _otherTokens;
 
-  return `${setCreationTimeFile()}:root{\n${_tokens}}`;
+  if (mode === "light") {
+    return `${setCreationTimeFile()}:root{\n${_tokens}}`;
+  }
+
+  return `${setCreationTimeFile()}:root{\nbody.${mode}{\n${_tokens}}}`;
 };
 
 module.exports = {

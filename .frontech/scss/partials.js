@@ -25,7 +25,8 @@ const createSettingsPartials = (path, brand) => {
   );
   const _nameSettingsPartials = fs
     .readdirSync(_root)
-    .filter((file) => file.includes("_"));
+    .filter((file) => file.includes("_"))
+    .sort(compareMode);
   const _settingsPartials = [..._nameSettingsPartials].map((file) => {
     const origin = route.resolve(_root);
     const data = `${setCreationTimeFile()}${fs
@@ -49,6 +50,18 @@ const createSettingsPartials = (path, brand) => {
   ];
 
   return [..._settingsPartials, ..._settingsPartialsRequired];
+};
+
+const compareMode = (a, b) => {
+  const containsMode = (elemento) => elemento.includes("_mode-");
+
+  if (containsMode(a) && !containsMode(b)) return 1;
+  if (!containsMode(a) && containsMode(b)) return -1;
+  if (containsMode(a) && containsMode(b)) {
+    return a === "_mode-dark.scss" ? 1 : b === "_mode-dark.scss" ? -1 : 0;
+  }
+
+  return 0;
 };
 
 /**
@@ -181,7 +194,9 @@ const createCoreFiles = (root, path) => {
       path: route.resolve(root, `library/scss/core/settings/`),
     },
     {
-      data: getAbstractsData("core"),
+      data: `${dataFilesScss(config(), "core").defaultVariables}${
+        dataFilesScss(config()).settingsGeneral
+      }\n`,
       root,
       force: false,
       name: `abstracts.scss`,
@@ -234,7 +249,9 @@ const createCustomFiles = (root, path, brands) => {
           path: route.resolve(root, `library/scss/custom/settings/`),
         },
         {
-          data: getAbstractsData(brand),
+          data: `${dataFilesScss(config(), brand).defaultVariables}${
+            dataFilesScss(config()).settingsGeneralBrand
+          }\n`,
           root,
           force: false,
           name: `abstracts.scss`,
@@ -276,11 +293,6 @@ const createFiles = (files, partials) => {
     )
   );
 };
-
-const getAbstractsData = (brand) =>
-  `${dataFilesScss(config(), brand).defaultVariables}${
-    dataFilesScss(config()).settingsGeneral
-  }\n`;
 
 module.exports = {
   buildCore,

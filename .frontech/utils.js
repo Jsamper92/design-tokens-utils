@@ -365,7 +365,7 @@ const getIcons = async (data, tokenSetOrder, path, brand) => {
 /**
  * @description This function is used to return config to init script design systems utils
  * @param {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}} args
- * @returns {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}}
+ * @returns {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; fontNameIcons: String; excludeLight: Boolean}}
  */
 const config = (args) => (args ? { ...args } : argv);
 
@@ -386,6 +386,7 @@ const dataFilesScss = ({ file, path }, brand) => ({
   timestamp: setCreationTimeFile(),
   defaultVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts/${brand}" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
   settingsGeneral: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "elements/elements.scss";`,
+  settingsGeneralBrand: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "settings/settings.scss";\n@use "icons/icons.scss";`,
   mainScss: `@use "${brand}/abstracts.scss" with (\n\t$font-path: './${path}/fonts/${brand}/'\n);`,
 });
 
