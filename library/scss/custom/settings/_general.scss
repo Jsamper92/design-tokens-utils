@@ -1,0 +1,8 @@
+/// Variable path by default of the sources defined in the .frontech.json file.
+/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');
+/// @group fonts
+$font-path: "assets/fonts" !default;
+
+/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);
+/// @group rem
+$rem-baseline: 16px !default;

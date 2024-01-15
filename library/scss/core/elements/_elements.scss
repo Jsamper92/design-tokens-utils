@@ -1,0 +1,177 @@
+// STRONG
+.ds-font-weight-light {
+  font-weight: var(--font-weight-light);
+}
+.ds-font-weight-regular {
+  font-weight: var(--font-weight-regular);
+}
+.ds-font-weight-normal {
+  font-weight: var(--font-weight-normal);
+}
+.ds-font-weight-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+// ITALIC
+.ds-text-italic {
+  font-style: italic;
+}
+
+// TEXT ALIGN
+.ds-text-left {
+  text-align: left;
+}
+.ds-text-right {
+  text-align: right;
+}
+.ds-text-center {
+  text-align: center;
+}
+.ds-text-justify {
+  text-align: justify;
+}
+
+// TEXT DECORATION
+.ds-text-underline {
+  text-decoration: var(--font-text-decoration-underline);
+}
+.ds-text-overline {
+  text-decoration: overline;
+}
+.ds-text-through {
+  text-decoration: line-through;
+}
+
+// TEXT TRANSFORM
+.ds-text-uppercase {
+  text-transform: uppercase;
+}
+.ds-text-capitalize {
+  text-transform: capitalize;
+}
+.ds-text-lowercase {
+  text-transform: lowercase;
+}
+
+// HEADING
+.ds-font-heading-1,
+h1 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-heading-1);
+  line-height: var(--font-line-height-heading-1);
+  font-size: var(--font-size-heading-1);
+}
+.ds-font-heading-2,
+h2 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-heading-2);
+  line-height: var(--font-line-height-heading-2);
+  font-size: var(--font-size-heading-2);
+}
+.ds-font-heading-3,
+h3 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-heading-3);
+  line-height: var(--font-line-height-heading-3);
+  font-size: var(--font-size-heading-3);
+}
+.ds-font-heading-4,
+h4 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-heading-4);
+  line-height: var(--font-line-height-heading-4);
+  font-size: var(--font-size-heading-4);
+}
+.ds-font-heading-5,
+h5 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-heading-5);
+  line-height: var(--font-line-height-heading-5);
+  font-size: var(--font-size-heading-5);
+}
+.ds-font-heading-6,
+h6 {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-heading-6);
+  line-height: var(--font-line-height-heading-6);
+  font-size: var(--font-size-heading-6);
+}
+
+//PARAGRAPH
+.ds-font-sm,
+p {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-main-sm);
+  line-height: var(--font-line-height-main-sm);
+  font-size: var(--font-size-main-sm);
+}
+.ds-font-md {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-main-md);
+  line-height: var(--font-line-height-main-md);
+  font-size: var(--font-size-main-md);
+}
+.ds-font-lg {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-main-lg);
+  line-height: var(--font-line-height-main-lg);
+  font-size: var(--font-size-main-lg);
+}
+.ds-font-xl {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-main-xl);
+  line-height: var(--font-line-height-main-xl);
+  font-size: var(--font-size-main-xl);
+}
+.ds-font-overline {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-overline);
+  line-height: var(--font-line-height-overline);
+  font-size: var(--font-size-overline);
+  letter-spacing: var(--font-letter-spacing-overline);
+  text-transform: var(--font-text-case-overline);
+}
+
+// SUBTITLES <p><span>
+.ds-font-subtitle-sm,
+p > span {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-subtitle-sm);
+  line-height: var(--font-line-height-subtitle-sm);
+  font-size: var(--font-size-subtitle-sm);
+}
+.ds-font-subtitle-md {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-subtitle-md);
+  line-height: var(--font-line-height-subtitle-md);
+  font-size: var(--font-size-subtitle-md);
+}
+.ds-font-subtitle-lg {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-subtitle-lg);
+  line-height: var(--font-line-height-subtitle-lg);
+  font-size: var(--font-size-subtitle-lg);
+}
+
+// LIST <ul><li>
+.ds-list {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+}
+.ds-list-item {
+  position: relative;
+  display: block;
+  padding: var(--spacing-inset-squish-2xs-double);
+  text-decoration: none;
+}
+
+// LIST DEFINITION
+.ds-list-definition {
+  dl {
+    margin: var(--spacing-inline-left-md);
+    dt {
+      font-weight: bold;
+    }
+  }
+}
