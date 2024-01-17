@@ -15,27 +15,53 @@ const configSTD = {
   },
 };
 
+const settings = [
+  {
+    destination: "settings/_color.scss",
+    format: "custom/variables-colors",
+    filter: {
+      type: "color",
+    },
+    ...configSTD,
+  },
+  {
+    destination: "settings/_typography.scss",
+    format: "custom/variables",
+    filter: ({ attributes, type }) =>
+      ["fontFamilies", "fontWeights"].includes(type) ||
+      attributes.category === "font",
+    ...configSTD,
+  },
+  {
+    destination: "settings/_opacity.scss",
+    format: "css/variables",
+    filter: {
+      type: "opacity",
+    },
+    ...configSTD,
+  },
+  {
+    destination: "settings/_spacing.scss",
+    format: "custom/spacing",
+    filter: {
+      type: "spacing",
+    },
+    ...configSTD,
+  },
+  {
+    destination: "settings/_border.scss",
+    format: "custom/variables",
+    filter: ({ attributes }) => attributes.category.includes("border"),
+    ...configSTD,
+  },
+];
+
 const coreScss = {
   scss: {
     transformGroup: "scss",
     buildPath: `${buildPath}/library/scss/core/`,
     files: [
-      {
-        destination: "settings/_color.scss",
-        format: "custom/variables-colors",
-        filter: {
-          type: "color",
-        },
-        ...configSTD,
-      },
-      {
-        destination: "settings/_typography.scss",
-        format: "custom/variables",
-        filter: ({ attributes, type }) =>
-          ["fontFamilies", "fontWeights"].includes(type) ||
-          attributes.category === "font",
-        ...configSTD,
-      },
+      ...settings,
       {
         destination: "base/_font-face.scss",
         format: "custom/font-face",
@@ -61,28 +87,6 @@ const coreScss = {
         },
         ...configSTD,
       },
-      {
-        destination: "settings/_opacity.scss",
-        format: "css/variables",
-        filter: {
-          type: "opacity",
-        },
-        ...configSTD,
-      },
-      {
-        destination: "settings/_spacing.scss",
-        format: "custom/spacing",
-        filter: {
-          type: "spacing",
-        },
-        ...configSTD,
-      },
-      {
-        destination: "settings/_border.scss",
-        format: "custom/variables",
-        filter: ({ attributes }) => attributes.category.includes("border"),
-        ...configSTD,
-      },
     ],
   },
 };
@@ -91,50 +95,11 @@ const customScss = (brand) => ({
   scss: {
     transformGroup: "scss",
     buildPath: `${buildPath}/library/scss/${brand}/`,
-    files: [
-      {
-        destination: "settings/_color.scss",
-        format: "custom/variables-colors",
-        filter: {
-          type: "color",
-        },
-        ...configSTD,
-      },
-      {
-        destination: "settings/_typography.scss",
-        format: "custom/variables",
-        filter: ({ attributes, type }) =>
-          ["fontFamilies", "fontWeights"].includes(type) ||
-          attributes.category === "font",
-        ...configSTD,
-      },
-      {
-        destination: "settings/_opacity.scss",
-        format: "css/variables",
-        filter: {
-          type: "opacity",
-        },
-        ...configSTD,
-      },
-      {
-        destination: "settings/_spacing.scss",
-        format: "custom/spacing",
-        filter: {
-          type: "spacing",
-        },
-        ...configSTD,
-      },
-      {
-        destination: "settings/_border.scss",
-        format: "custom/variables",
-        filter: ({ attributes }) => attributes.category.includes("border"),
-        ...configSTD,
-      },
-    ],
+    files: settings,
   },
 });
 
-const customModeScss = (brand, mode) => ({
+const customModeScss = (brand, mode, isTheme = false) => ({
   scss: {
     transformGroup: "scss",
     buildPath: `${buildPath}/library/scss/${brand}/`,
@@ -143,7 +108,9 @@ const customModeScss = (brand, mode) => ({
         destination: `settings/_mode-${mode}.scss`,
         format: `custom/mode-${mode}`,
         filter: ({ filePath }) =>
-          filePath.endsWith(`/${brand}-${mode}-tokens-parsed.json`),
+          filePath.endsWith(
+            `/${isTheme ? "core" : brand}-${mode}-tokens-parsed.json`
+          ),
         ...configSTD,
       },
     ],

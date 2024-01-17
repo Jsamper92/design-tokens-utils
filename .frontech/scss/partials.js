@@ -10,6 +10,7 @@ const {
   config,
   createFile,
 } = utils;
+const { theme } = config();
 
 /**
  * This function is used to create dynamic import of partials of file settings.scss
@@ -108,7 +109,7 @@ const createBasePartials = (path) => {
  */
 const createImportDynamicPartials = (path, brand) => {
   const settings = createSettingsPartials(path, brand);
-  const base = createBasePartials(path);
+  const base = !theme ? createBasePartials(path) : [];
 
   return [...settings, ...base];
 };
@@ -120,18 +121,19 @@ const createImportDynamicPartials = (path, brand) => {
  */
 const buildCore = (path, brands) => {
   const root = route.dirname(__dirname).replace(".frontech", "");
-  createCoreFiles(root, path);
-  createCustomFiles(root, path, brands);
+  if (!theme) {
+    createCoreFiles(root, path);
+    createCustomFiles(root, path, brands);
+  } else {
+    createThemeFiles(root, path, theme);
+  }
 };
 
 const createCoreFiles = (root, path) => {
   const paths = [
-    {
-      root,
-      force: false,
-      name: `_icons.scss`,
-      path: route.resolve(root, `library/scss/core/icons/`),
-    },
+    iconsTemplate(root),
+    settingsGeneralTemplate(root, "core"),
+    mainScss(root, "core"),
     {
       root,
       force: false,
@@ -187,13 +189,6 @@ const createCoreFiles = (root, path) => {
       path: route.resolve(root, `library/scss/core/elements/`),
     },
     {
-      data: dataFilesScss(config(), "core").defaultVariables,
-      root,
-      force: false,
-      name: `_general.scss`,
-      path: route.resolve(root, `library/scss/core/settings/`),
-    },
-    {
       data: `${dataFilesScss(config(), "core").defaultVariables}${
         dataFilesScss(config()).settingsGeneral
       }\n`,
@@ -202,20 +197,86 @@ const createCoreFiles = (root, path) => {
       name: `abstracts.scss`,
       path: route.resolve(root, `library/scss/core/`),
     },
-    {
-      data: dataFilesScss(config(), "core").mainScss,
-      root,
-      force: true,
-      name: `core.scss`,
-      path: route.resolve(root, `library/scss/`),
-    },
   ];
 
-  const files = paths.map((file) => {
+  const files = getFiles(paths, "core", path);
+  const partials = createImportDynamicPartials(path, "core");
+  createFiles(files, partials);
+};
+
+const createCustomFiles = (root, path, brands) => {
+  brands
+    .filter((f) => f !== "core")
+    .forEach((brand) => {
+      const paths = [
+        iconsTemplate(root, "custom"),
+        settingsGeneralTemplate(root, brand, "custom"),
+        mainScss(root, brand),
+        {
+          data: `${dataFilesScss(config(), brand).defaultVariables}${
+            dataFilesScss(config()).settingsGeneralByBrand
+          }\n`,
+          root,
+          force: false,
+          name: `abstracts.scss`,
+          path: route.resolve(root, `library/scss/custom/`),
+        },
+      ];
+      const files = getFiles(paths, brand, path);
+      const partials = createImportDynamicPartials(path, brand);
+      createFiles(files, partials);
+    });
+};
+
+const createThemeFiles = (root, path, theme) => {
+  const paths = [
+    iconsTemplate(root, "custom"),
+    settingsGeneralTemplate(root, theme, "custom"),
+    mainScss(root, theme),
+    {
+      data: `${dataFilesScss(config(), theme).defaultVariables}${
+        dataFilesScss(config()).settingsGeneralByTheme
+      }\n`,
+      root,
+      force: false,
+      name: `abstracts.scss`,
+      path: route.resolve(root, `library/scss/custom/`),
+    },
+  ];
+  const files = getFiles(paths, theme, path);
+  const partials = createImportDynamicPartials(path, theme);
+  createFiles(files, partials);
+};
+
+const iconsTemplate = (root, folder = "core") => ({
+  root,
+  force: false,
+  name: `_icons.scss`,
+  path: route.resolve(root, `library/scss/${folder}/icons/`),
+});
+
+const settingsGeneralTemplate = (root, brand, folder = "core") => ({
+  data: dataFilesScss(config(), brand).defaultVariables,
+  root,
+  force: false,
+  name: `_general.scss`,
+  path: route.resolve(root, `library/scss/${folder}/settings/`),
+});
+
+const mainScss = (root, brand) => ({
+  data: dataFilesScss(config(), brand).mainScss,
+  root,
+  force: true,
+  name: `${brand}.scss`,
+  path: route.resolve(root, `library/scss/`),
+});
+
+const getFiles = (paths, brand, path) => {
+  return paths.map((file) => {
     const { name, force } = file;
     const origin = route.resolve(
       route.resolve(process.cwd(), path),
-      file.path.replace(file.root, "")
+      file.path.replace(file.root, "").replace("custom", brand)
     );
     const data = managementDataFileScss(file);
     return {
@@ -225,65 +286,6 @@ const createCoreFiles = (root, path) => {
       origin,
     };
   });
-  const partials = createImportDynamicPartials(path, "core");
-
-  createFiles(files, partials);
-};
-
-const createCustomFiles = (root, path, brands) => {
-  brands
-    .filter((f) => f !== "core")
-    .forEach((brand) => {
-      const paths = [
-        {
-          root,
-          force: false,
-          name: `_icons.scss`,
-          path: route.resolve(root, `library/scss/custom/icons/`),
-        },
-        {
-          data: dataFilesScss(config(), brand).defaultVariables,
-          root,
-          force: false,
-          name: `_general.scss`,
-          path: route.resolve(root, `library/scss/custom/settings/`),
-        },
-        {
-          data: `${dataFilesScss(config(), brand).defaultVariables}${
-            dataFilesScss(config()).settingsGeneralBrand
-          }\n`,
-          root,
-          force: false,
-          name: `abstracts.scss`,
-          path: route.resolve(root, `library/scss/custom/`),
-        },
-        {
-          data: dataFilesScss(config(), brand).mainScss,
-          root,
-          force: true,
-          name: `${brand}.scss`,
-          path: route.resolve(root, `library/scss/`),
-        },
-      ];
-
-      const files = paths.map((file) => {
-        const { name, force } = file;
-        const origin = route.resolve(
-          route.resolve(process.cwd(), path),
-          file.path.replace(file.root, "").replace("custom", brand)
-        );
-        const data = managementDataFileScss(file);
-        return {
-          name,
-          data,
-          force,
-          origin,
-        };
-      });
-      const partials = createImportDynamicPartials(path, brand);
-
-      createFiles(files, partials);
-    });
 };
 
 const createFiles = (files, partials) => {

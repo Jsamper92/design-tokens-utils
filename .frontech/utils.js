@@ -236,7 +236,7 @@ const generateIconFont = async (
       template: route.resolve(__dirname, "..", "templates", "_icons.css.njk"),
       destTemplate: buildFont,
       templateClassName: "icon",
-      templateFontPath: `#{general.$font-path}/${fontName}/`,
+      templateFontPath: `#{general.$font-path}/`,
       fontHeight: 800,
       normalize: true,
       centerHorizontally: false,
@@ -384,10 +384,11 @@ const setCreationTimeFile = () =>
 const dataFilesScss = ({ file, path }, brand) => ({
   fonts: `\n// Please include the source file in the ${file} to create the font-faces.`,
   timestamp: setCreationTimeFile(),
-  defaultVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "/${path}/fonts/${brand}" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
+  defaultVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "./${path}/fonts/${brand}" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
   settingsGeneral: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "elements/elements.scss";`,
-  settingsGeneralBrand: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "settings/settings.scss";\n@use "icons/icons.scss";`,
-  mainScss: `@use "${brand}/abstracts.scss" with (\n\t$font-path: './${path}/fonts/${brand}/'\n);`,
+  settingsGeneralByTheme: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "@aletheia/assets/dist/assets/library/scss/core/base/base.scss";\n@use "@aletheia/assets/dist/assets/library/scss/core/tools/tools.scss";\n@use "settings/settings.scss";\n@use "@aletheia/assets/dist/assets/library/scss/core/utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "@aletheia/assets/dist/assets/library/scss/core/elements/elements.scss";`,
+  settingsGeneralByBrand: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "settings/settings.scss";\n@use "icons/icons.scss";`,
+  mainScss: `@use "${brand}/abstracts.scss" with (\n\t$font-path: '/${path}/fonts/${brand}'\n);`,
 });
 
 /**
