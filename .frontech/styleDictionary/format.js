@@ -68,34 +68,6 @@ const customVariablesColors = ({
 };
 
 /**
- * This function is used to translate tokens in create custom properties css. If exist inset, this function translate to calc
- * @param {{dictionary: {allTokens: {[key:string]: string}}}} param0
- * @returns {string}
- */
-const customVariablesSpacing = ({ dictionary: { allTokens } }) => {
-  const _tokens = createCustomProperties(allTokens);
-  const _spacing = _tokens
-    .split(";")
-    .map((token) => {
-      if (token.includes("inset")) {
-        const value = token.split(":")[1];
-        const _calc = value
-          .split(" ")
-          .map((item) =>
-            !item.includes("auto") ? `calc(${item} - 1px)` : item
-          )
-          .join(" ");
-        return `${token.split(":")[0]}:${_calc}`;
-      }
-
-      return token;
-    })
-    .join(";");
-
-  return `${setCreationTimeFile()}:root{\n${_spacing}}`;
-};
-
-/**
  * This function is used to translate tokens typography in font-face.
  * @returns {string}
  */
@@ -296,6 +268,5 @@ module.exports = {
   customMediaQueries,
   customVariablesCommon,
   customVariablesColors,
-  customVariablesSpacing,
   customMode,
 };

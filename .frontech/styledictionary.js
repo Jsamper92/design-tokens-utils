@@ -23,7 +23,6 @@ const { sizePx } = transform;
 const {
   customVariablesCommon,
   customVariablesColors,
-  customVariablesSpacing,
   customFontFace,
   customGrid,
   customMediaQueries,
@@ -62,7 +61,7 @@ const styleDictionary = (modes, brands) => {
 
   StyleDictionary.registerFormat({
     name: "custom/spacing",
-    formatter: customVariablesSpacing,
+    formatter: customVariablesCommon,
   });
 
   StyleDictionary.registerFormat({
