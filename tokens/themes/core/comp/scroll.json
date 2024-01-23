@@ -1,0 +1,13 @@
+{
+  "color": {
+    "bg": {
+      "scroll": {
+        "default": {
+          "value": "$color.bg.active",
+          "type": "color",
+          "description": "$color.neutral.300 \n$opacity.medium"
+        }
+      }
+    }
+  }
+}

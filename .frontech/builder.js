@@ -9,6 +9,7 @@ const { messages } = utils;
 const {
   generateIconFont,
   generateSvgSprites,
+  generateUtils,
   getIcons,
   buildTokens,
   getKeyIcons,
@@ -22,6 +23,7 @@ const { buildStyleDictionary } = styleDictionary;
  * @param {String} path
  * @param {String} tokenSetOrder
  * @param {disableIconFont} boolean
+ * @param {disableUtils} boolean
  */
 const createTokens = async (
   data,
@@ -29,7 +31,8 @@ const createTokens = async (
   tokenSetOrder,
   disableIconFont,
   disableIconSprites,
-  disableIconsFigma
+  disableIconsFigma,
+  disableUtils
 ) => {
   try {
     messages.print(`Create tokens started`);
@@ -57,6 +60,7 @@ const createTokens = async (
               path,
               disableIconFont,
               disableIconSprites,
+              disableUtils,
               brand
             );
           }
@@ -69,6 +73,7 @@ const createTokens = async (
             path,
             disableIconFont,
             disableIconSprites,
+            disableUtils,
             brand
           );
         })
@@ -165,8 +170,14 @@ const buildIconFont = async (
   path,
   disableIconFont,
   disableIconSprites,
+  disableUtils,
   brand
 ) => {
+  console.log(path,
+    disableIconFont,
+    disableIconSprites,
+    disableUtils,
+    brand)
   return new Promise(async (resolve) => {
     const pathIcons = route.resolve(path, "images", "icons", brand);
     const isIcons = fs.existsSync(pathIcons);
@@ -178,6 +189,7 @@ const buildIconFont = async (
       }));
 
     if (isIcons) {
+      if (!disableUtils) await generateUtils({ icons, path, brand })
       if (!disableIconFont) {
         const iconFont = await generateIconFont(
           path,

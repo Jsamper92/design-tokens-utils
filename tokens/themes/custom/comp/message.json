@@ -1,0 +1,40 @@
+{
+  "color": {
+    "bg": {
+      "message": {
+        "default": {
+          "value": "$color.bg.surface-50",
+          "type": "color",
+          "description": "$color.white"
+        }
+      }
+    },
+    "fg": {
+      "message": {
+        "default": {
+          "value": "$color.fg.default",
+          "type": "color",
+          "description": "$color.white"
+        }
+      }
+    }
+  },
+  "border-radius": {
+    "message": {
+      "value": "$border-radius.3xs",
+      "type": "borderRadius"
+    }
+  },
+  "border-width": {
+    "message": {
+      "value": "$border-width.md",
+      "type": "borderWidth"
+    }
+  },
+  "border-style": {
+    "message": {
+      "value": "$border-style.solid",
+      "type": "border"
+    }
+  }
+}

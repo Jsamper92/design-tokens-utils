@@ -1,0 +1,485 @@
+{
+  "font": {
+    "action": {
+      "sm": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.action.sm",
+          "lineHeight": "$font.line-height.action.sm",
+          "fontSize": "$font.size.action.sm",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group action-sm"
+      },
+      "md": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.action.md",
+          "lineHeight": "$font.line-height.action.md",
+          "fontSize": "$font.size.action.md",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group action-md"
+      },
+      "lg": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.action.lg",
+          "lineHeight": "$font.line-height.action.lg",
+          "fontSize": "$font.size.action.lg",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group action-lg"
+      }
+    },
+    "size": {
+      "action": {
+        "sm": {
+          "value": "$font.size.02",
+          "type": "fontSizes"
+        },
+        "md": {
+          "value": "$font.size.03",
+          "type": "fontSizes"
+        },
+        "lg": {
+          "value": "$font.size.04",
+          "type": "fontSizes"
+        }
+      }
+    },
+    "weight": {
+      "action": {
+        "sm": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        },
+        "md": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        },
+        "lg": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        }
+      }
+    },
+    "line-height": {
+      "action": {
+        "sm": {
+          "value": "$font.line-height.01",
+          "type": "lineHeights"
+        },
+        "md": {
+          "value": "$font.line-height.01",
+          "type": "lineHeights"
+        },
+        "lg": {
+          "value": "$font.line-height.04",
+          "type": "lineHeights"
+        }
+      }
+    }
+  },
+  "color": {
+    "fg": {
+      "action": {
+        "default": {
+          "value": "$color.fg.heavy",
+          "type": "color",
+          "description": "$color.neutral.900\nUsed to: fg to action button"
+        },
+        "primary": {
+          "value": "$color.fg.primary",
+          "type": "color",
+          "description": "$color.primary.300\nUsed to: clear outline button fg"
+        },
+        "secondary": {
+          "value": "$color.fg.secondary",
+          "type": "color",
+          "description": "$color.secondary.600\nUsed to: clear outline button fg"
+        },
+        "secondary-inverse": {
+          "value": "$color.fg.secondary-inverse",
+          "type": "color",
+          "description": "$color.secondary.200\nUsed to: clear outline button fg"
+        },
+        "primary-inverse": {
+          "value": "$color.fg.primary-inverse",
+          "type": "color",
+          "description": "$color.primary.100\nUsed to: clear outline button fg"
+        },
+        "default-inverse": {
+          "value": "$color.fg.default-inverse",
+          "type": "color",
+          "description": "$color.neutral.white\nUsed to: on dark fg button"
+        }
+      }
+    },
+    "bg": {
+      "action": {
+        "primary": {
+          "value": "$color.bg.primary",
+          "type": "color",
+          "description": "$color.primary.300\nUsed to: bg button primary"
+        },
+        "primary-hover": {
+          "value": "$color.bg.primary-hover",
+          "type": "color",
+          "description": "$color.primary.400\nUsed to: bg button hover"
+        },
+        "primary-active": {
+          "value": "$color.bg.primary-active",
+          "type": "color",
+          "description": "$color.primary.500"
+        },
+        "primary-inverse": {
+          "value": "$color.bg.primary-inverse",
+          "type": "color",
+          "description": "$color.indigo.200\nBackground surface"
+        },
+        "primary-hover-inverse": {
+          "value": "$color.bg.primary-hover-inverse",
+          "type": "color",
+          "description": "$color.indigo.300\nBackground surface"
+        },
+        "primary-active-inverse": {
+          "value": "$color.bg.primary-active-inverse",
+          "type": "color",
+          "description": "$color.indigo.300\nBackground surface"
+        },
+        "secondary": {
+          "value": "$color.bg.secondary",
+          "type": "color",
+          "description": "$color.secondary.300\nUsed to: bg button secondary"
+        },
+        "secondary-hover": {
+          "value": "$color.bg.secondary-hover",
+          "type": "color",
+          "description": "$color.secondary.400\nUsed to: button hover"
+        },
+        "secondary-active": {
+          "value": "$color.bg.secondary-active",
+          "type": "color",
+          "description": "$color.secondary.500"
+        },
+        "light": {
+          "value": "$color.bg.surface-100",
+          "type": "color",
+          "description": "$color.neutral.100\nUsed to: bg button primary"
+        },
+        "light-hover": {
+          "value": "$color.bg.surface-200",
+          "type": "color",
+          "description": "$color.neutral.200\nUsed to: bg button primary"
+        },
+        "light-active": {
+          "value": "$color.bg.surface-300",
+          "type": "color",
+          "description": "$color.neutral.300\nUsed to: bg button primary"
+        },
+        "dark": {
+          "value": "$color.bg.surface-900",
+          "type": "color",
+          "description": "$color.neutral 900\nUsed to: bg button primary"
+        },
+        "dark-hover": {
+          "value": "$color.bg.surface-800",
+          "type": "color",
+          "description": "$color.neutral.800\nUsed to: bg button primary"
+        },
+        "dark-active": {
+          "value": "$color.bg.surface-700",
+          "type": "color",
+          "description": "$color.neutral.900\nUsed to: bg button primary"
+        },
+        "transparent": {
+          "value": "$color.bg.transparent",
+          "type": "color",
+          "description": "$color.bg.transparent"
+        }
+      }
+    },
+    "border": {
+      "action": {
+        "primary": {
+          "value": "$color.border.primary",
+          "type": "color",
+          "description": "$color.primary.300"
+        },
+        "primary-hover": {
+          "value": "$color.border.primary-hover",
+          "type": "color",
+          "description": "$color.primary.400"
+        },
+        "primary-active": {
+          "value": "$color.border.primary-active",
+          "type": "color",
+          "description": "$color.primary.400"
+        },
+        "primary-inverse": {
+          "value": "$color.border.primary-inverse",
+          "type": "color",
+          "description": "$color.indigo.200"
+        },
+        "primary-hover-inverse": {
+          "value": "$color.border.primary-hover-inverse",
+          "type": "color",
+          "description": "$color.indigo.300"
+        },
+        "primary-active-inverse": {
+          "value": "$color.border.primary-active-inverse",
+          "type": "color",
+          "description": "$color.indigo.300"
+        },
+        "secondary": {
+          "value": "$color.border.secondary",
+          "type": "color",
+          "description": "$color.border.secondary"
+        },
+        "secondary-hover": {
+          "value": "$color.border.secondary-hover",
+          "type": "color",
+          "description": "$color.secondary.400"
+        },
+        "secondary-active": {
+          "value": "$color.border.primary-active",
+          "type": "color",
+          "description": "$color.primary.400"
+        },
+        "light": {
+          "value": "$color.border.subtle",
+          "type": "color",
+          "description": "$color.neutral.100\nUsed to: bg button light "
+        },
+        "light-hover": {
+          "value": "$color.border.hover",
+          "type": "color",
+          "description": "$color.border.hover\ntransparent\nUsed to: border button light hover"
+        },
+        "light-active": {
+          "value": "$color.border.active",
+          "type": "color",
+          "description": "$color.border.active\ntransparent\nUsed to: border button light active"
+        },
+        "dark": {
+          "value": "$color.border.subtle-inverse",
+          "type": "color",
+          "description": "$color.neutral.700\nUsed to: bg button primary"
+        },
+        "dark-hover": {
+          "value": "$color.border.hover-inverse",
+          "type": "color",
+          "description": "$color.border.hover-inverse\ntransparent\nUsed to: border button dark hover"
+        },
+        "dark-active": {
+          "value": "$color.border.active-inverse",
+          "type": "color",
+          "description": "$color.border.active-inverse\ntransparent\nUsed to: border button dark hover"
+        },
+        "transparent": {
+          "value": "$color.border.transparent",
+          "type": "color",
+          "description": "$color.border.transparent"
+        }
+      }
+    },
+    "fill": {
+      "icon-action": {
+        "primary": {
+          "value": "$color.fg.primary",
+          "type": "color",
+          "description": "$color.primary.300"
+        },
+        "primary-inverse": {
+          "value": "$color.fg.primary-inverse",
+          "type": "color",
+          "description": "$color.primary.100"
+        },
+        "primary-hover": {
+          "value": "$color.fg.primary-hover",
+          "type": "color",
+          "description": "$color.primary.400"
+        },
+        "primary-active": {
+          "value": "$color.fg.primary-active",
+          "type": "color",
+          "description": "$color.primary.500"
+        },
+        "secondary": {
+          "value": "$color.fg.secondary",
+          "type": "color",
+          "description": "$color.secondary.600"
+        },
+        "secondary-inverse": {
+          "value": "$color.fg.secondary-inverse",
+          "type": "color",
+          "description": "$color.secondary.200"
+        },
+        "secondary-hover": {
+          "value": "$color.fg.secondary-hover",
+          "type": "color",
+          "description": "$color.secondary.700"
+        },
+        "secondary-active": {
+          "value": "$color.fg.secondary-active",
+          "type": "color",
+          "description": "$color.secondary.800"
+        },
+        "default": {
+          "value": "$color.fg.heavy",
+          "type": "color",
+          "description": "$color.neutral.900"
+        },
+        "default-inverse": {
+          "value": "$color.fg.default-inverse",
+          "type": "color",
+          "description": "$color.neutral.white"
+        }
+      }
+    }
+  },
+  "spacing": {
+    "col-gap": {
+      "button": {
+        "xs": {
+          "value": "{spacing.02}",
+          "type": "spacing"
+        },
+        "sm": {
+          "value": "{spacing.02}",
+          "type": "spacing"
+        },
+        "md": {
+          "value": "{spacing.03}",
+          "type": "spacing"
+        },
+        "lg": {
+          "value": "{spacing.03}",
+          "type": "spacing"
+        }
+      }
+    }
+  },
+  "shadow-action-focus": {
+    "value": [
+      {
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "2",
+        "color": "$color.border.focus",
+        "type": "innerShadow"
+      },
+      {
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "3",
+        "color": "#fff",
+        "type": "innerShadow"
+      }
+    ],
+    "type": "boxShadow"
+  },
+  "shadow-action-clear-focus": {
+    "value": [
+      {
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "2",
+        "color": "$color.border.focus",
+        "type": "innerShadow"
+      },
+      {
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "3",
+        "color": "transparent",
+        "type": "innerShadow"
+      }
+    ],
+    "type": "boxShadow"
+  },
+  "shadow-action-focus-inverse": {
+    "value": [
+      {
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "2",
+        "color": "$color.border.focus-inverse",
+        "type": "innerShadow"
+      },
+      {
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "3",
+        "color": "#fff",
+        "type": "innerShadow"
+      }
+    ],
+    "type": "boxShadow"
+  },
+  "shadow-action-clear-focus-inverse": {
+    "value": [
+      {
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "2",
+        "color": "$color.border.focus-inverse",
+        "type": "innerShadow"
+      },
+      {
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "3",
+        "color": "transparent",
+        "type": "innerShadow"
+      }
+    ],
+    "type": "boxShadow"
+  },
+  "border-radius": {
+    "action": {
+      "value": "$border-radius.full",
+      "type": "borderRadius"
+    },
+    "action-clear": {
+      "value": "$border-radius.00",
+      "type": "borderRadius"
+    }
+  },
+  "border-width": {
+    "action": {
+      "value": "$border-width.xs",
+      "type": "borderWidth"
+    }
+  },
+  "border-style": {
+    "action": {
+      "value": "$border-style.solid",
+      "type": "border"
+    }
+  }
+}

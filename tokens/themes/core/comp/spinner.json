@@ -1,0 +1,88 @@
+{
+  "color": {
+    "fill": {
+      "spinner": {
+        "light": {
+          "value": "$color.fg.subtle",
+          "type": "color",
+          "description": "$color.neutral.400"
+        },
+        "light-inverse": {
+          "value": "$color.fg.default-inverse",
+          "type": "color",
+          "description": "$color.neutral.50"
+        },
+        "dark": {
+          "value": "$color.fg.default",
+          "type": "color",
+          "description": "$color.neutral.700"
+        },
+        "dark-inverse": {
+          "value": "$color.fg.default-inverse",
+          "type": "color",
+          "description": "$color.neutral.50"
+        },
+        "primary": {
+          "value": "$color.fg.primary",
+          "type": "color",
+          "description": "$color.primary.300"
+        },
+        "primary-inverse": {
+          "value": "$color.fg.primary-inverse",
+          "type": "color",
+          "description": "$color.primary.100"
+        },
+        "secondary": {
+          "value": "$color.fg.secondary",
+          "type": "color",
+          "description": "$color.secondary.300"
+        },
+        "secondary-inverse": {
+          "value": "$color.fg.secondary-inverse",
+          "type": "color",
+          "description": "$color.secondary.200"
+        },
+        "error": {
+          "value": "$color.fg.status.error",
+          "type": "color",
+          "description": "$color.error.700"
+        },
+        "error-inverse": {
+          "value": "$color.fg.status.error-inverse",
+          "type": "color",
+          "description": "$color.error.400"
+        },
+        "warning": {
+          "value": "$color.fg.status.warning",
+          "type": "color",
+          "description": "$color.warning.600"
+        },
+        "warning-inverse": {
+          "value": "$color.fg.status.warning-inverse",
+          "type": "color",
+          "description": "$color.warning.500"
+        },
+        "success": {
+          "value": "$color.fg.status.success",
+          "type": "color",
+          "description": "$color.success.800"
+        },
+        "success-inverse": {
+          "value": "$color.fg.status.success-inverse",
+          "type": "color",
+          "description": "$color.success.400"
+        },
+        "info": {
+          "value": "$color.fg.status.info",
+          "type": "color",
+          "description": "$color.info.800"
+        },
+        "info-inverse": {
+          "value": "$color.fg.status.info-inverse",
+          "type": "color",
+          "description": "$color.info.400"
+        }
+      }
+    }
+  }
+}

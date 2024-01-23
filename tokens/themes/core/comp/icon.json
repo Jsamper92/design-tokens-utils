@@ -1,0 +1,28 @@
+{
+  "font": {
+    "size": {
+      "icon": {
+        "xs": {
+          "value": "$font.size.04",
+          "type": "fontSizes"
+        },
+        "sm": {
+          "value": "$font.size.05",
+          "type": "fontSizes"
+        },
+        "md": {
+          "value": "$font.size.06",
+          "type": "fontSizes"
+        },
+        "lg": {
+          "value": "$font.size.08",
+          "type": "fontSizes"
+        },
+        "xl": {
+          "value": "$font.size.10",
+          "type": "fontSizes"
+        }
+      }
+    }
+  }
+}

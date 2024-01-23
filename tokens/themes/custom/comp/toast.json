@@ -1,0 +1,40 @@
+{
+  "color": {
+    "bg": {
+      "toast": {
+        "default": {
+          "value": "$color.gray.800",
+          "type": "color",
+          "description": "$color.white"
+        }
+      }
+    },
+    "fg": {
+      "toast": {
+        "default": {
+          "value": "$color.fg.default-inverse",
+          "type": "color",
+          "description": "$color.white"
+        }
+      }
+    }
+  },
+  "border-radius": {
+    "toast": {
+      "value": "$border-radius.3xs",
+      "type": "borderRadius"
+    }
+  },
+  "border-width": {
+    "toast": {
+      "value": "$border-width.md",
+      "type": "borderWidth"
+    }
+  },
+  "border-style": {
+    "toast": {
+      "value": "$border-style.solid",
+      "type": "border"
+    }
+  }
+}

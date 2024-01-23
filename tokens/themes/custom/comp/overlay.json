@@ -1,0 +1,22 @@
+{
+  "color": {
+    "bg": {
+      "overlay": {
+        "default": {
+          "value": "$color.bg.surface-00",
+          "type": "color",
+          "description": "$color.gray.100"
+        }
+      }
+    },
+    "border": {
+      "overlay": {
+        "default": {
+          "value": "$color.border.subtle",
+          "type": "color",
+          "description": "$color.gray.100"
+        }
+      }
+    }
+  }
+}

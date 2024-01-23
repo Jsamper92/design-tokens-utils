@@ -1,0 +1,611 @@
+{
+  "color": {
+    "fg": {
+      "default": {
+        "value": "$color.gray.50",
+        "type": "color",
+        "description": "$color.gray.800\nUsed to: Text default"
+      },
+      "default-hover": {
+        "value": "$color.white",
+        "type": "color",
+        "description": "$color.gray.900\nUsed to: general text hover"
+      },
+      "primary": {
+        "value": "$color.indigo.100",
+        "type": "color",
+        "description": "$color.indigo.300\nUsed to: links, actions and highlight texts "
+      },
+      "primary-hover": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.indigo.400\nUsed to: Text link hover"
+      },
+      "primary-active": {
+        "value": "$color.indigo.500",
+        "type": "color",
+        "description": "$color.indigo.500\nUsed to: Text link visited"
+      },
+      "primary-selected": {
+        "value": "$color.indigo.500",
+        "type": "color",
+        "description": "$color.indigo.500"
+      },
+      "secondary": {
+        "value": "$color.coral.200",
+        "type": "color",
+        "description": "$color.coral.600\nText button secondary ghost"
+      },
+      "secondary-hover": {
+        "value": "$color.coral.700",
+        "type": "color",
+        "description": "$color.coral.700"
+      },
+      "secondary-active": {
+        "value": "$color.coral.800",
+        "type": "color",
+        "description": "$color.coral.800"
+      },
+      "secondary-selected": {
+        "value": "$color.coral.800",
+        "type": "color",
+        "description": "$color.coral.800"
+      },
+      "heavy": {
+        "value": "$color.white",
+        "type": "color",
+        "description": "$color.gray.900\nUsed to: heading "
+      },
+      "subtle": {
+        "value": "$color.gray.400",
+        "type": "color",
+        "description": "$color.gray.600\nUsed to: non-emphasis texts"
+      },
+      "disabled": {
+        "value": "$color.gray.500",
+        "type": "color",
+        "description": "$color.gray.500\nUsed to: text disabled"
+      },
+      "status": {
+        "error": {
+          "value": "$color.red.400",
+          "type": "color",
+          "description": "$color.red.700\nUsed to: semantic error"
+        },
+        "success": {
+          "value": "$color.green.400",
+          "type": "color",
+          "description": "$color.green.800\nUsed to: semantic success"
+        },
+        "warning": {
+          "value": "$color.yellow.500",
+          "type": "color",
+          "description": "$color.yellow.800\nUsed to: semantic warning"
+        },
+        "info": {
+          "value": "$color.blue.400",
+          "type": "color",
+          "description": "$color.blue.800\nUsed to: semantic info"
+        }
+      },
+      "action": {
+        "default": {
+          "value": "$color.fg.default",
+          "type": "color",
+          "description": "$color.neutral.900\nUsed to: fg to action button"
+        },
+        "primary": {
+          "value": "$color.fg.primary",
+          "type": "color",
+          "description": "$color.primary.300\nUsed to: clear outline button fg"
+        },
+        "secondary": {
+          "value": "$color.fg.secondary",
+          "type": "color",
+          "description": "$color.secondary.600\nUsed to: clear outline button fg"
+        },
+        "default-inverse": {
+          "value": "$color.gray.900",
+          "type": "color",
+          "description": "$color.neutral.white\nUsed to: on dark fg button"
+        }
+      },
+      "label": {
+        "default": {
+          "value": "$color.fg.default",
+          "type": "color",
+          "description": "$color.neutral.700\nUsed to: Label"
+        },
+        "disabled": {
+          "value": "$color.fg.disabled",
+          "type": "color",
+          "description": "$color.neutral.300\nUsed to: label disabled"
+        }
+      },
+      "input": {
+        "placeholder": {
+          "value": "$color.fg.subtle",
+          "type": "color",
+          "description": "$color.neutral.600\nUsed to: placeholder"
+        }
+      }
+    },
+    "bg": {
+      "surface-00": {
+        "value": "$color.black",
+        "type": "color",
+        "description": "$color.white\nBackground surface light"
+      },
+      "surface-50": {
+        "value": "$color.gray.900",
+        "type": "color",
+        "description": "$color.gray.50\nBackground surface light"
+      },
+      "surface-100": {
+        "value": "$color.gray.800",
+        "type": "color",
+        "description": "$color.gray.100\nBackground surface light"
+      },
+      "surface-700": {
+        "value": "$color.gray.100",
+        "type": "color",
+        "description": "$color.gray.700\nBackground surface on-dark"
+      },
+      "surface-800": {
+        "value": "$color.gray.50",
+        "type": "color",
+        "description": "$color.gray.800\nBackground surface on-dark"
+      },
+      "surface-900": {
+        "value": "$color.white",
+        "type": "color",
+        "description": "$color.gray.900"
+      },
+      "scrim": {
+        "value": "$color.black-alpha.800",
+        "type": "color",
+        "description": "$color.black-alpha.800"
+      },
+      "hover": {
+        "value": "$color.black-alpha.600",
+        "type": "color",
+        "description": "$color.black-alpha.600"
+      },
+      "active": {
+        "value": "$color.black-alpha.800",
+        "type": "color",
+        "description": "$color.black-alpha.800"
+      },
+      "selected": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300\nBackground selected on dark"
+      },
+      "secondary": {
+        "value": "$color.coral.300",
+        "type": "color",
+        "description": "$color.coral.300\nBackground surface"
+      },
+      "secondary-hover": {
+        "value": "$color.coral.400",
+        "type": "color",
+        "description": "$color.coral.400\nBackground surface"
+      },
+      "secondary-active": {
+        "value": "$color.coral.400",
+        "type": "color",
+        "description": "$color.coral.400\nBackground surface"
+      },
+      "primary": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300\nBackground surface"
+      },
+      "primary-hover": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.indigo.400\nBackground surface"
+      },
+      "primary-active": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.indigo.400\nBackground surface"
+      },
+      "disabled": {
+        "value": "$color.gray.600",
+        "type": "color",
+        "description": "$color.gray.200\nUsed to: bg disabled"
+      },
+      "readonly": {
+        "value": "$color.indigo.25",
+        "type": "color",
+        "description": "$color.indigo.25"
+      },
+      "transparent": {
+        "value": "rgba(0,0,0,0)",
+        "type": "color",
+        "description": "transparent"
+      },
+      "status": {
+        "warning": {
+          "value": "$color.yellow.500",
+          "type": "color",
+          "description": "$color.yellow.500\nBackground warning"
+        },
+        "warning-hover": {
+          "value": "$color.yellow.600",
+          "type": "color",
+          "description": "$color.yellow.600\nBackground warning active"
+        },
+        "warning-active": {
+          "value": "$color.yellow.800",
+          "type": "color",
+          "description": "$color.yellow.800\nBackground warning hover"
+        },
+        "warning-subtle": {
+          "value": "$color.yellow.100",
+          "type": "color",
+          "description": "$color.yellow.100\nBackground warning subtle"
+        },
+        "success": {
+          "value": "$color.green.400",
+          "type": "color",
+          "description": "$color.green.400\nBackground success"
+        },
+        "success-hover": {
+          "value": "$color.green.500",
+          "type": "color",
+          "description": "$color.green.500\nBackground success active"
+        },
+        "success-active": {
+          "value": "$color.green.700",
+          "type": "color",
+          "description": "$color.green.700\nBackground success hover"
+        },
+        "success-subtle": {
+          "value": "$color.green.100",
+          "type": "color",
+          "description": "$color.green.100\nBackground success subtle"
+        },
+        "info": {
+          "value": "$color.blue.400",
+          "type": "color",
+          "description": "$color.blue.400"
+        },
+        "info-hover": {
+          "value": "$color.blue.500",
+          "type": "color",
+          "description": "$color.blue.500"
+        },
+        "info-active": {
+          "value": "$color.blue.600",
+          "type": "color",
+          "description": "$color.blue.600"
+        },
+        "info-subtle": {
+          "value": "$color.blue.100",
+          "type": "color",
+          "description": "$color.blue.100"
+        },
+        "error": {
+          "value": "$color.red.500",
+          "type": "color",
+          "description": "$color.red.500\nUsed to: all bg status default error"
+        },
+        "error-hover": {
+          "value": "$color.red.600",
+          "type": "color",
+          "description": "$color.red.600"
+        },
+        "error-active": {
+          "value": "$color.red.700",
+          "type": "color",
+          "description": "$color.red.700"
+        },
+        "error-subtle": {
+          "value": "$color.red.100",
+          "type": "color",
+          "description": "$color.red.100"
+        }
+      },
+      "action": {
+        "primary": {
+          "value": "$color.bg.primary",
+          "type": "color",
+          "description": "$color.bg.primary"
+        },
+        "primary-hover": {
+          "value": "$color.bg.primary-hover",
+          "type": "color",
+          "description": "$color.primary.400\nUsed to: bg button hover"
+        },
+        "primary-active": {
+          "value": "$color.bg.primary-active",
+          "type": "color",
+          "description": "$color.primary.500"
+        },
+        "secondary": {
+          "value": "$color.bg.secondary",
+          "type": "color",
+          "description": "$color.secondary.300\nUsed to: bg button secondary"
+        },
+        "secondary-hover": {
+          "value": "$color.bg.secondary-hover",
+          "type": "color",
+          "description": "$color.secondary.400\nUsed to: button hover"
+        },
+        "secondary-active": {
+          "value": "$color.bg.secondary-active",
+          "type": "color",
+          "description": "$color.secondary.500"
+        },
+        "light": {
+          "value": "$color.bg.surface-100",
+          "type": "color",
+          "description": "$color.neutral.100\nUsed to: bg button primary"
+        },
+        "light-hover": {
+          "value": "$color.bg.hover",
+          "type": "color",
+          "description": "$color.neutral.200\nUsed to: bg button primary"
+        },
+        "light-active": {
+          "value": "$color.bg.active",
+          "type": "color",
+          "description": "$color.neutral.300\nUsed to: bg button primary"
+        },
+        "dark": {
+          "value": "$color.bg.surface-900",
+          "type": "color",
+          "description": "$color.neutral 900\nUsed to: bg button primary"
+        },
+        "dark-hover": {
+          "value": "$color.bg.hover",
+          "type": "color",
+          "description": "$color.neutral.800\nUsed to: bg button primary"
+        },
+        "dark-active": {
+          "value": "$color.bg.active",
+          "type": "color",
+          "description": "$color.neutral.900\nUsed to: bg button primary"
+        }
+      },
+      "input": {
+        "default": {
+          "value": "$color.bg.surface-100",
+          "type": "color",
+          "description": "$color.bg.surface-100"
+        },
+        "primary": {
+          "value": "$color.bg.primary",
+          "type": "color",
+          "description": "$color.bg.primary"
+        }
+      }
+    },
+    "border": {
+      "default": {
+        "value": "$color.gray.500",
+        "type": "color",
+        "description": "$color.gray.200\nBorder separator, tables"
+      },
+      "subtle": {
+        "value": "$color.gray.900",
+        "type": "color",
+        "description": "$color.gray.100"
+      },
+      "default-inverse": {
+        "value": "$color.white",
+        "type": "color",
+        "description": "$color.white"
+      },
+      "hover": {
+        "value": "{color.black-alpha.600}",
+        "type": "color",
+        "description": "$color.black \n$opacity.lighter"
+      },
+      "active": {
+        "value": "{color.black-alpha.800}",
+        "type": "color",
+        "description": "$color.black \n$opacity.light\nBorder active"
+      },
+      "primary": {
+        "value": "$color.indigo.200",
+        "type": "color",
+        "description": "$color.indigo.200"
+      },
+      "primary-hover": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300"
+      },
+      "primary-active": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300"
+      },
+      "selected": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300"
+      },
+      "selected-opacity": {
+        "value": "rgba(84, 95, 253, 0.15)",
+        "type": "color",
+        "description": "$color.indigo.300 \n$opacity.light"
+      },
+      "disabled": {
+        "value": "$color.gray.500",
+        "type": "color",
+        "description": "$color.gray.200"
+      },
+      "readonly": {
+        "value": "$color.indigo.25",
+        "type": "color",
+        "description": "$color.indigo.25"
+      },
+      "focus": {
+        "value": "$color.indigo.200",
+        "type": "color",
+        "description": "$color.indigo.400\nBorder focus"
+      },
+      "secondary": {
+        "value": "$color.coral.300",
+        "type": "color",
+        "description": "$color.coral.300"
+      },
+      "secondary-hover": {
+        "value": "$color.coral.400",
+        "type": "color",
+        "description": "$color.coral.400"
+      },
+      "secondary-active": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.coral.400"
+      },
+      "status": {
+        "error": {
+          "value": "$color.red.500",
+          "type": "color",
+          "description": "$color.red.500\nBorder error"
+        },
+        "error-hover": {
+          "value": "$color.red.600",
+          "type": "color",
+          "description": "$color.red.600"
+        },
+        "error-active": {
+          "value": "$color.indigo.400",
+          "type": "color",
+          "description": "$color.indigo.400"
+        },
+        "error-subtle": {
+          "value": "$color.red.100",
+          "type": "color",
+          "description": "$color.red.100"
+        },
+        "success": {
+          "value": "$color.green.400",
+          "type": "color",
+          "description": "$color.green.400\nBorder success"
+        },
+        "success-hover": {
+          "value": "$color.green.500",
+          "type": "color",
+          "description": "$color.green.500"
+        },
+        "success-active": {
+          "value": "$color.indigo.400",
+          "type": "color",
+          "description": "$color.indigo.400"
+        },
+        "success-subtle": {
+          "value": "$color.green.100",
+          "type": "color",
+          "description": "$color.green.100"
+        },
+        "warning": {
+          "value": "$color.yellow.500",
+          "type": "color",
+          "description": "$color.yellow.500"
+        },
+        "warning-active": {
+          "value": "$color.indigo.400",
+          "type": "color",
+          "description": "$color.indigo.400"
+        },
+        "warning-hover": {
+          "value": "$color.yellow.600",
+          "type": "color",
+          "description": "$color.yellow.600"
+        },
+        "warning-subtle": {
+          "value": "$color.yellow.100",
+          "type": "color",
+          "description": "$color.yellow.100"
+        },
+        "info": {
+          "value": "$color.blue.400",
+          "type": "color",
+          "description": "$color.blue.400"
+        },
+        "info-hover": {
+          "value": "$color.blue.500",
+          "type": "color",
+          "description": "$color.blue.500"
+        },
+        "info-active": {
+          "value": "$color.indigo.400",
+          "type": "color",
+          "description": "$color.indigo.400"
+        },
+        "info-subtle": {
+          "value": "$color.blue.100",
+          "type": "color",
+          "description": "$color.blue.100"
+        }
+      },
+      "action": {
+        "primary": {
+          "value": "$color.border.primary",
+          "type": "color",
+          "description": "$color.indigo.300"
+        },
+        "primary-hover": {
+          "value": "$color.border.primary-hover",
+          "type": "color",
+          "description": "$color.indigo.400"
+        },
+        "primary-active": {
+          "value": "$color.border.primary-active",
+          "type": "color",
+          "description": "$color.indigo.400"
+        }
+      }
+    },
+    "fill": {
+      "icon-action": {
+        "primary": {
+          "value": "$color.fg.primary",
+          "type": "color",
+          "description": "$color.primary.200"
+        },
+        "primary-hover": {
+          "value": "$color.indigo.200",
+          "type": "color",
+          "description": "$color.primary.400"
+        },
+        "primary-active": {
+          "value": "$color.indigo.200",
+          "type": "color",
+          "description": "$color.primary.500"
+        },
+        "secondary": {
+          "value": "$color.fg.secondary",
+          "type": "color",
+          "description": "$color.secondary.600"
+        },
+        "secondary-hover": {
+          "value": "$color.coral.300",
+          "type": "color",
+          "description": "$color.secondary.700"
+        },
+        "secondary-active": {
+          "value": "$color.coral.300",
+          "type": "color",
+          "description": "$color.secondary.800"
+        },
+        "default": {
+          "value": "$color.fg.heavy",
+          "type": "color",
+          "description": "$color.whiet"
+        }
+      }
+    }
+  },
+  "img-hero": {
+    "value": "https://www.figma.com/file/GwClLC9UBJxZrAT4WFGAuQ/Demo-v.2?type=design&node-id=18-24420&mode=design&t=e7e4rPBY7jSDlFI7-4",
+    "type": "asset"
+  }
+}

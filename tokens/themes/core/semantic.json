@@ -1,0 +1,1404 @@
+{
+  "color": {
+    "fg": {
+      "default": {
+        "value": "$color.gray.800",
+        "type": "color",
+        "description": "$color.gray.800\nUsed to: Text default"
+      },
+      "default-inverse": {
+        "value": "$color.gray.50",
+        "type": "color",
+        "description": "$color.gray.50\nUsed to: Text inverse default"
+      },
+      "default-hover": {
+        "value": "$color.gray.900",
+        "type": "color",
+        "description": "$color.gray.900\nUsed to: general text hover"
+      },
+      "default-hover-inverse": {
+        "value": "$color.white",
+        "type": "color",
+        "description": "$color.white\nUsed to: general text hover on-dark"
+      },
+      "primary": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300\nUsed to: links, actions and highlight texts "
+      },
+      "primary-inverse": {
+        "value": "$color.indigo.100",
+        "type": "color",
+        "description": "$color.indigo.100\nUsed to: links, actions and highlight texts on-dark "
+      },
+      "primary-hover": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.indigo.400\nUsed to: Text link hover"
+      },
+      "primary-active": {
+        "value": "$color.indigo.500",
+        "type": "color",
+        "description": "$color.indigo.500\nUsed to: Text link visited"
+      },
+      "primary-selected": {
+        "value": "$color.indigo.500",
+        "type": "color",
+        "description": "$color.indigo.500"
+      },
+      "secondary": {
+        "value": "$color.coral.600",
+        "type": "color",
+        "description": "$color.coral.600\nText button secondary ghost"
+      },
+      "secondary-inverse": {
+        "value": "$color.coral.200",
+        "type": "color",
+        "description": "$color.coral.600\nText button secondary ghost"
+      },
+      "secondary-hover": {
+        "value": "$color.coral.700",
+        "type": "color",
+        "description": "$color.coral.700"
+      },
+      "secondary-active": {
+        "value": "$color.coral.800",
+        "type": "color",
+        "description": "$color.coral.800"
+      },
+      "secondary-selected": {
+        "value": "$color.coral.800",
+        "type": "color",
+        "description": "$color.coral.800"
+      },
+      "heavy": {
+        "value": "$color.gray.900",
+        "type": "color",
+        "description": "$color.gray.900\nUsed to: heading "
+      },
+      "subtle": {
+        "value": "$color.gray.600",
+        "type": "color",
+        "description": "$color.gray.600\nUsed to: non-emphasis texts"
+      },
+      "subtle-inverse": {
+        "value": "$color.gray.100",
+        "type": "color",
+        "description": "$color.gray.600\nUsed to: non-emphasis texts"
+      },
+      "disabled": {
+        "value": "$color.gray.300",
+        "type": "color",
+        "description": "$color.gray.500\nUsed to: text disabled"
+      },
+      "disabled-inverse": {
+        "value": "$color.gray.500",
+        "type": "color",
+        "description": "$color.gray.500\nUsed to: text disabled on dark"
+      },
+      "status": {
+        "error": {
+          "value": "$color.red.700",
+          "type": "color",
+          "description": "$color.red.700\nUsed to: semantic error"
+        },
+        "error-inverse": {
+          "value": "$color.red.400",
+          "type": "color",
+          "description": "$color.red.400\nUsed to: semantic error on dark"
+        },
+        "success": {
+          "value": "$color.green.800",
+          "type": "color",
+          "description": "$color.green.800\nUsed to: semantic success"
+        },
+        "success-inverse": {
+          "value": "$color.green.400",
+          "type": "color",
+          "description": "$color.green.400\nUsed to: semantic success on dark"
+        },
+        "warning": {
+          "value": "$color.yellow.800",
+          "type": "color",
+          "description": "$color.yellow.800\nUsed to: semantic warning"
+        },
+        "warning-inverse": {
+          "value": "$color.yellow.500",
+          "type": "color",
+          "description": "$color.yellow.500\nUsed to: semantic warning on dark"
+        },
+        "info": {
+          "value": "$color.blue.800",
+          "type": "color",
+          "description": "$color.blue.800\nUsed to: semantic info"
+        },
+        "info-inverse": {
+          "value": "$color.blue.400",
+          "type": "color",
+          "description": "$color.blue.400\nUsed to: semantic info on dark"
+        }
+      }
+    },
+    "bg": {
+      "surface-00": {
+        "value": "$color.white",
+        "type": "color",
+        "description": "$color.white\nBackground surface light"
+      },
+      "surface-50": {
+        "value": "$color.gray.50",
+        "type": "color",
+        "description": "$color.gray.50\nBackground surface light"
+      },
+      "surface-100": {
+        "value": "$color.gray.100",
+        "type": "color",
+        "description": "$color.gray.100\nBackground surface light"
+      },
+      "surface-200": {
+        "value": "$color.gray.200",
+        "type": "color",
+        "description": "$color.gray.200\nBackground surface light"
+      },
+      "surface-300": {
+        "value": "$color.gray.300",
+        "type": "color",
+        "description": "$color.gray.300\nBackground surface light"
+      },
+      "surface-700": {
+        "value": "$color.gray.700",
+        "type": "color",
+        "description": "$color.gray.700\nBackground surface on-dark"
+      },
+      "surface-800": {
+        "value": "$color.gray.800",
+        "type": "color",
+        "description": "$color.gray.800\nBackground surface on-dark"
+      },
+      "surface-900": {
+        "value": "$color.gray.900",
+        "type": "color",
+        "description": "$color.gray.900"
+      },
+      "scrim": {
+        "value": "$color.black-alpha.800",
+        "type": "color",
+        "description": "$color.black.alpha.800\nBackground overlay screen and components"
+      },
+      "hover": {
+        "value": "$color.black-alpha.100",
+        "type": "color",
+        "description": "$color.black.alpha.100\nBackground overlay screen and components"
+      },
+      "hover-inverse": {
+        "value": "$color.black-alpha.600",
+        "type": "color",
+        "description": "$color.black.alpha.600\nBackground hover on-dark"
+      },
+      "active": {
+        "value": "$color.black-alpha.100",
+        "type": "color",
+        "description": "$color.black.alpha.100"
+      },
+      "active-inverse": {
+        "value": "$color.black-alpha.800",
+        "type": "color",
+        "description": "$color.black.alpha-800\n"
+      },
+      "selected": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300\nBackground selected on dark"
+      },
+      "secondary": {
+        "value": "$color.coral.300",
+        "type": "color",
+        "description": "$color.coral.300\nBackground surface"
+      },
+      "secondary-hover": {
+        "value": "$color.coral.400",
+        "type": "color",
+        "description": "$color.coral.400\nBackground surface"
+      },
+      "secondary-active": {
+        "value": "$color.coral.400",
+        "type": "color",
+        "description": "$color.coral.400\nBackground surface"
+      },
+      "selected-opacity": {
+        "value": "rgba(84, 95, 253, 0.15)",
+        "type": "color",
+        "description": "$color.indigo.300 \n$opacity.light\nBackground selected"
+      },
+      "primary": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300\nBackground surface"
+      },
+      "primary-hover": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.indigo.400\nBackground surface"
+      },
+      "primary-active": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.indigo.400\nBackground surface"
+      },
+      "primary-inverse": {
+        "value": "$color.indigo.200",
+        "type": "color",
+        "description": "$color.indigo.300\nBackground surface"
+      },
+      "primary-hover-inverse": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.400\nBackground surface"
+      },
+      "primary-active-inverse": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.400\nBackground surface"
+      },
+      "disabled": {
+        "value": "$color.gray.200",
+        "type": "color",
+        "description": "$color.gray.200\nUsed to: bg disabled"
+      },
+      "disabled-inverse": {
+        "value": "$color.gray.600",
+        "type": "color",
+        "description": "$color.gray.600\nUsed to: bg disabled on dark"
+      },
+      "readonly": {
+        "value": "$color.indigo.25",
+        "type": "color",
+        "description": "$color.indigo.25"
+      },
+      "transparent": {
+        "value": "$color.transparent",
+        "type": "color",
+        "description": "transparent"
+      },
+      "status": {
+        "warning": {
+          "value": "$color.yellow.500",
+          "type": "color",
+          "description": "$color.yellow.500\nBackground warning"
+        },
+        "warning-hover": {
+          "value": "$color.yellow.600",
+          "type": "color",
+          "description": "$color.yellow.600\nBackground warning active"
+        },
+        "warning-active": {
+          "value": "$color.yellow.800",
+          "type": "color",
+          "description": "$color.yellow.800\nBackground warning hover"
+        },
+        "warning-subtle": {
+          "value": "$color.yellow.100",
+          "type": "color",
+          "description": "$color.yellow.100\nBackground warning subtle"
+        },
+        "success": {
+          "value": "$color.green.400",
+          "type": "color",
+          "description": "$color.green.400\nBackground success"
+        },
+        "success-hover": {
+          "value": "$color.green.500",
+          "type": "color",
+          "description": "$color.green.500\nBackground success active"
+        },
+        "success-active": {
+          "value": "$color.green.700",
+          "type": "color",
+          "description": "$color.green.700\nBackground success hover"
+        },
+        "success-subtle": {
+          "value": "$color.green.100",
+          "type": "color",
+          "description": "$color.green.100\nBackground success subtle"
+        },
+        "info": {
+          "value": "$color.blue.400",
+          "type": "color",
+          "description": "$color.blue.400"
+        },
+        "info-hover": {
+          "value": "$color.blue.500",
+          "type": "color",
+          "description": "$color.blue.500"
+        },
+        "info-active": {
+          "value": "$color.blue.600",
+          "type": "color",
+          "description": "$color.blue.600"
+        },
+        "info-subtle": {
+          "value": "$color.blue.100",
+          "type": "color",
+          "description": "$color.blue.100"
+        },
+        "error": {
+          "value": "$color.red.500",
+          "type": "color",
+          "description": "$color.red.500\nUsed to: all bg status default error"
+        },
+        "error-hover": {
+          "value": "$color.red.600",
+          "type": "color",
+          "description": "$color.red.600"
+        },
+        "error-active": {
+          "value": "$color.red.700",
+          "type": "color",
+          "description": "$color.red.700"
+        },
+        "error-subtle": {
+          "value": "$color.red.100",
+          "type": "color",
+          "description": "$color.red.100"
+        }
+      }
+    },
+    "border": {
+      "default": {
+        "value": "$color.gray.300",
+        "type": "color",
+        "description": "$color.gray.200\nBorder separator, tables"
+      },
+      "default-inverse": {
+        "value": "$color.white",
+        "type": "color",
+        "description": "$color.white"
+      },
+      "primary": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300"
+      },
+      "primary-hover": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.indigo.400"
+      },
+      "primary-active": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.indigo.400"
+      },
+      "primary-inverse": {
+        "value": "$color.indigo.200",
+        "type": "color",
+        "description": "$color.indigo.200"
+      },
+      "primary-hover-inverse": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300"
+      },
+      "primary-active-inverse": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300"
+      },
+      "hover": {
+        "value": "$color.transparent",
+        "type": "color",
+        "description": "$color.transparent\nhover components"
+      },
+      "hover-inverse": {
+        "value": "$color.transparent",
+        "type": "color",
+        "description": "$color.transparent\nBorder hover on-dark"
+      },
+      "active": {
+        "value": "$color.transparent",
+        "type": "color",
+        "description": "$color.transparent\nactive"
+      },
+      "active-inverse": {
+        "value": "$color.transparent",
+        "type": "color",
+        "description": "$color.transparent\nactive inverse\n"
+      },
+      "subtle": {
+        "value": "$color.gray.100",
+        "type": "color",
+        "description": "$color.gray.100"
+      },
+      "subtle-inverse": {
+        "value": "$color.gray.900",
+        "type": "color",
+        "description": "$color.gray.900"
+      },
+      "selected": {
+        "value": "$color.indigo.300",
+        "type": "color",
+        "description": "$color.indigo.300"
+      },
+      "selected-opacity": {
+        "value": "rgba(84, 95, 253, 0.15)",
+        "type": "color",
+        "description": "$color.indigo.300 \n$opacity.light"
+      },
+      "disabled": {
+        "value": "$color.gray.200",
+        "type": "color",
+        "description": "$color.gray.200"
+      },
+      "disabled-inverse": {
+        "value": "$color.gray.500",
+        "type": "color",
+        "description": "$color.gray.500"
+      },
+      "readonly": {
+        "value": "$color.indigo.25",
+        "type": "color",
+        "description": "$color.indigo.25"
+      },
+      "focus": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.indigo.400\nBorder focus"
+      },
+      "focus-inverse": {
+        "value": "$color.indigo.200",
+        "type": "color",
+        "description": "$color.indigo.200"
+      },
+      "secondary": {
+        "value": "$color.coral.300",
+        "type": "color",
+        "description": "$color.coral.300"
+      },
+      "secondary-hover": {
+        "value": "$color.coral.400",
+        "type": "color",
+        "description": "$color.coral.400"
+      },
+      "secondary-active": {
+        "value": "$color.indigo.400",
+        "type": "color",
+        "description": "$color.coral.400"
+      },
+      "transparent": {
+        "value": "$color.transparent",
+        "type": "color",
+        "description": "$color.transparent"
+      },
+      "status": {
+        "error": {
+          "value": "$color.red.500",
+          "type": "color",
+          "description": "$color.red.500\nBorder error"
+        },
+        "error-hover": {
+          "value": "$color.red.600",
+          "type": "color",
+          "description": "$color.red.600"
+        },
+        "error-active": {
+          "value": "$color.indigo.400",
+          "type": "color",
+          "description": "$color.indigo.400"
+        },
+        "error-subtle": {
+          "value": "$color.red.100",
+          "type": "color",
+          "description": "$color.red.100"
+        },
+        "success": {
+          "value": "$color.green.400",
+          "type": "color",
+          "description": "$color.green.400\nBorder success"
+        },
+        "success-hover": {
+          "value": "$color.green.500",
+          "type": "color",
+          "description": "$color.green.500"
+        },
+        "success-active": {
+          "value": "$color.indigo.400",
+          "type": "color",
+          "description": "$color.indigo.400"
+        },
+        "success-subtle": {
+          "value": "$color.green.100",
+          "type": "color",
+          "description": "$color.green.100"
+        },
+        "warning": {
+          "value": "$color.yellow.500",
+          "type": "color",
+          "description": "$color.yellow.500"
+        },
+        "warning-active": {
+          "value": "$color.indigo.400",
+          "type": "color",
+          "description": "$color.indigo.400"
+        },
+        "warning-hover": {
+          "value": "$color.yellow.600",
+          "type": "color",
+          "description": "$color.yellow.600"
+        },
+        "warning-subtle": {
+          "value": "$color.yellow.100",
+          "type": "color",
+          "description": "$color.yellow.100"
+        },
+        "info": {
+          "value": "$color.blue.400",
+          "type": "color",
+          "description": "$color.blue.400"
+        },
+        "info-hover": {
+          "value": "$color.blue.500",
+          "type": "color",
+          "description": "$color.blue.500"
+        },
+        "info-active": {
+          "value": "$color.indigo.400",
+          "type": "color",
+          "description": "$color.indigo.400"
+        },
+        "info-subtle": {
+          "value": "$color.blue.100",
+          "type": "color",
+          "description": "$color.blue.100"
+        }
+      }
+    }
+  },
+  "spacing": {
+    "stack": {
+      "3xs": {
+        "value": "0 0 $spacing.01 0",
+        "type": "spacing"
+      },
+      "2xs": {
+        "value": "0 0 $spacing.02 0",
+        "type": "spacing"
+      },
+      "xs": {
+        "value": "0 0 $spacing.03 0",
+        "type": "spacing"
+      },
+      "sm": {
+        "value": "0 0 $spacing.04 0",
+        "type": "spacing"
+      },
+      "md": {
+        "value": "0 0 $spacing.05 0",
+        "type": "spacing"
+      },
+      "lg": {
+        "value": "0 0 $spacing.06 0",
+        "type": "spacing"
+      },
+      "xl": {
+        "value": "0 0 $spacing.07 0",
+        "type": "spacing"
+      },
+      "2xl": {
+        "value": "0 0 $spacing.08 0",
+        "type": "spacing"
+      },
+      "3xl": {
+        "value": "0 0 $spacing.09 0",
+        "type": "spacing"
+      },
+      "4xl": {
+        "value": "0 0 $spacing.10 0",
+        "type": "spacing"
+      }
+    },
+    "up": {
+      "3xs": {
+        "value": "$spacing.01 0 0 0",
+        "type": "spacing"
+      },
+      "2xs": {
+        "value": "$spacing.02 0 0 0",
+        "type": "spacing"
+      },
+      "xs": {
+        "value": "$spacing.03 0 0 0",
+        "type": "spacing"
+      },
+      "sm": {
+        "value": "$spacing.04 0 0 0",
+        "type": "spacing"
+      },
+      "md": {
+        "value": "$spacing.05 0 0 0",
+        "type": "spacing"
+      },
+      "lg": {
+        "value": "$spacing.06 0 0 0",
+        "type": "spacing"
+      },
+      "xl": {
+        "value": "$spacing.07 0 0 0",
+        "type": "spacing"
+      },
+      "2xl": {
+        "value": "$spacing.08 0 0 0",
+        "type": "spacing"
+      },
+      "3xl": {
+        "value": "$spacing.09 0 0 0",
+        "type": "spacing"
+      },
+      "4xl": {
+        "value": "$spacing.10 0 0 0",
+        "type": "spacing"
+      }
+    },
+    "inline": {
+      "3xs": {
+        "value": "0 $spacing.01 0 $spacing.01",
+        "type": "spacing"
+      },
+      "2xs": {
+        "value": "0 $spacing.02 0 $spacing.02",
+        "type": "spacing"
+      },
+      "xs": {
+        "value": "0 $spacing.03 0 $spacing.03",
+        "type": "spacing"
+      },
+      "sm": {
+        "value": "0 $spacing.04 0 $spacing.04",
+        "type": "spacing"
+      },
+      "md": {
+        "value": "0 $spacing.05 0 $spacing.05",
+        "type": "spacing"
+      },
+      "lg": {
+        "value": "0 $spacing.06 0 $spacing.06",
+        "type": "spacing"
+      },
+      "xl": {
+        "value": "0 $spacing.07 0 $spacing.07",
+        "type": "spacing"
+      },
+      "2xl": {
+        "value": "0 $spacing.08 0 $spacing.08",
+        "type": "spacing"
+      },
+      "3xl": {
+        "value": "0 $spacing.09 0 $spacing.09",
+        "type": "spacing"
+      },
+      "4xl": {
+        "value": "0 $spacing.10 0 $spacing.10",
+        "type": "spacing"
+      },
+      "right": {
+        "3xs": {
+          "value": "0 $spacing.01 0 0",
+          "type": "spacing"
+        },
+        "2xs": {
+          "value": "0 $spacing.02 0 0",
+          "type": "spacing"
+        },
+        "xs": {
+          "value": "0 $spacing.03 0 0",
+          "type": "spacing"
+        },
+        "sm": {
+          "value": "0 $spacing.04 0 0",
+          "type": "spacing"
+        },
+        "md": {
+          "value": "0 $spacing.05 0 0",
+          "type": "spacing"
+        },
+        "lg": {
+          "value": "0 $spacing.06 0 0",
+          "type": "spacing"
+        },
+        "xl": {
+          "value": "0 $spacing.07 0 0",
+          "type": "spacing"
+        },
+        "2xl": {
+          "value": "0 $spacing.08 0 0",
+          "type": "spacing"
+        },
+        "3xl": {
+          "value": "0 $spacing.09 0 0",
+          "type": "spacing"
+        },
+        "4xl": {
+          "value": "0 $spacing.10 0 0",
+          "type": "spacing"
+        }
+      },
+      "left": {
+        "3xs": {
+          "value": "0 0 0 $spacing.01",
+          "type": "spacing"
+        },
+        "2xs": {
+          "value": "0 0 0 $spacing.02",
+          "type": "spacing"
+        },
+        "xs": {
+          "value": "0 0 0 $spacing.03",
+          "type": "spacing"
+        },
+        "sm": {
+          "value": "0 0 0 $spacing.04",
+          "type": "spacing"
+        },
+        "md": {
+          "value": "0 0 0 $spacing.05",
+          "type": "spacing"
+        },
+        "lg": {
+          "value": "0 0 0 $spacing.06",
+          "type": "spacing"
+        },
+        "xl": {
+          "value": "0 0 0 $spacing.07",
+          "type": "spacing"
+        },
+        "2xl": {
+          "value": "0 0 0 $spacing.08",
+          "type": "spacing"
+        },
+        "3xl": {
+          "value": "0 0 0 $spacing.09",
+          "type": "spacing"
+        },
+        "4xl": {
+          "value": "0 0 0 $spacing.10",
+          "type": "spacing"
+        }
+      }
+    },
+    "inset-squish": {
+      "4xs-double": {
+        "value": "0rem $spacing.02",
+        "type": "spacing"
+      },
+      "3xs": {
+        "value": "$spacing.01 $spacing.02",
+        "type": "spacing"
+      },
+      "2xs": {
+        "value": "$spacing.02 $spacing.03",
+        "type": "spacing"
+      },
+      "2xs-double": {
+        "value": "$spacing.02 $spacing.05",
+        "type": "spacing"
+      },
+      "3xs-double": {
+        "value": "$spacing.01 $spacing.04",
+        "type": "spacing"
+      },
+      "2xs-auto": {
+        "value": "$spacing.02 auto",
+        "type": "spacing"
+      },
+      "xs": {
+        "value": "$spacing.03 $spacing.05",
+        "type": "spacing"
+      },
+      "xs-auto": {
+        "value": "$spacing.03 auto",
+        "type": "spacing"
+      },
+      "xs-double": {
+        "value": "$spacing.03 $spacing.07",
+        "type": "spacing"
+      },
+      "sm": {
+        "value": "$spacing.04 $spacing.08",
+        "type": "spacing"
+      },
+      "md": {
+        "value": "$spacing.05 $spacing.09",
+        "type": "spacing"
+      }
+    },
+    "inset": {
+      "4xl": {
+        "value": "$spacing.10",
+        "type": "spacing"
+      },
+      "3xl": {
+        "value": "$spacing.09",
+        "type": "spacing"
+      },
+      "2xl": {
+        "value": "$spacing.08",
+        "type": "spacing"
+      },
+      "xl": {
+        "value": "$spacing.07",
+        "type": "spacing"
+      },
+      "lg": {
+        "value": "$spacing.06",
+        "type": "spacing"
+      },
+      "md": {
+        "value": "$spacing.05",
+        "type": "spacing"
+      },
+      "sm": {
+        "value": "$spacing.04",
+        "type": "spacing"
+      },
+      "xs": {
+        "value": "$spacing.03",
+        "type": "spacing"
+      },
+      "2xs": {
+        "value": "$spacing.02",
+        "type": "spacing"
+      },
+      "3xs": {
+        "value": "$spacing.01",
+        "type": "spacing"
+      }
+    }
+  },
+  "font": {
+    "size": {
+      "default": {
+        "sm": {
+          "value": "$font.size.02",
+          "type": "fontSizes"
+        },
+        "md": {
+          "value": "$font.size.03",
+          "type": "fontSizes"
+        },
+        "lg": {
+          "value": "$font.size.04",
+          "type": "fontSizes"
+        },
+        "xl": {
+          "value": "$font.size.05",
+          "type": "fontSizes"
+        }
+      },
+      "overline": {
+        "value": "$font.size.01",
+        "type": "fontSizes"
+      },
+      "text-code": {
+        "value": "$font.size.03",
+        "type": "fontSizes"
+      },
+      "heading": {
+        "1": {
+          "value": "$font.size.09",
+          "type": "fontSizes"
+        },
+        "2": {
+          "value": "$font.size.08",
+          "type": "fontSizes"
+        },
+        "3": {
+          "value": "$font.size.07",
+          "type": "fontSizes"
+        },
+        "4": {
+          "value": "$font.size.06",
+          "type": "fontSizes"
+        },
+        "5": {
+          "value": "$font.size.05",
+          "type": "fontSizes"
+        },
+        "6": {
+          "value": "$font.size.04",
+          "type": "fontSizes"
+        }
+      },
+      "subtitle": {
+        "sm": {
+          "value": "$font.size.02",
+          "type": "fontSizes"
+        },
+        "md": {
+          "value": "$font.size.03",
+          "type": "fontSizes"
+        },
+        "lg": {
+          "value": "$font.size.04",
+          "type": "fontSizes"
+        }
+      }
+    },
+    "weight": {
+      "default": {
+        "sm": {
+          "value": "$font.weight.regular",
+          "type": "fontWeights"
+        },
+        "md": {
+          "value": "$font.weight.regular",
+          "type": "fontWeights"
+        },
+        "lg": {
+          "value": "$font.weight.regular",
+          "type": "fontWeights"
+        },
+        "xl": {
+          "value": "$font.weight.regular",
+          "type": "fontWeights"
+        }
+      },
+      "overline": {
+        "value": "$font.weight.medium",
+        "type": "fontWeights"
+      },
+      "text-code": {
+        "value": "$font.weight.regular",
+        "type": "fontWeights"
+      },
+      "heading": {
+        "1": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        },
+        "2": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        },
+        "3": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        },
+        "4": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        },
+        "5": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        },
+        "6": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        }
+      },
+      "subtitle": {
+        "sm": {
+          "value": "$font.weight.bold",
+          "type": "fontWeights"
+        },
+        "md": {
+          "value": "$font.weight.bold",
+          "type": "fontWeights"
+        },
+        "lg": {
+          "value": "$font.weight.bold",
+          "type": "fontWeights"
+        }
+      }
+    },
+    "line-height": {
+      "default": {
+        "sm": {
+          "value": "$font.line-height.02",
+          "type": "lineHeights"
+        },
+        "md": {
+          "value": "$font.line-height.03",
+          "type": "lineHeights"
+        },
+        "lg": {
+          "value": "$font.line-height.04",
+          "type": "lineHeights"
+        },
+        "xl": {
+          "value": "$font.line-height.05",
+          "type": "lineHeights"
+        }
+      },
+      "overline": {
+        "value": "$font.line-height.01",
+        "type": "lineHeights"
+      },
+      "text-code": {
+        "value": "$font.line-height.03",
+        "type": "lineHeights"
+      },
+      "heading": {
+        "1": {
+          "value": "$font.line-height.09",
+          "type": "lineHeights"
+        },
+        "2": {
+          "value": "$font.line-height.08",
+          "type": "lineHeights"
+        },
+        "3": {
+          "value": "$font.line-height.07",
+          "type": "lineHeights"
+        },
+        "4": {
+          "value": "$font.line-height.06",
+          "type": "lineHeights"
+        },
+        "5": {
+          "value": "$font.line-height.05",
+          "type": "lineHeights"
+        },
+        "6": {
+          "value": "$font.line-height.04",
+          "type": "lineHeights"
+        }
+      },
+      "subtitle": {
+        "sm": {
+          "value": "$font.line-height.02",
+          "type": "lineHeights"
+        },
+        "md": {
+          "value": "$font.line-height.03",
+          "type": "lineHeights"
+        },
+        "lg": {
+          "value": "$font.line-height.04",
+          "type": "lineHeights"
+        }
+      }
+    },
+    "text-case": {
+      "overline": {
+        "value": "$font.text-case.uppercase",
+        "type": "textCase"
+      }
+    },
+    "letter-spacing": {
+      "overline": {
+        "value": "$font.letter-spacing.10",
+        "type": "letterSpacing"
+      }
+    },
+    "default": {
+      "sm": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.default.sm",
+          "lineHeight": "$font.line-height.default.sm",
+          "fontSize": "$font.size.default.sm",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group sm"
+      },
+      "md": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.default.md",
+          "lineHeight": "$font.line-height.default.md",
+          "fontSize": "$font.size.default.md",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group md"
+      },
+      "lg": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.default.lg",
+          "lineHeight": "$font.line-height.default.lg",
+          "fontSize": "$font.size.default.lg",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group lg"
+      },
+      "xl": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.default.xl",
+          "lineHeight": "$font.line-height.default.xl",
+          "fontSize": "$font.size.default.xl",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group xl"
+      }
+    },
+    "overline": {
+      "value": {
+        "fontFamily": "$font.family.primary",
+        "fontWeight": "$font.weight.overline",
+        "lineHeight": "$font.line-height.overline",
+        "fontSize": "$font.size.overline",
+        "letterSpacing": "$font.letter-spacing.10",
+        "paragraphSpacing": "$font.paragraph-spacing.0",
+        "paragraphIndent": "$font.paragraph-indent.0",
+        "textCase": "$font.text-case.uppercase",
+        "textDecoration": "$font.text-decoration.none"
+      },
+      "type": "typography",
+      "description": "specific group overline"
+    },
+    "heading-1": {
+      "value": {
+        "fontFamily": "$font.family.primary",
+        "fontWeight": "$font.weight.heading.1",
+        "lineHeight": "$font.line-height.heading.1",
+        "fontSize": "$font.size.heading.1",
+        "letterSpacing": "$font.letter-spacing.0",
+        "paragraphSpacing": "$font.paragraph-spacing.0",
+        "paragraphIndent": "$font.paragraph-indent.0",
+        "textCase": "$font.text-case.none",
+        "textDecoration": "$font.text-decoration.none"
+      },
+      "type": "typography",
+      "description": "specific group heading-1"
+    },
+    "heading-2": {
+      "value": {
+        "fontFamily": "$font.family.primary",
+        "fontWeight": "$font.weight.heading.2",
+        "lineHeight": "$font.line-height.heading.2",
+        "fontSize": "$font.size.heading.2",
+        "letterSpacing": "$font.letter-spacing.0",
+        "paragraphSpacing": "$font.paragraph-spacing.0",
+        "paragraphIndent": "$font.paragraph-indent.0",
+        "textCase": "$font.text-case.none",
+        "textDecoration": "$font.text-decoration.none"
+      },
+      "type": "typography",
+      "description": "specific group heading-2"
+    },
+    "heading-3": {
+      "value": {
+        "fontFamily": "$font.family.primary",
+        "fontWeight": "$font.weight.heading.3",
+        "lineHeight": "$font.line-height.heading.3",
+        "fontSize": "$font.size.heading.3",
+        "letterSpacing": "$font.letter-spacing.0",
+        "paragraphSpacing": "$font.paragraph-spacing.0",
+        "paragraphIndent": "$font.paragraph-indent.0",
+        "textCase": "$font.text-case.none",
+        "textDecoration": "$font.text-decoration.none"
+      },
+      "type": "typography",
+      "description": "specific group heading-3"
+    },
+    "heading-4": {
+      "value": {
+        "fontFamily": "$font.family.primary",
+        "fontWeight": "$font.weight.heading.4",
+        "lineHeight": "$font.line-height.heading.4",
+        "fontSize": "$font.size.heading.4",
+        "letterSpacing": "$font.letter-spacing.0",
+        "paragraphSpacing": "$font.paragraph-spacing.0",
+        "paragraphIndent": "$font.paragraph-indent.0",
+        "textCase": "$font.text-case.none",
+        "textDecoration": "$font.text-decoration.none"
+      },
+      "type": "typography",
+      "description": "specific group heading-4"
+    },
+    "heading-5": {
+      "value": {
+        "fontFamily": "$font.family.primary",
+        "fontWeight": "$font.weight.heading.5",
+        "lineHeight": "$font.line-height.heading.5",
+        "fontSize": "$font.size.heading.5",
+        "letterSpacing": "$font.letter-spacing.0",
+        "paragraphSpacing": "$font.paragraph-spacing.0",
+        "paragraphIndent": "$font.paragraph-indent.0",
+        "textCase": "$font.text-case.none",
+        "textDecoration": "$font.text-decoration.none"
+      },
+      "type": "typography",
+      "description": "specific group heading-5"
+    },
+    "heading-6": {
+      "value": {
+        "fontFamily": "$font.family.primary",
+        "fontWeight": "$font.weight.heading.6",
+        "lineHeight": "$font.line-height.heading.6",
+        "fontSize": "$font.size.heading.6",
+        "letterSpacing": "$font.letter-spacing.0",
+        "paragraphSpacing": "$font.paragraph-spacing.0",
+        "paragraphIndent": "$font.paragraph-indent.0",
+        "textCase": "$font.text-case.none",
+        "textDecoration": "$font.text-decoration.none"
+      },
+      "type": "typography",
+      "description": "specific group heading-6"
+    },
+    "subtitle": {
+      "sm": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.subtitle.sm",
+          "lineHeight": "$font.line-height.subtitle.sm",
+          "fontSize": "$font.size.subtitle.sm",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group subtitle-sm"
+      },
+      "md": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.subtitle.md",
+          "lineHeight": "$font.line-height.subtitle.md",
+          "fontSize": "$font.size.subtitle.md",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group subtitle-md"
+      },
+      "lg": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "$font.weight.subtitle.lg",
+          "lineHeight": "$font.line-height.subtitle.lg",
+          "fontSize": "$font.size.subtitle.lg",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group subtitle-lg"
+      }
+    }
+  },
+  "border-radius": {
+    "none": {
+      "value": "$border-radius.00",
+      "type": "borderRadius"
+    },
+    "3xs": {
+      "value": "{border-radius.50}",
+      "type": "borderRadius"
+    },
+    "2xs": {
+      "value": "{border-radius.75}",
+      "type": "borderRadius"
+    },
+    "xs": {
+      "value": "{border-radius.100}",
+      "type": "borderRadius"
+    },
+    "sm": {
+      "value": "{border-radius.150}",
+      "type": "borderRadius"
+    },
+    "md": {
+      "value": "{border-radius.200}",
+      "type": "borderRadius"
+    },
+    "lg": {
+      "value": "{border-radius.250}",
+      "type": "borderRadius"
+    },
+    "xl": {
+      "value": "{border-radius.300}",
+      "type": "borderRadius"
+    },
+    "2xl": {
+      "value": "{border-radius.400}",
+      "type": "borderRadius"
+    },
+    "3xl": {
+      "value": "{border-radius.500}",
+      "type": "borderRadius"
+    },
+    "full": {
+      "value": "{border-radius.round}",
+      "type": "borderRadius"
+    }
+  },
+  "border-width": {
+    "none": {
+      "value": "0rem",
+      "type": "borderWidth"
+    },
+    "xs": {
+      "value": "0.0625rem",
+      "type": "borderWidth"
+    },
+    "sm": {
+      "value": "0.125rem",
+      "type": "borderWidth"
+    },
+    "md": {
+      "value": "0.25rem",
+      "type": "borderWidth"
+    },
+    "lg": {
+      "value": "0.5rem",
+      "type": "borderWidth"
+    },
+    "xl": {
+      "value": "1rem",
+      "type": "borderWidth"
+    }
+  },
+  "border-style": {
+    "solid": {
+      "value": {
+        "style": "solid"
+      },
+      "type": "border"
+    },
+    "dashed": {
+      "value": {
+        "style": "dashed"
+      },
+      "type": "border"
+    },
+    "dotted": {
+      "value": {
+        "style": "dotted"
+      },
+      "type": "border"
+    }
+  },
+  "img-hero": {
+    "value": "https://www.figma.com/file/GwClLC9UBJxZrAT4WFGAuQ/Demo-v.2?type=design&node-id=18-24420&mode=design&t=e7e4rPBY7jSDlFI7-4",
+    "type": "asset"
+  }
+}

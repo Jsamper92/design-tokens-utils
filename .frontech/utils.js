@@ -8,15 +8,15 @@ const [
   shelljs,
   SVGFixer,
 ] = [
-  require("fs"),
-  require("path"),
-  require("colors"),
-  require("./tokens"),
-  require("svg-spreact"),
-  require("figma-icons-tokens"),
-  require("shelljs"),
-  require("oslllo-svg-fixer"),
-];
+    require("fs"),
+    require("path"),
+    require("colors"),
+    require("./tokens"),
+    require("svg-spreact"),
+    require("figma-icons-tokens"),
+    require("shelljs"),
+    require("oslllo-svg-fixer"),
+  ];
 
 const { tokensResolved } = translateTokens;
 const { figmaIconsTokens } = figma;
@@ -146,7 +146,6 @@ const generateSvgSprites = (icons, path, brand) => {
             defs,
             true
           );
-
           if (files) {
             messages.print("icon sprit svg process started");
             messages.success(
@@ -175,6 +174,34 @@ const generateJSUtils = ({ icons, path, brand }) => {
     }
   });
 };
+
+const generateJSONUtils = ({ icons, path, brand }) => {
+  return new Promise(async (resolve) => {
+    const output = route.resolve(process.cwd(), path, `library/json/${brand}`);
+
+    const _iconsJSON = icons.reduce((acc, cur) => ({ ...acc, [`${cur}`]: `${cur}.svg` }), {})
+    const content = `${JSON.stringify(_iconsJSON, null, 2)};`;
+    const files = await createFile(output, 'icons.json', content, true);
+
+    if (files) {
+      messages.success(`✔︎ ${route.resolve(output, 'icons.json')}`);
+      resolve(true);
+    }
+  })
+};
+
+const generateUtils = async ({ icons, path, brand }) => {
+  
+  return new Promise(async (resolve) => {
+    const promises = [
+      generateJSUtils({ path, icons, brand }),
+      generateJSONUtils({ path, icons, brand })
+    ]
+    const utils = await (await Promise.allSettled(promises)).filter(({ status }) => status === 'fulfilled');
+    if (utils) resolve(true);
+  });
+  
+}
 
 // const fixerSvgs = async (path) => {
 //   return new Promise(async (resolve) => {
@@ -289,10 +316,10 @@ const generateIconFont = async (
                   route.resolve(process.cwd(), path, `images/icons/${brand}`)
                 )
                 .map((file) => file.replace(".svg", ""));
-              const utils = await generateJSUtils({ path, icons, brand });
+
               files.forEach((file) => messages.success(`✔︎ ${fonts}/${file}`));
 
-              if (utils && creation) {
+              if (creation) {
                 messages.print(
                   `process transformation ${brand} icons to icon font finished`
                 );
@@ -365,7 +392,7 @@ const getIcons = async (data, tokenSetOrder, path, brand) => {
 /**
  * @description This function is used to return config to init script design systems utils
  * @param {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}} args
- * @returns {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; fontNameIcons: String; excludeLight: Boolean}}
+ * @returns {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; disableUtils: Boolean; fontNameIcons: String; excludeLight: Boolean}}
  */
 const config = (args) => (args ? { ...args } : argv);
 
@@ -443,9 +470,9 @@ const translateReferenceToCustomProperty = (token) => {
       .split(".")
       .reduce(
         (acc, cur) =>
-          (acc += isReferenceTokenStudio(cur)
-            ? cur.replace("$", "--")
-            : `-${cur}`),
+        (acc += isReferenceTokenStudio(cur)
+          ? cur.replace("$", "--")
+          : `-${cur}`),
         ""
       );
 
@@ -524,6 +551,7 @@ module.exports = {
   buildTokens,
   getKeyIcons,
   dataFilesScss,
+  generateUtils,
   generateIconFont,
   generateSvgSprites,
   setCreationTimeFile,
