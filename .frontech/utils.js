@@ -179,8 +179,11 @@ const generateJSONUtils = ({ icons, path, brand }) => {
   return new Promise(async (resolve) => {
     const output = route.resolve(process.cwd(), path, `library/json/${brand}`);
 
-    const _iconsJSON = icons.reduce((acc, cur) => ({ ...acc, [`${cur}`]: `${cur}.svg` }), {})
-    const content = `${JSON.stringify(_iconsJSON, null, 2)};`;
+    const _iconsJSON = icons.reduce((acc, cur) => {
+      const { name, data } = cur;
+      return { ...acc, [`${name}`]: `${data}.svg` }
+    }, {})
+    const content = `${JSON.stringify(_iconsJSON, null, 2)}`;
     const files = await createFile(output, 'icons.json', content, true);
 
     if (files) {
