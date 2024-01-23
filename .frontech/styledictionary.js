@@ -23,7 +23,6 @@ const { sizePx } = transform;
 const {
   customVariablesCommon,
   customVariablesColors,
-  customVariablesSpacing,
   customFontFace,
   customGrid,
   customMediaQueries,
@@ -62,7 +61,7 @@ const styleDictionary = (modes, brands) => {
 
   StyleDictionary.registerFormat({
     name: "custom/spacing",
-    formatter: customVariablesSpacing,
+    formatter: customVariablesCommon,
   });
 
   StyleDictionary.registerFormat({
@@ -131,12 +130,19 @@ const getIncludes = (brandMode) =>
  * @param {Object} brandMode
  */
 const setTokensConfig = (brandMode) => {
-  if (brandMode.mode === "base") {
-    return brandMode.brand === "core"
-      ? coreTokensConfig
-      : customTokensConfig(brandMode.brand);
+  const { theme } = config();
+
+  if (!theme) {
+    return brandMode.mode === "base"
+      ? brandMode.brand === "core"
+        ? coreTokensConfig
+        : customTokensConfig(brandMode.brand)
+      : modeTokensConfig(brandMode.brand, brandMode.mode);
   }
-  return modeTokensConfig(brandMode.brand, brandMode.mode);
+
+  return brandMode.mode === "base"
+    ? customTokensConfig(theme)
+    : modeTokensConfig(theme, brandMode.mode, true);
 };
 
 /**

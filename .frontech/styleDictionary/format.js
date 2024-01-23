@@ -68,38 +68,10 @@ const customVariablesColors = ({
 };
 
 /**
- * This function is used to translate tokens in create custom properties css. If exist inset, this function translate to calc
- * @param {{dictionary: {allTokens: {[key:string]: string}}}} param0
- * @returns {string}
- */
-const customVariablesSpacing = ({ dictionary: { allTokens } }) => {
-  const _tokens = createCustomProperties(allTokens);
-  const _spacing = _tokens
-    .split(";")
-    .map((token) => {
-      if (token.includes("inset")) {
-        const value = token.split(":")[1];
-        const _calc = value
-          .split(" ")
-          .map((item) =>
-            !item.includes("auto") ? `calc(${item} - 1px)` : item
-          )
-          .join(" ");
-        return `${token.split(":")[0]}:${_calc}`;
-      }
-
-      return token;
-    })
-    .join(";");
-
-  return `${setCreationTimeFile()}:root{\n${_spacing}}`;
-};
-
-/**
  * This function is used to translate tokens typography in font-face.
  * @returns {string}
  */
-const customFontFace = ({ dictionary: { allTokens } }, brands) => {
+const customFontFace = ({ dictionary: { allTokens } }) => {
   const { path } = config();
   const _formats = {
     ".woff": "woff",
@@ -107,8 +79,11 @@ const customFontFace = ({ dictionary: { allTokens } }, brands) => {
     ".ttf": "truetype",
     ".otf": "opentype",
     ".svg": "svg",
-    ".eot": "embedded-opentype",
   };
+
+  const _families = allTokens
+    .filter(({ type }) => type === "fontFamilies")
+    .map(({ value }) => value.split(",")[0]);
 
   const _weights = allTokens
     .filter(({ type }) => type === "fontWeights")
@@ -117,45 +92,73 @@ const customFontFace = ({ dictionary: { allTokens } }, brands) => {
       {}
     );
 
-  const files = {};
-  const isExistFontLocal = brands
-    .map((brand) => {
-      const pathFolder = route.resolve(process.cwd(), path, "fonts", brand);
-      const isFolder = fs.existsSync(pathFolder);
-      files[brand] = isFolder && fs.readdirSync(pathFolder);
-      return Object.entries(_weights).map(([key, value]) => {
-        const name = `${brand}-${key}`;
-        return { [name]: value };
-      });
-    })
-    .flat(1);
+  const isExistFontLocal = _families
+    .map((family) => {
+      return Object.entries(_weights).reduce((acc, [key, value]) => {
+        const name = `${family}-${key}`;
+        const pathFolder = route.resolve(process.cwd(), path, "fonts", family);
+        const isFolder = fs.existsSync(pathFolder);
+        const files = isFolder && fs.readdirSync(pathFolder);
+        const isFile =
+          files.length &&
+          files.some(
+            (file) =>
+              file.replace(/\.[^/.]+$/, "").toLocaleLowerCase() ===
+              name.toLocaleLowerCase()
+          );
+        const file =
+          files.length &&
+          files
+            .map((file) =>
+              file.replace(/\.[^/.]+$/, "").toLocaleLowerCase() ===
+              name.toLocaleLowerCase()
+                ? file
+                : null
+            )
+            .filter(Boolean);
 
-  const _tokens = isExistFontLocal
-    .filter((f) => !isNaN(Object.values(f)[0]))
-    .reduce((fontFace, prop) => {
-      fontFace += Object.entries(prop).reduce((acc, [key, value]) => {
-        const brand = key.split("-").slice(0, -1).join("-");
-        const extensions = files[brand].reduce((acc, value) => {
-          const _extension = new RegExp(/\.[^/.]+$/).exec(value)[0];
-          return (acc += `url('#{general.$font-path}/${brand}/${value}') format('${_formats[_extension]}'),\n`);
-        }, "");
-        return (acc += `\n\n@font-face {\nfont-family: '${key}';\nfont-weight: ${value};\nsrc: ${extensions}}\n`);
+        return Boolean(isFile) ? { ...acc, [file]: value } : acc;
+      }, {});
+    })
+    .filter(Boolean);
+
+  const isNotExistFontlocal = _families.filter((family) => {
+    const pathFont = route.resolve(process.cwd(), path, "fonts", family);
+    const folderExist = fs.existsSync(pathFont);
+    const folderEmpty = folderExist && fs.readdirSync(pathFont).length;
+
+    return !folderExist || !folderEmpty;
+  });
+
+  const _tokens = isExistFontLocal.reduce((fontFace, prop, index) => {
+    fontFace += Object.entries(prop).reduce((acc, [key, value]) => {
+      const name = key.split(",");
+      const _name = name[0].replace(/\.[^/.]+$/, "").toLocaleLowerCase();
+      const extensions = name.reduce((acc, value) => {
+        const _extension = new RegExp(/\.[^/.]+$/).exec(value)[0];
+        return (acc += `url('#{general.$font-path}/${_families[index]}/${value}') format('${_formats[_extension]}'),\n`);
       }, "");
-      return fontFace;
+
+      return (acc += `\n\n@font-face {\nfont-family: '${
+        _name.split("-")[0]
+      }';\nfont-weight: ${value};\nsrc: ${extensions}}\n`);
     }, "");
 
-  const _paths = brands.reduce(
+    return fontFace;
+  }, "");
+  const _paths = isNotExistFontlocal.reduce(
     (acc, value, index) =>
       (acc += `${path}/fonts/${value}${
-        brands.length > 1 && index !== brands.length - 1 ? ", " : ""
+        isNotExistFontlocal.length > 1 &&
+        index !== isNotExistFontlocal.length - 1
+          ? ", "
+          : ""
       }`),
     ""
   );
-
   const content = `@use '../settings/general';\n${
     dataFilesScss({ file: _paths }).fonts
   }\n${_tokens}`;
-
   return `${setCreationTimeFile()}${content}`;
 };
 
@@ -265,6 +268,5 @@ module.exports = {
   customMediaQueries,
   customVariablesCommon,
   customVariablesColors,
-  customVariablesSpacing,
   customMode,
 };
