@@ -26,7 +26,8 @@ Options flags command line:
 | disableIconSprites | Variable to don´t create icon sprites. By Default it`s created.                                                |
 | fontNameIcons      | Variable to define font family name icon.                                                                      |
 | disableIconsFigma  | Variable to don´t import icons figma. By Default it`s created.                                                 |
-| disableUtils  | Variable to don´t create utils icon figma. By Default it`s created.                                                 |
+| disableUtils       | Variable to don´t create utils icon figma. By Default it`s created.                                            |
+| configFile         | File configuration to define what tokens sets will be included by theme and mode. If not defined, take all.    |
 
 For the proper functioning of the library, it is necessary to create a configuration file in the project. This configuration must maintain [Tokens Studio Figma](https://docs.tokens.studio/tokens/json-schema) structure:
 
