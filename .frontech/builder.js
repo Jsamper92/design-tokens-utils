@@ -106,7 +106,6 @@ const getTokensBrand = (data) => {
     // Vamos a buscar los iconos en el objeto ds
     // TODO hacer el tokens.ds generico
     if (tokens.ds && !iconsBrand[brand]) iconsBrand[brand] = tokens.ds;
-    if (!mode) mode = "base";
     if (!tokensBrand[brand]) {
       tokensBrand[brand] = {};
       brands.push(brand);
@@ -173,11 +172,7 @@ const buildIconFont = async (
   disableUtils,
   brand
 ) => {
-  console.log(path,
-    disableIconFont,
-    disableIconSprites,
-    disableUtils,
-    brand)
+  console.log(path, disableIconFont, disableIconSprites, disableUtils, brand);
   return new Promise(async (resolve) => {
     const pathIcons = route.resolve(path, "images", "icons", brand);
     const isIcons = fs.existsSync(pathIcons);
@@ -189,7 +184,7 @@ const buildIconFont = async (
       }));
 
     if (isIcons) {
-      if (!disableUtils) await generateUtils({ icons, path, brand })
+      if (!disableUtils) await generateUtils({ icons, path, brand });
       if (!disableIconFont) {
         const iconFont = await generateIconFont(
           path,
