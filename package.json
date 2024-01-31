@@ -11,7 +11,7 @@
     "url": "https://github.com/Jsamper92/design-tokens-utils.git"
   },
   "scripts": {
-    "build": "node bin/index.js --tokens=tokens/tokens.json --path=assets"
+    "build": "node bin/index.js --tokens=.frontech.json --path=assets --configFile=config.json"
   },
   "author": "Javier Samper arias",
   "license": "ISC",

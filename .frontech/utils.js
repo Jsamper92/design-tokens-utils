@@ -266,7 +266,7 @@ const generateIconFont = async (
       template: route.resolve(__dirname, "..", "templates", "_icons.css.njk"),
       destTemplate: buildFont,
       templateClassName: "icon",
-      templateFontPath: `#{general.$font-path}/`,
+      templateFontPath: `#{general.$font-path}/${brand}/`,
       fontHeight: 800,
       normalize: true,
       centerHorizontally: false,
