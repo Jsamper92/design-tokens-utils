@@ -49,7 +49,8 @@
 }
 
 {% for glyph in glyphs %}
-.{{ glyph.name }}::before {
+.{{ className }}.{{ glyph.name }}::before {
   content: "\{{ glyph.unicode[0].charCodeAt(0).toString(16) }}";
 }
+
 {% endfor %}
