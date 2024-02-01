@@ -1,6 +1,6 @@
 {
   "name": "design-tokens-utils",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Design Tokens Utils aims to provide a series of common utilities at the start of any web project, which will make it easier and faster to start the architecture.",
   "main": "./lib/index.js",
   "bin": {
