@@ -136,7 +136,7 @@ const customFontFace = ({ dictionary: { allTokens } }) => {
       const _name = name[0].replace(/\.[^/.]+$/, "").toLocaleLowerCase();
       const extensions = name.reduce((acc, value) => {
         const _extension = new RegExp(/\.[^/.]+$/).exec(value)[0];
-        return (acc += `url('#{general.$font-path}/${_families[index]}/${value}') format('${_formats[_extension]}'),\n`);
+        return (acc += `url('#{variables.$font-path}/${_families[index]}/${value}') format('${_formats[_extension]}'),\n`);
       }, "");
 
       return (acc += `\n\n@font-face {\nfont-family: '${
@@ -156,7 +156,7 @@ const customFontFace = ({ dictionary: { allTokens } }) => {
       }`),
     ""
   );
-  const content = `@use '../settings/general';\n${
+  const content = `@use '../variables';\n${
     dataFilesScss({ file: _paths }).fonts
   }\n${_tokens}`;
   return `${setCreationTimeFile()}${content}`;

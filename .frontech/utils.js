@@ -266,7 +266,7 @@ const generateIconFont = async (
       template: route.resolve(__dirname, "..", "templates", "_icons.css.njk"),
       destTemplate: buildFont,
       templateClassName: "icon",
-      templateFontPath: `#{general.$font-path}/${brand}/`,
+      templateFontPath: `#{variables.$font-path}/${brand}/`,
       fontHeight: 800,
       normalize: true,
       centerHorizontally: false,
@@ -302,7 +302,7 @@ const generateIconFont = async (
               const _file = fs
                 .readFileSync(route.resolve(buildFont, "_icons.css"))
                 .toString();
-              const _data = `${setCreationTimeFile()}@use '../settings/general';\n\n${_file}`;
+              const _data = `${setCreationTimeFile()}@use '../variables';\n\n${_file}`;
               const creation = createFile(
                 route.resolve(
                   process.cwd(),
@@ -414,11 +414,12 @@ const setCreationTimeFile = () =>
 const dataFilesScss = ({ file, path }, brand) => ({
   fonts: `\n// Please include the source file in the ${file} to create the font-faces.`,
   timestamp: setCreationTimeFile(),
-  defaultVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "./${path}/fonts/${brand}" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
-  settingsGeneral: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "elements/elements.scss";`,
-  settingsGeneralByTheme: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "@aletheia/assets/dist/assets/library/scss/core/base/base.scss";\n@use "@aletheia/assets/dist/assets/library/scss/core/tools/tools.scss";\n@use "settings/settings.scss";\n@use "@aletheia/assets/dist/assets/library/scss/core/utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "@aletheia/assets/dist/assets/library/scss/core/elements/elements.scss";`,
-  settingsGeneralByBrand: `@use "settings/general" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "settings/settings.scss";\n@use "icons/icons.scss";`,
-  mainScss: `@use "${brand}/abstracts.scss" with (\n\t$font-path: '/${path}/fonts/${brand}'\n);`,
+  themeVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "./${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n@use "@aletheia/assets/dist/assets/library/scss/core/variables" with (\n$font-path: $font-path,\n$rem-baseline: $rem-baseline\n);`,
+  themeCustomVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "./${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n@use "../core/variables" with (\n$font-path: $font-path,\n$rem-baseline: $rem-baseline\n);`,
+  defaultVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "./${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
+  settingsGeneral: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "elements/elements.scss";`,
+  settingsGeneralByTheme: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "@aletheia/assets/dist/assets/library/scss/core/base/base.scss";\n@use "@aletheia/assets/dist/assets/library/scss/core/tools/tools.scss";\n@use "settings/settings.scss";\n@use "@aletheia/assets/dist/assets/library/scss/core/utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "@aletheia/assets/dist/assets/library/scss/core/elements/elements.scss";`,
+  settingsGeneralByBrand: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "settings/settings.scss";\n@use "icons/icons.scss";`,
 });
 
 /**

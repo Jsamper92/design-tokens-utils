@@ -133,7 +133,6 @@ const createCoreFiles = (root, path) => {
   const paths = [
     iconsTemplate(root),
     settingsGeneralTemplate(root, "core"),
-    mainScss(root, "core"),
     {
       root,
       force: false,
@@ -211,7 +210,6 @@ const createCustomFiles = (root, path, brands) => {
       const paths = [
         iconsTemplate(root, "custom"),
         settingsGeneralTemplate(root, brand, "custom"),
-        mainScss(root, brand),
         {
           data: `${dataFilesScss(config(), brand).defaultVariables}${
             dataFilesScss(config()).settingsGeneralByBrand
@@ -232,7 +230,6 @@ const createThemeFiles = (root, path, theme) => {
   const paths = [
     iconsTemplate(root, "custom"),
     settingsGeneralTemplate(root, theme, "custom"),
-    mainScss(root, theme),
     {
       data: `${dataFilesScss(config(), theme).defaultVariables}${
         dataFilesScss(config()).settingsGeneralByTheme
@@ -256,19 +253,15 @@ const iconsTemplate = (root, folder = "core") => ({
 });
 
 const settingsGeneralTemplate = (root, brand, folder = "core") => ({
-  data: dataFilesScss(config(), brand).defaultVariables,
+  data: theme
+    ? dataFilesScss(config(), brand).themeVariables
+    : brand === "core"
+    ? dataFilesScss(config(), brand).defaultVariables
+    : dataFilesScss(config(), brand).themeCustomVariables,
   root,
   force: false,
-  name: `_general.scss`,
-  path: route.resolve(root, `library/scss/${folder}/settings/`),
-});
-
-const mainScss = (root, brand) => ({
-  data: dataFilesScss(config(), brand).mainScss,
-  root,
-  force: true,
-  name: `${brand}.scss`,
-  path: route.resolve(root, `library/scss/`),
+  name: `_variables.scss`,
+  path: route.resolve(root, `library/scss/${folder}/`),
 });
 
 const getFiles = (paths, brand, path) => {

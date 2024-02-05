@@ -1,4 +1,4 @@
-@use "settings/general" with (
+@use "./variables" with (
   $font-path: "../fonts/",
   $rem-baseline: 16px
 );
