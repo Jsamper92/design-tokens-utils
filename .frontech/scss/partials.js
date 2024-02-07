@@ -188,7 +188,7 @@ const createCoreFiles = (root, path) => {
       path: route.resolve(root, `library/scss/core/elements/`),
     },
     {
-      data: `${dataFilesScss(config(), "core").defaultVariables}${
+      data: `${dataFilesScss(config()).defaultVariables}${
         dataFilesScss(config()).settingsGeneral
       }\n`,
       root,
@@ -211,7 +211,7 @@ const createCustomFiles = (root, path, brands) => {
         iconsTemplate(root, "custom"),
         settingsGeneralTemplate(root, brand, "custom"),
         {
-          data: `${dataFilesScss(config(), brand).defaultVariables}${
+          data: `${dataFilesScss(config()).defaultVariables}${
             dataFilesScss(config()).settingsGeneralByBrand
           }\n`,
           root,
@@ -231,7 +231,7 @@ const createThemeFiles = (root, path, theme) => {
     iconsTemplate(root, "custom"),
     settingsGeneralTemplate(root, theme, "custom"),
     {
-      data: `${dataFilesScss(config(), theme).defaultVariables}${
+      data: `${dataFilesScss(config()).defaultVariables}${
         dataFilesScss(config()).settingsGeneralByTheme
       }\n`,
       root,
@@ -254,10 +254,10 @@ const iconsTemplate = (root, folder = "core") => ({
 
 const settingsGeneralTemplate = (root, brand, folder = "core") => ({
   data: theme
-    ? dataFilesScss(config(), brand).themeVariables
+    ? dataFilesScss(config()).themeVariables
     : brand === "core"
-    ? dataFilesScss(config(), brand).defaultVariables
-    : dataFilesScss(config(), brand).themeCustomVariables,
+    ? dataFilesScss(config()).defaultVariables
+    : dataFilesScss(config()).customVariables,
   root,
   force: false,
   name: `_variables.scss`,
