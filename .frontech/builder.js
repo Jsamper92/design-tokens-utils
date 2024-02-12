@@ -98,6 +98,7 @@ const createTokens = async (
  */
 const getTokensBrand = (data) => {
   const tokensBrand = {};
+  const icons = {};
   const iconsBrand = {};
   const brands = [];
 
@@ -105,7 +106,13 @@ const getTokensBrand = (data) => {
     let { brand, mode, tokens } = value;
     // Vamos a buscar los iconos en el objeto ds
     // TODO hacer el tokens.ds generico
-    if (tokens.ds && !iconsBrand[brand]) iconsBrand[brand] = tokens.ds;
+    if (tokens.ds) {
+      if (!icons[brand]) {
+        icons[brand] = [tokens.ds];
+      } else {
+        icons[brand].push(tokens.ds);
+      }
+    }
     if (!tokensBrand[brand]) {
       tokensBrand[brand] = {};
       brands.push(brand);
@@ -114,6 +121,14 @@ const getTokensBrand = (data) => {
       tokensBrand[brand][mode] = {};
     }
     tokensBrand[brand][mode][key] = tokens;
+  }
+
+  for (const [key, value] of Object.entries(icons)) {
+    if (value.length === 2) {
+      iconsBrand[key] = { icon: { ...value[0].icon, ...value[1].icon } };
+    } else {
+      iconsBrand[key] = { icon: { ...value[0].icon } };
+    }
   }
 
   return {
@@ -172,9 +187,13 @@ const buildIconFont = async (
   disableUtils,
   brand
 ) => {
-  console.log(path, disableIconFont, disableIconSprites, disableUtils, brand);
   return new Promise(async (resolve) => {
-    const pathIcons = route.resolve(path, "images", "icons", brand);
+    const pathIcons = route.resolve(
+      path,
+      "images",
+      "icons",
+      utils.config().theme ? utils.config().theme : brand
+    );
     const isIcons = fs.existsSync(pathIcons);
     const icons =
       isIcons &&

@@ -130,6 +130,7 @@ const createFile = (folder, file, data, force = false) => {
 };
 
 const generateSvgSprites = (icons, path, brand) => {
+  const { theme } = config();
   return new Promise((resolve) => {
     try {
       const _icons = icons.map(({ data }) =>
@@ -141,7 +142,7 @@ const generateSvgSprites = (icons, path, brand) => {
       svgSpreact(_icons, { tidy: true, optimize: true, processId })
         .then(async ({ defs }) => {
           const files = await createFile(
-            route.resolve(path, `images/sprites/${brand}`),
+            route.resolve(path, `images/sprites/${theme ? theme : brand}`),
             "sprites.svg",
             defs,
             true
@@ -149,7 +150,9 @@ const generateSvgSprites = (icons, path, brand) => {
           if (files) {
             messages.print("icon sprit svg process started");
             messages.success(
-              `✔︎ file ${path}/images/sprites/${brand}/sprites.svg successfully created`
+              `✔︎ file ${path}/images/sprites/${
+                theme ? theme : brand
+              }/sprites.svg successfully created`
             );
             messages.print("icon sprit svg process finished");
             resolve(true);
@@ -374,12 +377,13 @@ const getKeyIcons = (data, tokens) => {
 };
 
 const getIcons = async (data, tokenSetOrder, path, brand) => {
+  const { theme } = config();
   return new Promise(async (resolve) => {
     messages.print("process import icons tokens started");
 
     const response = await figmaIconsTokens({
       tokenSetOrder,
-      path: route.resolve(path, `images/icons/${brand}`),
+      path: route.resolve(path, `images/icons/${theme ? theme : brand}`),
       file: null,
       key: "icons",
       data,
