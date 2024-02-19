@@ -165,23 +165,14 @@ const generateSvgSprites = (icons, path, brand) => {
   });
 };
 
-const generateJSUtils = ({ icons, path, brand }) => {
-  return new Promise(async (resolve) => {
-    const output = route.resolve(process.cwd(), path, `library/js/${brand}`);
-    const content = `export const icons = ${JSON.stringify(icons, null, 2)};`;
-    const files = await createFile(output, "utils.ts", content, true);
-
-    if (files) {
-      messages.success(`✔︎ ${route.resolve(output, "utils.ts")}`);
-      resolve(true);
-    }
-  });
-};
-
 const generateJSONUtils = ({ icons, path, brand }) => {
+  const { theme } = config();
   return new Promise(async (resolve) => {
-    const output = route.resolve(process.cwd(), path, `library/json/${brand}`);
-
+    const output = route.resolve(
+      process.cwd(),
+      path,
+      `library/json/${theme ? theme : brand}`
+    );
     const _iconsJSON = icons.reduce((acc, cur) => {
       const { name, data } = cur;
       return { ...acc, [`${name}`]: `${data}.svg` };
@@ -198,10 +189,7 @@ const generateJSONUtils = ({ icons, path, brand }) => {
 
 const generateUtils = async ({ icons, path, brand }) => {
   return new Promise(async (resolve) => {
-    const promises = [
-      generateJSUtils({ path, icons, brand }),
-      generateJSONUtils({ path, icons, brand }),
-    ];
+    const promises = [generateJSONUtils({ path, icons, brand })];
     const utils = await (
       await Promise.allSettled(promises)
     ).filter(({ status }) => status === "fulfilled");

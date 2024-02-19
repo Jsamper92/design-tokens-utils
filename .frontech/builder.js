@@ -202,8 +202,27 @@ const buildIconFont = async (
         data: fs.readFileSync(route.resolve(pathIcons, icon), "utf8"),
       }));
 
+    let coreIcons = [];
+    if (brand !== "core") {
+      const pathCoreIcons = route.resolve(path, "images", "icons", "core");
+      const isCoreIcons = fs.existsSync(pathCoreIcons);
+      coreIcons =
+        isCoreIcons &&
+        fs.readdirSync(pathCoreIcons).map((icon) => ({
+          name: icon.replace(".svg", ""),
+          data: fs.readFileSync(route.resolve(pathCoreIcons, icon), "utf8"),
+        }));
+    }
+
+    const allIcons = icons.concat(coreIcons).reduce((acc, curr) => {
+      if (!acc.find((item) => item.name === curr.name)) {
+        acc.push(curr);
+      }
+      return acc;
+    }, []);
+
     if (isIcons) {
-      if (!disableUtils) await generateUtils({ icons, path, brand });
+      if (!disableUtils) await generateUtils({ icons: allIcons, path, brand });
       if (!disableIconFont) {
         const iconFont = await generateIconFont(
           path,
@@ -213,7 +232,7 @@ const buildIconFont = async (
         );
         if (iconFont) {
           if (!disableIconSprites) {
-            const iconSprites = await generateSvgSprites(icons, path, brand);
+            const iconSprites = await generateSvgSprites(allIcons, path, brand);
             if (iconSprites) resolve(true);
           } else {
             resolve(true);
@@ -221,7 +240,7 @@ const buildIconFont = async (
         }
       } else {
         if (!disableIconSprites) {
-          const iconSprites = await generateSvgSprites(icons, path, brand);
+          const iconSprites = await generateSvgSprites(allIcons, path, brand);
           if (iconSprites) resolve(true);
         } else {
           resolve(true);
