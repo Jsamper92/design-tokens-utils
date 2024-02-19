@@ -435,36 +435,12 @@ const managementDataFileScss = (item) =>
   item.data || fs.readFileSync(route.resolve(item.path, item.name)).toString();
 
 /**
- * This function is used to convert color hex to rgba
- * @param {string} rgba
- * @returns {string}
- */
-function RGBAToHex(rgba) {
-  const _replacePad = rgba
-    .split("")
-    .filter((item) => !["#"].includes(item))
-    .join("");
-
-  if (rgba.length != 6 && rgba.includes("#")) {
-    var aRgbHex = _replacePad.match(/.{1,2}/g);
-    var aRgb = [
-      parseInt(aRgbHex[0], 16),
-      parseInt(aRgbHex[1], 16),
-      parseInt(aRgbHex[2], 16),
-    ];
-
-    return aRgb;
-  }
-
-  return rgba;
-}
-
-/**
  * This function is used to check if token is reference token studio
  * @param {string} token
  * @returns {boolean}
  */
-const isReferenceTokenStudio = (token) => /^[$]/.test(token);
+const isReferenceTokenStudio = (token) =>
+  /^[$]/.test(token) || /^\{.*\}$/.test(token);
 
 /**
  * This function is used to translate token to custom property
@@ -478,9 +454,11 @@ const translateReferenceToCustomProperty = (token) => {
       .split(".")
       .reduce(
         (acc, cur) =>
-          (acc += isReferenceTokenStudio(cur)
+          (acc += /^[$]/.test(cur)
             ? cur.replace("$", "--")
-            : `-${cur}`),
+            : /^\{/.test(cur)
+            ? cur.replace("{", "--")
+            : `-${cur.replace("}", "")}`),
         ""
       );
 

@@ -42,22 +42,12 @@ const customVariablesColors = ({
     })
     .reduce((tokens, prop) => {
       const { name, original } = prop;
-      const isColorAlpha = original.value.split(" ");
 
       const getValueToken = () => {
-        if (isColorAlpha.length === 2) {
-          const [main, alpha] = isColorAlpha;
-          const _main = translateReferenceToCustomProperty(main);
-          const _alpha = translateReferenceToCustomProperty(alpha);
-          return usesReference(original, /^[$]/)
-            ? `rgba(${_main},${_alpha})`
-            : `rgba(${RGBAToHex(_main)},${_alpha})`;
+        if (usesReference(original) || usesReference(original, /^[$]/)) {
+          return translateReferenceToCustomProperty(original.value);
         } else {
-          if (usesReference(original, /^[$]/)) {
-            return translateReferenceToCustomProperty(original.value);
-          } else {
-            return original.value;
-          }
+          return original.value;
         }
       };
 
@@ -240,7 +230,10 @@ const customMode = ({ dictionary: { allTokens, usesReference } }, mode) => {
     .reduce((tokens, prop) => {
       const { name, original, value } = prop;
       const getValueToken = () => {
-        if (usesReference(original.value, /^[$]/)) {
+        if (
+          usesReference(original.value) ||
+          usesReference(original.value, /^[$]/)
+        ) {
           return translateReferenceToCustomProperty(original.value);
         } else {
           return value;
