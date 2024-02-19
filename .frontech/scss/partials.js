@@ -212,11 +212,11 @@ const createCustomFiles = (root, path, brands) => {
         settingsGeneralTemplate(root, brand, "custom"),
         {
           data: `${dataFilesScss(config()).defaultVariables}${
-            dataFilesScss(config()).settingsGeneralByBrand
+            dataFilesScss(config(), brand).settingsGeneralByBrand
           }\n`,
           root,
           force: false,
-          name: `abstracts.scss`,
+          name: `abstracts-${brand}.scss`,
           path: route.resolve(root, `library/scss/custom/`),
         },
       ];

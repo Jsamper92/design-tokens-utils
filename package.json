@@ -11,7 +11,7 @@
     "url": "https://github.com/Jsamper92/design-tokens-utils.git"
   },
   "scripts": {
-    "build": "node bin/index.js --tokens=.frontech.json --path=assets --configFile=config.json"
+    "build": "node bin/index.js --tokens=.frontech.json --path=assets --disableIconsFigma --disableIconFont"
   },
   "author": "Javier Samper arias",
   "license": "ISC",
@@ -38,6 +38,7 @@
     "figma-icons-tokens": "^1.5.0",
     "fs-extra": "11.1.1",
     "oslllo-svg-fixer": "^3.0.0",
+    "ramda": "^0.29.1",
     "shelljs": "0.8.5",
     "style-dictionary": "3.8.0",
     "svg-spreact": "1.3.2",

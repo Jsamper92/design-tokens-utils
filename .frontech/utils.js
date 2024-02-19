@@ -399,7 +399,7 @@ const getIcons = async (data, tokenSetOrder, path, brand) => {
 /**
  * @description This function is used to return config to init script design systems utils
  * @param {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean; disableIconsFigma: Boolean; fontNameIcons: String}} args
- * @returns {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; disableUtils: Boolean; fontNameIcons: String; configFile: String}}
+ * @returns {{theme: string; platforms: string; path: string; file: string; key: string; disableIconFont: Boolean, disableIconSprites: Boolean; disableIconsFigma: Boolean; disableUtils: Boolean; fontNameIcons: String;}}
  */
 const config = (args) => (args ? { ...args } : argv);
 
@@ -415,7 +415,7 @@ const setCreationTimeFile = () =>
  * @param {{file: string; path: string}} param - Data file and path
  * @returns {string}
  */
-const dataFilesScss = ({ file, path }) => ({
+const dataFilesScss = ({ file, path }, brand) => ({
   fonts: `\n// Please include the source file in the ${file} to create the font-faces.`,
   timestamp: setCreationTimeFile(),
   themeVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "./${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n@use "[put_your_path_here]/dist/assets/library/scss/core/variables" with (\n$font-path: $font-path,\n$rem-baseline: $rem-baseline\n);`,
@@ -423,7 +423,7 @@ const dataFilesScss = ({ file, path }) => ({
   defaultVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "./${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
   settingsGeneral: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "elements/elements.scss";`,
   settingsGeneralByTheme: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "[put_your_path_here]/dist/assets/library/scss/core/base/base.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/tools/tools.scss";\n@use "settings/settings.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/elements/elements.scss";`,
-  settingsGeneralByBrand: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "../core/base/base.scss";\n@use "../core/tools/tools.scss";\n@use "settings/settings.scss";\n@use "../core/utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "../core/elements/elements.scss";`,
+  settingsGeneralByBrand: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "../core/base/base.scss";\n@use "../core/tools/tools.scss";\n@use "../core/settings/settings.scss";\n@use "settings/settings-${brand}.scss";\n@use "../core/utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "../core/elements/elements.scss";`,
 });
 
 /**
@@ -554,7 +554,6 @@ module.exports = {
   config,
   getIcons,
   messages,
-  RGBAToHex,
   createFile,
   buildTokens,
   getKeyIcons,
