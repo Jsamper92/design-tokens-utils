@@ -232,7 +232,7 @@ const createThemeFiles = (root, path, theme) => {
     settingsGeneralTemplate(root, theme, "custom"),
     {
       data: `${dataFilesScss(config()).defaultVariables}${
-        dataFilesScss(config()).settingsGeneralByTheme
+        dataFilesScss(config(), theme).settingsGeneralByTheme
       }\n`,
       root,
       force: false,
