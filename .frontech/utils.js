@@ -366,12 +366,13 @@ const getKeyIcons = (data, tokens) => {
 
 const getIcons = async (data, tokenSetOrder, path, brand) => {
   const { theme } = config();
+  const brandName = theme ? theme : brand;
   return new Promise(async (resolve) => {
     messages.print("process import icons tokens started");
 
     const response = await figmaIconsTokens({
       tokenSetOrder,
-      path: route.resolve(path, `images/icons/${theme ? theme : brand}`),
+      path: route.resolve(path, `images/icons/${brandName}`),
       file: null,
       key: "icons",
       data,
@@ -379,7 +380,7 @@ const getIcons = async (data, tokenSetOrder, path, brand) => {
 
     if (response) {
       messages.print("process import icons tokens finished");
-      resolve(true);
+      resolve(brandName);
     }
   });
 };
@@ -410,7 +411,7 @@ const dataFilesScss = ({ file, path }, brand) => ({
   customVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "./${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n@use "../core/variables" with (\n$font-path: $font-path,\n$rem-baseline: $rem-baseline\n);`,
   defaultVariables: `/// Variable path by default of the sources defined in the ${file} file.\n/// To modify the path, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($font-path:'public/assets/fonts/');\n/// @group fonts\n$font-path: "./${path}/fonts" !default;\n/// Variable that defines the reference unit in order to transform px into rem. By default 16px. To modify the size, simply set the variable in the import as follows: @use '/library/web/abstracts' with ($rem-baseline: 10px);\n/// @group rem\n$rem-baseline: 16px !default;\n\n`,
   settingsGeneral: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "base/base.scss";\n@use "tools/tools.scss";\n@use "settings/settings.scss";\n@use "utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "elements/elements.scss";`,
-  settingsGeneralByTheme: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "[put_your_path_here]/dist/assets/library/scss/core/base/base.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/tools/tools.scss";\n@use "settings/settings.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/elements/elements.scss";`,
+  settingsGeneralByTheme: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "[put_your_path_here]/dist/assets/library/scss/core/base/base.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/tools/tools.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/settings/settings.scss";\n@use "settings/settings-${brand}.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "[put_your_path_here]/dist/assets/library/scss/core/elements/elements.scss";`,
   settingsGeneralByBrand: `@use "./variables" with (\n\t$font-path: $font-path,\n\t$rem-baseline: $rem-baseline\n);\n@use "../core/base/base.scss";\n@use "../core/tools/tools.scss";\n@use "../core/settings/settings.scss";\n@use "settings/settings-${brand}.scss";\n@use "../core/utilities/utilities.scss";\n@use "icons/icons.scss";\n@use "../core/elements/elements.scss";`,
 });
 

@@ -42,7 +42,7 @@ const createSettingsPartials = (path, brand) => {
   const _settingsPartialsRequired = [
     {
       origin: route.resolve(_root),
-      name: "settings.scss",
+      name: brand === "core" ? "settings.scss" : `settings-${brand}.scss`,
       data: `${setCreationTimeFile()}${[..._nameSettingsPartials]
         .map((file) => file.replace("_", "").replace(".scss", ""))
         .reduce((acc, current) => (acc += `@forward '${current}';\n`), "")}`,
@@ -216,7 +216,7 @@ const createCustomFiles = (root, path, brands) => {
           }\n`,
           root,
           force: false,
-          name: `abstracts-${brand}.scss`,
+          name: `abstracts.scss`,
           path: route.resolve(root, `library/scss/custom/`),
         },
       ];

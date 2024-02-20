@@ -54,8 +54,9 @@ const createTokens = async (
         })
       );
       _iconsFonts = await Promise.all(
-        brands.map(async (brand, index) => {
-          if (icons[index]) {
+        brands.map(async (brand) => {
+          const brandName = utils.config().theme ? utils.config().theme : brand;
+          if (icons.find((f) => f === brandName)) {
             return await buildIconFont(
               path,
               disableIconFont,
@@ -195,23 +196,23 @@ const buildIconFont = async (
       utils.config().theme ? utils.config().theme : brand
     );
     const isIcons = fs.existsSync(pathIcons);
-    const icons =
-      isIcons &&
-      fs.readdirSync(pathIcons).map((icon) => ({
+    const pathCoreIcons = route.resolve(path, "images", "icons", "core");
+    const isCoreIcons = fs.existsSync(pathCoreIcons);
+
+    let icons = [];
+    if (isIcons) {
+      icons = fs.readdirSync(pathIcons).map((icon) => ({
         name: icon.replace(".svg", ""),
         data: fs.readFileSync(route.resolve(pathIcons, icon), "utf8"),
       }));
+    }
 
     let coreIcons = [];
-    if (brand !== "core") {
-      const pathCoreIcons = route.resolve(path, "images", "icons", "core");
-      const isCoreIcons = fs.existsSync(pathCoreIcons);
-      coreIcons =
-        isCoreIcons &&
-        fs.readdirSync(pathCoreIcons).map((icon) => ({
-          name: icon.replace(".svg", ""),
-          data: fs.readFileSync(route.resolve(pathCoreIcons, icon), "utf8"),
-        }));
+    if (isCoreIcons && brand !== "core") {
+      coreIcons = fs.readdirSync(pathCoreIcons).map((icon) => ({
+        name: icon.replace(".svg", ""),
+        data: fs.readFileSync(route.resolve(pathCoreIcons, icon), "utf8"),
+      }));
     }
 
     const allIcons = icons.concat(coreIcons).reduce((acc, curr) => {
@@ -221,7 +222,7 @@ const buildIconFont = async (
       return acc;
     }, []);
 
-    if (isIcons) {
+    if (allIcons.length > 0) {
       if (!disableUtils) await generateUtils({ icons: allIcons, path, brand });
       if (!disableIconFont) {
         const iconFont = await generateIconFont(
