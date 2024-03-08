@@ -134,7 +134,7 @@ const generateSvgSprites = (icons, path, brand) => {
   return new Promise((resolve) => {
     try {
       const _icons = icons.map(({ data }) =>
-        data.replaceAll('fill="black"', 'fill="currentColor"')
+        data.replaceAll(/fill="([^"]*)"/g, 'fill="currentColor"')
       );
       const names = icons.map(({ name }) => name);
       const processId = (n) => `${names[n]}`;
