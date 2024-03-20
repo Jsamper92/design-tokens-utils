@@ -215,7 +215,7 @@ const buildIconFont = async (
       }));
     }
 
-    const allIcons = icons.concat(coreIcons).reduce((acc, curr) => {
+    const allIcons = icons.concat(coreIcons).filter(item => !item.name.includes('.DS_Store')).reduce((acc, curr) => {
       if (!acc.find((item) => item.name === curr.name)) {
         acc.push(curr);
       }
