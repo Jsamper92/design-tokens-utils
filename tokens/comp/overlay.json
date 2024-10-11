@@ -1,16 +1,14 @@
 {
   "color": {
-    "bg": {
-      "overlay": {
+    "overlay": {
+      "bg": {
         "default": {
-          "value": "$color.bg.surface-00",
+          "value": "$color.bg.surface.25",
           "type": "color",
-          "description": "$color.gray.100"
+          "description": "$color.white"
         }
-      }
-    },
-    "border": {
-      "overlay": {
+      },
+      "border": {
         "default": {
           "value": "$color.border.subtle",
           "type": "color",

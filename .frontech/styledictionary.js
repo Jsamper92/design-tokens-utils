@@ -1,3 +1,5 @@
+const { get } = require("http");
+
 const [
   fs,
   utils,
@@ -8,15 +10,15 @@ const [
   transform,
   stdConfig,
 ] = [
-  require("fs"),
-  require("./utils"),
-  require("path"),
-  require("style-dictionary"),
-  require("./scss/partials"),
-  require("./styleDictionary/format"),
-  require("./styleDictionary/transform"),
-  require("./styleDictionary/config"),
-];
+    require("fs"),
+    require("./utils"),
+    require("path"),
+    require("style-dictionary"),
+    require("./scss/partials"),
+    require("./styleDictionary/format"),
+    require("./styleDictionary/transform"),
+    require("./styleDictionary/config"),
+  ];
 const { coreTokensConfig, customTokensConfig, modeTokensConfig } = stdConfig;
 const { buildCore } = partials;
 const { sizePx } = transform;
@@ -100,9 +102,11 @@ const styleDictionary = (modes, brands) => {
           `${brandMode.brand}-${brandMode.mode}-tokens-parsed.json`
         ),
       ],
-      include: getIncludes(brandMode),
+      /* preprocessors: ["tokens-studio"], */
+      include: getIncludes(),
       platforms: setTokensConfig(brandMode),
     }).buildAllPlatforms();
+
   });
 
   utils.messages.print("Settings creation process finished");
@@ -112,18 +116,14 @@ const styleDictionary = (modes, brands) => {
  * This functions include to styleDictionary the *-base-tokens-parsed.json for dark/light mode
  * @param {Object} brandMode
  */
-const getIncludes = (brandMode) =>
-  brandMode.mode !== "base"
-    ? [
-        route.resolve(
-          __dirname,
-          "..",
-          "build",
-          "tokens",
-          `${brandMode.brand}-base-tokens-parsed.json`
-        ),
-      ]
-    : [];
+const getIncludes = () => [
+  route.resolve(
+    __dirname,
+    "..",
+    "tokens",
+    `core.json`
+  )
+];
 
 /**
  * This function is used to return style dictionary configuration by brand

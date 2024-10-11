@@ -107,7 +107,7 @@ const getTokensBrand = (data) => {
     let { brand, mode, tokens } = value;
     // Vamos a buscar los iconos en el objeto ds
     // TODO hacer el tokens.ds generico
-    if (tokens.ds) {
+    if (tokens?.ds) {
       if (!icons[brand]) {
         icons[brand] = [tokens.ds];
       } else {

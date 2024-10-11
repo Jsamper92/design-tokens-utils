@@ -1,0 +1,111 @@
+{
+  "font": {
+    "size": {
+      "heading": {
+        "1": {
+          "value": "$font.size.10",
+          "type": "fontSizes"
+        },
+        "2": {
+          "value": "$font.size.08",
+          "type": "fontSizes"
+        },
+        "3": {
+          "value": "$font.size.07",
+          "type": "fontSizes"
+        }
+      }
+    },
+    "weight": {
+      "heading": {
+        "1": {
+          "value": "$font.weight.bold",
+          "type": "fontWeights"
+        },
+        "2": {
+          "value": "$font.weight.bold",
+          "type": "fontWeights"
+        },
+        "3": {
+          "value": "$font.weight.bold",
+          "type": "fontWeights"
+        }
+      }
+    },
+    "line-height": {
+      "heading": {
+        "1": {
+          "value": "$font.line-height.10",
+          "type": "lineHeights"
+        },
+        "2": {
+          "value": "$font.line-height.08",
+          "type": "lineHeights"
+        },
+        "3": {
+          "value": "$font.line-height.07",
+          "type": "lineHeights"
+        }
+      }
+    },
+    "text-case": {
+      "overline": {
+        "value": "$font.text-case.uppercase",
+        "type": "textCase"
+      }
+    },
+    "letter-spacing": {
+      "overline": {
+        "value": "$font.letter-spacing.10",
+        "type": "letterSpacing"
+      }
+    },
+    "heading": {
+      "heading-1": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "Bold",
+          "lineHeight": "$font.line-height.heading.1",
+          "fontSize": "$font.size.heading.1",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group heading-1"
+      },
+      "heading-2": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "Bold",
+          "lineHeight": "$font.line-height.heading.2",
+          "fontSize": "$font.size.heading.2",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group heading-2"
+      },
+      "heading-3": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "Bold",
+          "lineHeight": "$font.line-height.heading.3",
+          "fontSize": "$font.size.heading.3",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group heading-3"
+      }
+    }
+  }
+}

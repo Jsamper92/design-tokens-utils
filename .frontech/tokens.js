@@ -1,10 +1,10 @@
 const { transformTokens } = require("token-transformer");
 
 const transformerOptions = {
-  expandTypography: false,
+  expandTypography: true,
   expandShadow: false,
-  expandComposition: false,
-  preserveRawValue: false,
+  expandComposition: true,
+  preserveRawValue: true,
   resolveReferences: false,
   throwErrorWhenNotResolved: false,
 };

@@ -54,6 +54,12 @@ const settings = [
     filter: ({ attributes }) => attributes.category.includes("border"),
     ...configSTD,
   },
+/*   {
+    destination: "settings/_shadow.scss",
+    format: "shadow/css/shorthand",
+    filter: ({ attributes }) => attributes.category.includes("shadow"),
+    ...configSTD,
+  } */
 ];
 
 const coreScss = {

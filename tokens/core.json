@@ -1,0 +1,1501 @@
+{
+  "color": {
+    "white": {
+      "value": "#ffffff",
+      "type": "color"
+    },
+    "black": {
+      "value": "#282825",
+      "type": "color"
+    },
+    "transparent": {
+      "value": "#ffffff03",
+      "type": "color"
+    },
+    "beige": {
+      "value": "#D6CDC0",
+      "type": "color"
+    },
+    "gray": {
+      "50": {
+        "value": "#F7F7F7",
+        "type": "color"
+      },
+      "100": {
+        "value": "#F3F3F3",
+        "type": "color"
+      },
+      "200": {
+        "value": "#ECECEC",
+        "type": "color"
+      },
+      "300": {
+        "value": "#CCCCCC",
+        "type": "color"
+      },
+      "400": {
+        "value": "#a6a6a6",
+        "type": "color"
+      },
+      "500": {
+        "value": "#979293",
+        "type": "color"
+      },
+      "600": {
+        "value": "#79686A",
+        "type": "color"
+      },
+      "700": {
+        "value": "#544C4D",
+        "type": "color"
+      },
+      "800": {
+        "value": "#3E393A",
+        "type": "color"
+      }
+    },
+    "red-nexho": {
+      "25": {
+        "value": "#FCF3F4",
+        "type": "color"
+      },
+      "50": {
+        "value": "#FFE7E5",
+        "type": "color"
+      },
+      "100": {
+        "value": "#FFA295",
+        "type": "color"
+      },
+      "200": {
+        "value": "#FF7669",
+        "type": "color"
+      },
+      "300": {
+        "value": "#F54B41",
+        "type": "color"
+      },
+      "400": {
+        "value": "#D8181B",
+        "type": "color"
+      },
+      "500": {
+        "value": "#B90003",
+        "type": "color"
+      },
+      "600": {
+        "value": "#920000",
+        "type": "color"
+      },
+      "700": {
+        "value": "#680004",
+        "type": "color"
+      }
+    },
+    "green": {
+      "100": {
+        "value": "#D7F7DC",
+        "type": "color"
+      },
+      "200": {
+        "value": "#B8F3C5",
+        "type": "color"
+      },
+      "300": {
+        "value": "#A0E9B9",
+        "type": "color"
+      },
+      "400": {
+        "value": "#7FCE9A",
+        "type": "color"
+      },
+      "500": {
+        "value": "#58A275",
+        "type": "color"
+      },
+      "600": {
+        "value": "#3A8A5C",
+        "type": "color"
+      },
+      "700": {
+        "value": "#107C4F",
+        "type": "color"
+      },
+      "800": {
+        "value": "#185735",
+        "type": "color"
+      },
+      "900": {
+        "value": "#123E26",
+        "type": "color"
+      }
+    },
+    "yellow": {
+      "100": {
+        "value": "#FCEFA4",
+        "type": "color"
+      },
+      "200": {
+        "value": "#FCEA91",
+        "type": "color"
+      },
+      "300": {
+        "value": "#FBDF7D",
+        "type": "color"
+      },
+      "400": {
+        "value": "#F0CF59",
+        "type": "color"
+      },
+      "500": {
+        "value": "#DCB11B",
+        "type": "color"
+      },
+      "600": {
+        "value": "#A68513",
+        "type": "color"
+      },
+      "700": {
+        "value": "#7D6A2C",
+        "type": "color"
+      },
+      "800": {
+        "value": "#705F24",
+        "type": "color"
+      },
+      "900": {
+        "value": "#574819",
+        "type": "color"
+      }
+    },
+    "red": {
+      "100": {
+        "value": "#FDE1D4",
+        "type": "color"
+      },
+      "200": {
+        "value": "#FCD2BF",
+        "type": "color"
+      },
+      "300": {
+        "value": "#FAC1A8",
+        "type": "color"
+      },
+      "400": {
+        "value": "#EB8C73",
+        "type": "color"
+      },
+      "500": {
+        "value": "#D96B4F",
+        "type": "color"
+      },
+      "600": {
+        "value": "#C94726",
+        "type": "color"
+      },
+      "700": {
+        "value": "#B34225",
+        "type": "color"
+      },
+      "800": {
+        "value": "#7E2913",
+        "type": "color"
+      },
+      "900": {
+        "value": "#5A1E0E",
+        "type": "color"
+      }
+    },
+    "blue": {
+      "100": {
+        "value": "#D7F0FF",
+        "type": "color"
+      },
+      "200": {
+        "value": "#C1E7FE",
+        "type": "color"
+      },
+      "300": {
+        "value": "#A2DAFC",
+        "type": "color"
+      },
+      "400": {
+        "value": "#51B5F2",
+        "type": "color"
+      },
+      "500": {
+        "value": "#2FA0E4",
+        "type": "color"
+      },
+      "600": {
+        "value": "#0F83CA",
+        "type": "color"
+      },
+      "700": {
+        "value": "#056FB0",
+        "type": "color"
+      },
+      "800": {
+        "value": "#174C7C",
+        "type": "color"
+      },
+      "900": {
+        "value": "#113659",
+        "type": "color"
+      }
+    },
+    "black-alpha": {
+      "50": {
+        "value": "#1212120d",
+        "type": "color"
+      },
+      "100": {
+        "value": "#1212121a",
+        "type": "color"
+      },
+      "200": {
+        "value": "#12121233",
+        "type": "color"
+      },
+      "300": {
+        "value": "#1212124d",
+        "type": "color"
+      },
+      "400": {
+        "value": "#12121266",
+        "type": "color"
+      },
+      "500": {
+        "value": "#12121280",
+        "type": "color"
+      },
+      "600": {
+        "value": "#12121299",
+        "type": "color"
+      },
+      "700": {
+        "value": "#121212b3",
+        "type": "color"
+      },
+      "800": {
+        "value": "#131313cc",
+        "type": "color"
+      },
+      "900": {
+        "value": "#121212e6",
+        "type": "color"
+      }
+    },
+    "white-alpha": {
+      "50": {
+        "value": "#ffffff0d",
+        "type": "color"
+      },
+      "100": {
+        "value": "#ffffff1a",
+        "type": "color"
+      },
+      "200": {
+        "value": "#ffffff33",
+        "type": "color"
+      },
+      "300": {
+        "value": "#ffffff4d",
+        "type": "color"
+      },
+      "400": {
+        "value": "#ffffff66",
+        "type": "color"
+      },
+      "500": {
+        "value": "#ffffff80",
+        "type": "color"
+      },
+      "600": {
+        "value": "#ffffff99",
+        "type": "color"
+      },
+      "700": {
+        "value": "#ffffffb3",
+        "type": "color"
+      },
+      "800": {
+        "value": "#ffffffcc",
+        "type": "color"
+      },
+      "900": {
+        "value": "#ffffffe6",
+        "type": "color"
+      }
+    },
+    "additional": {
+      "1": {
+        "value": "#5797DF",
+        "type": "color"
+      },
+      "2": {
+        "value": "#1C4574",
+        "type": "color"
+      },
+      "3": {
+        "value": "#BB75E7",
+        "type": "color"
+      },
+      "4": {
+        "value": "#582C72",
+        "type": "color"
+      },
+      "5": {
+        "value": "#3CA0BE",
+        "type": "color"
+      },
+      "6": {
+        "value": "#1F4A57",
+        "type": "color"
+      },
+      "7": {
+        "value": "#E16BB1",
+        "type": "color"
+      },
+      "8": {
+        "value": "#7E305E",
+        "type": "color"
+      },
+      "9": {
+        "value": "#942121",
+        "type": "color"
+      },
+      "10": {
+        "value": "#183E6A",
+        "type": "color"
+      },
+      "11": {
+        "value": "#874900",
+        "type": "color"
+      },
+      "12": {
+        "value": "#1F572B",
+        "type": "color"
+      },
+      "13": {
+        "value": "#17404D",
+        "type": "color"
+      },
+      "14": {
+        "value": "#4B1D67",
+        "type": "color"
+      },
+      "15": {
+        "value": "#6B224D",
+        "type": "color"
+      },
+      "16": {
+        "value": "#CD4949",
+        "type": "color"
+      },
+      "17": {
+        "value": "#3F78B8",
+        "type": "color"
+      },
+      "18": {
+        "value": "#A56820",
+        "type": "color"
+      },
+      "19": {
+        "value": "#4C832A",
+        "type": "color"
+      },
+      "20": {
+        "value": "#337F96",
+        "type": "color"
+      },
+      "21": {
+        "value": "#723C94",
+        "type": "color"
+      },
+      "22": {
+        "value": "#BC4D8F",
+        "type": "color"
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "primary": {
+        "value": "ALT Riviera ",
+        "type": "fontFamilies"
+      }
+    },
+    "size": {
+      "10": {
+        "value": "2.063rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "11": {
+        "value": "3rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "01": {
+        "value": "0.688rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "02": {
+        "value": "0.813rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "03": {
+        "value": "0.938rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "04": {
+        "value": "1.063rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "05": {
+        "value": "1.188rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "06": {
+        "value": "1.313rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "07": {
+        "value": "1.438rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "08": {
+        "value": "1.563rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "09": {
+        "value": "1.813rem * $font.size.scale",
+        "type": "fontSizes"
+      },
+      "scale": {
+        "value": "1",
+        "type": "fontSizes"
+      }
+    },
+    "line-height": {
+      "10": {
+        "value": "2.875rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "11": {
+        "value": "3.625rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "01": {
+        "value": "0.875rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "02": {
+        "value": "1rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "03": {
+        "value": "1.125rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "04": {
+        "value": "1.25rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "05": {
+        "value": "1.5rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "06": {
+        "value": "1.75rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "07": {
+        "value": "2rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "08": {
+        "value": "2.25rem * $font.size.scale",
+        "type": "lineHeights"
+      },
+      "09": {
+        "value": "2.625rem * $font.size.scale",
+        "type": "lineHeights"
+      }
+    },
+    "weight": {
+      "regular": {
+        "value": "400",
+        "type": "fontWeights"
+      },
+      "medium": {
+        "value": "600",
+        "type": "fontWeights"
+      },
+      "bold": {
+        "value": "700",
+        "type": "fontWeights"
+      }
+    },
+    "text-case": {
+      "none": {
+        "value": "none",
+        "type": "textCase"
+      },
+      "uppercase": {
+        "value": "uppercase",
+        "type": "textCase"
+      }
+    },
+    "text-decoration": {
+      "none": {
+        "value": "none",
+        "type": "textDecoration"
+      },
+      "underline": {
+        "value": "underline",
+        "type": "textDecoration"
+      },
+      "line-through": {
+        "value": "line-through",
+        "type": "textDecoration"
+      }
+    },
+    "letter-spacing": {
+      "0": {
+        "value": "0%",
+        "type": "letterSpacing"
+      },
+      "10": {
+        "value": "10%",
+        "type": "letterSpacing"
+      }
+    },
+    "paragraph-spacing": {
+      "0": {
+        "value": "0",
+        "type": "paragraphSpacing"
+      }
+    },
+    "paragraph-indent": {
+      "0": {
+        "value": "0px",
+        "type": "dimension"
+      }
+    }
+  },
+  "spacing": {
+    "10": {
+      "value": "{spacing.base} * 9",
+      "type": "spacing"
+    },
+    "11": {
+      "value": "{spacing.base} * 10",
+      "type": "spacing"
+    },
+    "01": {
+      "value": "{spacing.base} * .5",
+      "type": "spacing"
+    },
+    "02": {
+      "value": "{spacing.base} * 1",
+      "type": "spacing"
+    },
+    "03": {
+      "value": "{spacing.base} * 2",
+      "type": "spacing"
+    },
+    "04": {
+      "value": "{spacing.base} * 3",
+      "type": "spacing"
+    },
+    "05": {
+      "value": "{spacing.base} * 4",
+      "type": "spacing"
+    },
+    "06": {
+      "value": "{spacing.base} * 5",
+      "type": "spacing"
+    },
+    "07": {
+      "value": "{spacing.base} * 6",
+      "type": "spacing"
+    },
+    "08": {
+      "value": "{spacing.base} * 7",
+      "type": "spacing"
+    },
+    "09": {
+      "value": "{spacing.base} * 8",
+      "type": "spacing"
+    },
+    "base": {
+      "value": "0.25rem",
+      "type": "spacing"
+    }
+  },
+  "shadow": {
+    "primary": {
+      "100": {
+        "value": [
+          {
+            "color": "#3b28cc1a",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "1",
+            "blur": "1",
+            "spread": "0"
+          },
+          {
+            "color": "#3b28cc0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "200": {
+        "value": [
+          {
+            "color": "#3b28cc1a",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "2",
+            "blur": "4",
+            "spread": "0"
+          },
+          {
+            "color": "#3b28cc0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "300": {
+        "value": [
+          {
+            "color": "#3b28cc1a",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "4",
+            "blur": "8",
+            "spread": "0"
+          },
+          {
+            "color": "#3b28cc0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "400": {
+        "value": [
+          {
+            "color": "#3b28cc1a",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "8",
+            "blur": "16",
+            "spread": "0"
+          },
+          {
+            "color": "#3b28cc0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "500": {
+        "value": [
+          {
+            "color": "#3b28cc17",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "16",
+            "blur": "24",
+            "spread": "0"
+          },
+          {
+            "color": "#3b28cc0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "600": {
+        "value": [
+          {
+            "color": "#3b28cc14",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "24",
+            "blur": "40",
+            "spread": "0"
+          },
+          {
+            "color": "#3b28cc0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      }
+    },
+    "secondary": {
+      "100": {
+        "value": [
+          {
+            "color": "#2667ff1a",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "1",
+            "blur": "1",
+            "spread": "0"
+          },
+          {
+            "color": "#2667ff0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "200": {
+        "value": [
+          {
+            "color": "#2667ff1a",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "2",
+            "blur": "4",
+            "spread": "0"
+          },
+          {
+            "color": "#2667ff0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "300": {
+        "value": [
+          {
+            "color": "#2667ff1a",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "4",
+            "blur": "8",
+            "spread": "0"
+          },
+          {
+            "color": "#2667ff0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "400": {
+        "value": [
+          {
+            "color": "#2667ff1a",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "8",
+            "blur": "16",
+            "spread": "0"
+          },
+          {
+            "color": "#2667ff0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "500": {
+        "value": [
+          {
+            "color": "#2667ff17",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "16",
+            "blur": "24",
+            "spread": "0"
+          },
+          {
+            "color": "#2667ff0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      },
+      "600": {
+        "value": [
+          {
+            "color": "#2667ff14",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "24",
+            "blur": "40",
+            "spread": "0"
+          },
+          {
+            "color": "#2667ff0d",
+            "type": "dropShadow",
+            "x": "0",
+            "y": "0",
+            "blur": "1",
+            "spread": "0"
+          }
+        ],
+        "type": "boxShadow"
+      }
+    },
+    "none": {
+      "value": {
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "0",
+        "color": "rgba(0,0,0,0)",
+        "type": "innerShadow"
+      },
+      "type": "boxShadow"
+    }
+  },
+  "border-radius": {
+    "25": {
+      "value": "{border-radius.base} * .5",
+      "type": "borderRadius"
+    },
+    "50": {
+      "value": "{border-radius.base} * .75",
+      "type": "borderRadius"
+    },
+    "75": {
+      "value": "{border-radius.base} * 1",
+      "type": "borderRadius"
+    },
+    "100": {
+      "value": "{border-radius.base} * 1.25",
+      "type": "borderRadius"
+    },
+    "150": {
+      "value": "{border-radius.base} * 1.5",
+      "type": "borderRadius"
+    },
+    "200": {
+      "value": "{border-radius.base} * 2",
+      "type": "borderRadius"
+    },
+    "250": {
+      "value": "{border-radius.base} * 2.50",
+      "type": "borderRadius"
+    },
+    "300": {
+      "value": "{border-radius.base} * 3",
+      "type": "borderRadius"
+    },
+    "400": {
+      "value": "{border-radius.base} * 4",
+      "type": "borderRadius"
+    },
+    "500": {
+      "value": "{border-radius.base} * 5",
+      "type": "borderRadius"
+    },
+    "600": {
+      "value": "{border-radius.base} * 6",
+      "type": "borderRadius"
+    },
+    "800": {
+      "value": "{border-radius.base} * 8",
+      "type": "borderRadius"
+    },
+    "00": {
+      "value": "0",
+      "type": "borderRadius"
+    },
+    "round": {
+      "value": "999rem",
+      "type": "borderRadius"
+    },
+    "base": {
+      "value": "0.5rem",
+      "type": "borderRadius"
+    }
+  },
+  "ds": {
+    "icon": {
+      "close": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53829&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "more": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53833&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "less": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53834&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "chevron_down": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53831&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "chevron_up": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53830&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "chevron_right": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53832&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "chevron_left": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1312-73805&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "arrow_back": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53827&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "arrow_go_to": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53828&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "arrow_upward_alt": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3284-164721&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "arrow_downward_alt": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3284-164722&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "swap": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3372-247618&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "download": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3021-160691&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "upload": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3021-160715&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "open_in_new": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3188-46248&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "eye": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3233-460990&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "options": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53835&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "filters": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=2248-47018&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "search": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53837&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "favourite_off": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53858&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "favourite_on": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53859&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "share": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=2079-74315&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "delete": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53861&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "edit": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1449-116493&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "save": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53863&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "profile": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53864&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "shopping_cart_default": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53866&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "shopping_cart_add": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53865&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "copy": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53867&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "location": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=2110-79950&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "help_default": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53862&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "help_circle": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53872&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "help_circle_filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=2356-118728&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "warning_triangle": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53868&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "warning_triangle_filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=2357-118863&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "warning_circle": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53869&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "warning_circle_filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=2377-122536&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "success": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53870&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "success_filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=2377-122545&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "information": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53871&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "information_filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=2377-122553&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "error": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53873&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "error_filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=2377-122561&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "calendar": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53874&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "grid_4": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1348-91413&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "grid_6": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1348-91414&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "case": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53875&t=6oZk81oCX1mNLmhm-4",
+        "type": "asset"
+      },
+      "pack": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53877&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "bottle": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53994&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "barrel": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-53995&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "jar": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8423-33764&t=6oZk81oCX1mNLmhm-4",
+        "type": "asset"
+      },
+      "batch": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8423-33765&t=6oZk81oCX1mNLmhm-4",
+        "type": "asset"
+      },
+      "can": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8423-33766&t=6oZk81oCX1mNLmhm-4",
+        "type": "asset"
+      },
+      "pallet": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8421-29191&t=6oZk81oCX1mNLmhm-4",
+        "type": "asset"
+      },
+      "jug": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8423-33767&t=6oZk81oCX1mNLmhm-4",
+        "type": "asset"
+      },
+      "unit": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8421-29192&t=6oZk81oCX1mNLmhm-4",
+        "type": "asset"
+      },
+      "brick": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54112&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "tank": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54229&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "returnable": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54230&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "payment": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54232&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "catalogue": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54233&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "catalogue-filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8271-135691&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "home_outline": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54237&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "home_filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8271-125472&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "orders_outline": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54235&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "orders_filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8285-113990&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "discount": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54240&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "combo_default": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1838-124004&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "combo_weighted": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3013-132777&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "gift": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54242&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "percentage": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1478-120204&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "check": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1478-131317&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "allergens": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1617-201419&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "offer": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54239&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "offer-filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8271-136182&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "campaign": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3021-160706&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "local_shipping": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3021-160709&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "clock": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=4625-147294&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "order_online": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=4642-410291&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "gestor": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=5012-95675&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "coin_n": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=1187-54243&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "coin_default": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8359-21013&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "bill": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=3945-49282&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "invoice": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=6016-456004&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "placeholder": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=4795-69776&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "mis-datos": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=5012-95662&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "actualidad": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=5012-95667&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "mis-locales": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=5012-95663&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "graphics-profile": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=4870-414142&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "formacion": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=5012-95666&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "opinion": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=4870-414143&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "telephone": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=4870-414144&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "mail": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=4870-414145&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "logout": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=4903-140726&t=0Zd1mlPVJyZiU4TU-4",
+        "type": "asset"
+      },
+      "campaign_filled": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Componentes?node-id=8462-154815&t=fFpmYyU5r47RFDK6-4",
+        "type": "asset"
+      }
+    },
+    "illcon": {
+      "shop": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-44993&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "catalogue": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-44994&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "orders": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-44995&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "offer": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-44996&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "help": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-44997&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "cart": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45016&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "cart-move": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45011&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "cart-check": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45012&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "cart-info": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45013&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "processing-time": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45001&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "delivery-truck": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45002&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "truck": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45015&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "order-processing": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45003&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "order-ok": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45004&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "order-failed": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45005&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "order-delete": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45006&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "order-warning": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45007&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "coins": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45009&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "alert": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45014&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "barrel-alert": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45010&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "cart-empty": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-44998&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "promo-empty": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-44999&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "offer-empty": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9089-102028&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "favourite-empty": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9081-45000&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "shop-empty": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9089-102025&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "catalogue-empty": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9089-102026&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "order-empty": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9089-102027&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "help-empty": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9089-102029&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "invoice-empty": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9118-94464&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "shop-error": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9767-169952&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "catalogue-error": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9767-169953&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "offer-error": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9767-169954&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "order-error": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9767-169955&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "help-error": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9767-169956&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "cart-error": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9767-169957&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "truck-error": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9767-169958&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      },
+      "truck-success": {
+        "value": "https://www.figma.com/design/dSiEMiODqaLEHKhBepNOJ4/Nexho-DS---Components-v.1.0.0?node-id=9767-169959&t=5YcZKktoT95fy8Bf-4",
+        "type": "asset"
+      }
+    }
+  }
+}

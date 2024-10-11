@@ -1,84 +1,74 @@
 {
   "color": {
-    "fill": {
-      "spinner": {
+    "spinner": {
+      "fill": {
         "light": {
           "value": "$color.fg.subtle",
           "type": "color",
           "description": "$color.neutral.400"
         },
         "light-inverse": {
-          "value": "$color.fg.default-inverse",
+          "value": "$color.fg.inverse",
           "type": "color",
           "description": "$color.neutral.50"
         },
         "dark": {
-          "value": "$color.fg.default",
+          "value": "$color.fg.heavy",
           "type": "color",
-          "description": "$color.neutral.700"
+          "description": "$color.black"
         },
         "dark-inverse": {
-          "value": "$color.fg.default-inverse",
+          "value": "$color.fg.inverse",
           "type": "color",
           "description": "$color.neutral.50"
         },
         "primary": {
-          "value": "$color.fg.primary",
+          "value": "$color.primary.default",
           "type": "color",
-          "description": "$color.primary.300"
+          "description": "$color.red-nexho.400"
         },
         "primary-inverse": {
-          "value": "$color.fg.primary-inverse",
+          "value": "$color.primary.muted",
           "type": "color",
           "description": "$color.primary.100"
         },
-        "secondary": {
-          "value": "$color.fg.secondary",
-          "type": "color",
-          "description": "$color.secondary.300"
-        },
-        "secondary-inverse": {
-          "value": "$color.fg.secondary-inverse",
-          "type": "color",
-          "description": "$color.secondary.200"
-        },
         "error": {
-          "value": "$color.fg.status.error",
+          "value": "$color.error.heavy",
           "type": "color",
           "description": "$color.error.700"
         },
         "error-inverse": {
-          "value": "$color.fg.status.error-inverse",
+          "value": "$color.error.default",
           "type": "color",
           "description": "$color.error.400"
         },
         "warning": {
-          "value": "$color.fg.status.warning",
+          "value": "$color.warning.heavy",
           "type": "color",
           "description": "$color.warning.600"
         },
         "warning-inverse": {
-          "value": "$color.fg.status.warning-inverse",
+          "value": "$color.warning.default",
           "type": "color",
           "description": "$color.warning.500"
         },
         "success": {
-          "value": "$color.fg.status.success",
+          "value": "$color.success.heavy",
           "type": "color",
           "description": "$color.success.800"
         },
         "success-inverse": {
-          "value": "$color.fg.status.success-inverse",
+          "value": "$color.success.default",
           "type": "color",
           "description": "$color.success.400"
         },
         "info": {
-          "value": "$color.fg.status.info",
+          "value": "$color.info.heavy",
           "type": "color",
           "description": "$color.info.800"
         },
         "info-inverse": {
-          "value": "$color.fg.status.info-inverse",
+          "value": "$color.info.default",
           "type": "color",
           "description": "$color.info.400"
         }

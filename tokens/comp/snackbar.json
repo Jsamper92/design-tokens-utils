@@ -1,0 +1,68 @@
+{
+  "color": {
+    "snackbar": {
+      "fg": {
+        "default": {
+          "value": "$color.fg.heavy",
+          "type": "color"
+        }
+      },
+      "bg": {
+        "error": {
+          "value": "$color.error.default",
+          "type": "color"
+        },
+        "success": {
+          "value": "$color.success.default",
+          "type": "color"
+        },
+        "info": {
+          "value": "$color.info.default",
+          "type": "color"
+        },
+        "warning": {
+          "value": "$color.warning.default",
+          "type": "color"
+        }
+      }
+    }
+  },
+  "border-radius": {
+    "snackbar": {
+      "value": "$border-radius.none",
+      "type": "borderRadius"
+    }
+  },
+  "border-width": {
+    "snackbar-left": {
+      "value": "$border-width.md",
+      "type": "borderWidth"
+    },
+    "snackbar": {
+      "value": "$border-width.none",
+      "type": "borderWidth"
+    }
+  },
+  "border-style": {
+    "snackbar": {
+      "value": "$border-style.solid",
+      "type": "border"
+    }
+  },
+  "spacing": {
+    "snackbar": {
+      "padding": {
+        "value": "$spacing.around.md",
+        "type": "spacing"
+      },
+      "padding-y": {
+        "value": "$spacing.around.xl",
+        "type": "spacing"
+      },
+      "col-gap": {
+        "value": "$spacing.05",
+        "type": "spacing"
+      }
+    }
+  }
+}

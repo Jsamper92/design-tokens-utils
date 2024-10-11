@@ -1,16 +1,14 @@
 {
   "color": {
-    "bg": {
-      "chip": {
+    "chip": {
+      "bg": {
         "default": {
-          "value": "$color.bg.surface-100",
+          "value": "$color.bg.surface.100",
           "type": "color",
           "description": "$color.neutral.100"
         }
-      }
-    },
-    "border": {
-      "chip": {
+      },
+      "border": {
         "default": {
           "value": "$color.border.subtle",
           "type": "color",
