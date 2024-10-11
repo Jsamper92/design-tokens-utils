@@ -1,4 +1,3 @@
-const { get } = require("http");
 
 const [
   fs,
@@ -36,7 +35,7 @@ const { tokens } = config();
 /**
  * This function is used to build tokens platforms by styledictionary
  */
-const styleDictionary = (modes, brands) => {
+const styleDictionary = async (modes, brands) => {
   StyleDictionary.registerTransform({
     name: "size/px",
     type: "value",
@@ -53,32 +52,32 @@ const styleDictionary = (modes, brands) => {
 
   StyleDictionary.registerFormat({
     name: "custom/variables",
-    formatter: customVariablesCommon,
+    format: customVariablesCommon,
   });
 
   StyleDictionary.registerFormat({
     name: "custom/variables-colors",
-    formatter: customVariablesColors,
+    format: customVariablesColors,
   });
 
   StyleDictionary.registerFormat({
     name: "custom/spacing",
-    formatter: customVariablesCommon,
+    format: customVariablesCommon,
   });
 
   StyleDictionary.registerFormat({
     name: "custom/font-face",
-    formatter: (dictionary) => customFontFace(dictionary, brands),
+    format: async dictionary => customFontFace(dictionary, brands),
   });
 
   StyleDictionary.registerFormat({
     name: "custom/grid",
-    formatter: customGrid,
+    format: customGrid,
   });
 
   StyleDictionary.registerFormat({
     name: "custom/mediaqueries",
-    formatter: customMediaQueries,
+    format: customMediaQueries,
   });
 
   const uniqueMode = [...new Set(modes.map((item) => item.mode))];
@@ -87,12 +86,12 @@ const styleDictionary = (modes, brands) => {
     .forEach((mode) => {
       StyleDictionary.registerFormat({
         name: `custom/mode-${mode}`,
-        formatter: (dictionary) => customMode(dictionary, mode),
+        format: async dictionary => customMode(dictionary, mode),
       });
     });
 
-  modes.forEach((brandMode) => {
-    StyleDictionary.extend({
+  modes.forEach(async brandMode => {
+    await StyleDictionary.extend({
       source: [
         route.resolve(
           __dirname,
