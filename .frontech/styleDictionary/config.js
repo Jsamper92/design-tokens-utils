@@ -54,12 +54,14 @@ const settings = [
     filter: ({ attributes }) => attributes.category.includes("border"),
     ...configSTD,
   },
-/*   {
+  {
     destination: "settings/_shadow.scss",
-    format: "shadow/css/shorthand",
-    filter: ({ attributes }) => attributes.category.includes("shadow"),
+    format: "custom/boxShadow",
+    filter: {
+      type: "boxShadow",
+    },
     ...configSTD,
-  } */
+  }
 ];
 
 const coreScss = {
@@ -118,7 +120,7 @@ const customModeScss = (brand, mode, isTheme = false) => ({
             `/${isTheme ? "core" : brand}-${mode}-tokens-parsed.json`
           ),
         ...configSTD,
-      },
+      }
     ],
   },
 });

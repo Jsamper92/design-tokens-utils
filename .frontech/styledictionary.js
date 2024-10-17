@@ -22,12 +22,13 @@ const { coreTokensConfig, customTokensConfig, modeTokensConfig } = stdConfig;
 const { buildCore } = partials;
 const { sizePx } = transform;
 const {
-  customVariablesCommon,
-  customVariablesColors,
-  customFontFace,
   customGrid,
-  customMediaQueries,
   customMode,
+  customFontFace,
+  customBoxShadow,
+  customMediaQueries,
+  customVariablesColors,
+  customVariablesCommon,
 } = format;
 const { config } = utils;
 const { tokens } = config();
@@ -35,7 +36,7 @@ const { tokens } = config();
 /**
  * This function is used to build tokens platforms by styledictionary
  */
-const styleDictionary = async (modes, brands) => {
+const styleDictionary = (modes, brands) => {
   StyleDictionary.registerTransform({
     name: "size/px",
     type: "value",
@@ -52,32 +53,37 @@ const styleDictionary = async (modes, brands) => {
 
   StyleDictionary.registerFormat({
     name: "custom/variables",
-    format: customVariablesCommon,
+    formatter: customVariablesCommon,
   });
 
   StyleDictionary.registerFormat({
     name: "custom/variables-colors",
-    format: customVariablesColors,
+    formatter: customVariablesColors,
   });
 
   StyleDictionary.registerFormat({
     name: "custom/spacing",
-    format: customVariablesCommon,
+    formatter: customVariablesCommon,
   });
 
   StyleDictionary.registerFormat({
     name: "custom/font-face",
-    format: async dictionary => customFontFace(dictionary, brands),
+    formatter: dictionary => customFontFace(dictionary, brands),
   });
 
   StyleDictionary.registerFormat({
     name: "custom/grid",
-    format: customGrid,
+    formatter: customGrid,
   });
 
   StyleDictionary.registerFormat({
     name: "custom/mediaqueries",
-    format: customMediaQueries,
+    formatter: customMediaQueries,
+  });
+
+  StyleDictionary.registerFormat({
+    name: "custom/boxShadow",
+    formatter: dictionary => customBoxShadow(dictionary),
   });
 
   const uniqueMode = [...new Set(modes.map((item) => item.mode))];
@@ -86,12 +92,12 @@ const styleDictionary = async (modes, brands) => {
     .forEach((mode) => {
       StyleDictionary.registerFormat({
         name: `custom/mode-${mode}`,
-        format: async dictionary => customMode(dictionary, mode),
+        formatter: dictionary => customMode(dictionary, mode),
       });
     });
 
-  modes.forEach(async brandMode => {
-    await StyleDictionary.extend({
+  modes.forEach(brandMode => {
+    StyleDictionary.extend({
       source: [
         route.resolve(
           __dirname,

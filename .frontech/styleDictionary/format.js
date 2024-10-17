@@ -1,4 +1,4 @@
-const { dataFilesScss } = require("../utils");
+
 
 const [fs, route, utils] = [
   require("fs"),
@@ -6,11 +6,13 @@ const [fs, route, utils] = [
   require("../utils"),
 ];
 const {
-  createCustomProperties,
-  setCreationTimeFile,
-  RGBAToHex,
-  translateReferenceToCustomProperty,
   config,
+  RGBAToHex,
+  dataFilesScss,
+  createCustomPropertiesBoxShadow,
+  setCreationTimeFile,
+  createCustomProperties,
+  translateReferenceToCustomProperty,
 } = utils;
 
 /**
@@ -101,7 +103,7 @@ const customFontFace = ({ dictionary: { allTokens } }) => {
           files
             .map((file) =>
               file.replace(/\.[^/.]+$/, "").toLocaleLowerCase() ===
-              name.toLocaleLowerCase()
+                name.toLocaleLowerCase()
                 ? file
                 : null
             )
@@ -129,26 +131,23 @@ const customFontFace = ({ dictionary: { allTokens } }) => {
         return (acc += `url('#{variables.$font-path}/${_families[index]}/${value}') format('${_formats[_extension]}'),\n`);
       }, "");
 
-      return (acc += `\n\n@font-face {\nfont-family: '${
-        _name.split("-")[0]
-      }';\nfont-weight: ${value};\nsrc: ${extensions}}\n`);
+      return (acc += `\n\n@font-face {\nfont-family: '${_name.split("-")[0]
+        }';\nfont-weight: ${value};\nsrc: ${extensions}}\n`);
     }, "");
 
     return fontFace;
   }, "");
   const _paths = isNotExistFontlocal.reduce(
     (acc, value, index) =>
-      (acc += `${path}/fonts/${value}${
-        isNotExistFontlocal.length > 1 &&
-        index !== isNotExistFontlocal.length - 1
-          ? ", "
-          : ""
+    (acc += `${path}/fonts/${value}${isNotExistFontlocal.length > 1 &&
+      index !== isNotExistFontlocal.length - 1
+      ? ", "
+      : ""
       }`),
     ""
   );
-  const content = `@use '../variables';\n${
-    dataFilesScss({ file: _paths }).fonts
-  }\n${_tokens}`;
+  const content = `@use '../variables';\n${dataFilesScss({ file: _paths }).fonts
+    }\n${_tokens}`;
   return `${setCreationTimeFile()}${content}`;
 };
 
@@ -243,23 +242,40 @@ const customMode = ({ dictionary: { allTokens, usesReference } }, mode) => {
     }, "");
 
   const _otherTokens = createCustomProperties(
-    allTokens.filter(({ type }) => type !== "color")
+    allTokens.filter(({ type }) => !["color", "boxShadow"].includes(type))
   );
 
-  const _tokens = _tokensColor + _otherTokens;
+  const boxShadows = createCustomPropertiesBoxShadow(allTokens);
 
-  if (mode === "light") {
-    return `${setCreationTimeFile()}:root{\n${_tokens}}`;
+  const _tokens = _tokensColor + _otherTokens + boxShadows;
+
+
+
+  if(mode){
+    return `${setCreationTimeFile()}:root{\nbody.${mode}{\n${_tokens}}}`;
   }
 
-  return `${setCreationTimeFile()}:root{\nbody.${mode}{\n${_tokens}}}`;
+
+  return `${setCreationTimeFile()}:root{\n${_tokens}}`;
+
+};
+
+
+
+const customBoxShadow = ({ dictionary: { allTokens } }) => {
+
+  const _tokens = createCustomPropertiesBoxShadow(allTokens);
+
+
+  return `${setCreationTimeFile()}:root{\n${_tokens}}`;
 };
 
 module.exports = {
+  customMode,
   customGrid,
   customFontFace,
+  customBoxShadow,
   customMediaQueries,
   customVariablesCommon,
   customVariablesColors,
-  customMode,
 };

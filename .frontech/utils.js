@@ -8,15 +8,15 @@ const [
   shelljs,
   SVGFixer,
 ] = [
-  require("fs"),
-  require("path"),
-  require("colors"),
-  require("./tokens"),
-  require("svg-spreact"),
-  require("figma-icons-tokens"),
-  require("shelljs"),
-  require("oslllo-svg-fixer"),
-];
+    require("fs"),
+    require("path"),
+    require("colors"),
+    require("./tokens"),
+    require("svg-spreact"),
+    require("figma-icons-tokens"),
+    require("shelljs"),
+    require("oslllo-svg-fixer"),
+  ];
 
 const { tokensResolved } = translateTokens;
 const { figmaIconsTokens } = figma;
@@ -150,8 +150,7 @@ const generateSvgSprites = (icons, path, brand) => {
           if (files) {
             messages.print("icon sprit svg process started");
             messages.success(
-              `✔︎ file ${path}/images/sprites/${
-                theme ? theme : brand
+              `✔︎ file ${path}/images/sprites/${theme ? theme : brand
               }/sprites.svg successfully created`
             );
             messages.print("icon sprit svg process finished");
@@ -370,6 +369,7 @@ const getIcons = async (data, tokenSetOrder, path, brand) => {
   return new Promise(async (resolve) => {
     messages.print("process import icons tokens started");
 
+    
     const response = await figmaIconsTokens({
       tokenSetOrder,
       path: route.resolve(path, `images/icons/${brandName}`),
@@ -443,9 +443,9 @@ const translateReferenceToCustomProperty = (token) => {
       .split(".")
       .reduce(
         (acc, cur) =>
-          (acc += /^[$]/.test(cur)
-            ? cur.replace("$", "--")
-            : /^\{/.test(cur)
+        (acc += /^[$]/.test(cur)
+          ? cur.replace("$", "--")
+          : /^\{/.test(cur)
             ? cur.replace("{", "--")
             : `-${cur.replace("}", "")}`),
         ""
@@ -472,6 +472,50 @@ const translateReferenceToCustomProperty = (token) => {
   }
 
   return varCSS ?? token;
+};
+
+
+/**
+ * Creates a CSS box-shadow attribute string from a shadow object.
+ *
+ * @param {Object} shadow - The shadow object.
+ * @param {number} shadow.x - The horizontal offset of the shadow.
+ * @param {number} shadow.y - The vertical offset of the shadow.
+ * @param {number} shadow.blur - The blur radius of the shadow.
+ * @param {number} shadow.spread - The spread radius of the shadow.
+ * @param {string} shadow.color - The color of the shadow.
+ * @returns {string} The CSS box-shadow attribute string.
+ */
+const createBoxShadow = (shadow) => {
+  const { x, y, blur, spread, color } = shadow;
+  return `${x}px ${y}px ${blur}px ${spread}px ${translateReferenceToCustomProperty(color)}`;
+}
+
+const createCustomPropertiesBoxShadow = (tokens) => {
+  const _tokens = tokens
+    .filter(({ type }) => {
+      return type === "boxShadow"
+    })
+    .map((item) => {
+      const { original } = item;
+      const { value, type, description } = original;
+      return {
+        ...item,
+        original: { value, type, description },
+      };
+    })
+    .reduce((tokens, prop) => {
+      const { name, value } = prop;
+
+      const token = Array.isArray(value)
+        ? value.reduce((acc, cur, i) => `${acc} ${value.length - 1 === i
+          ? createBoxShadow(cur)
+          : `${createBoxShadow(cur)},`}`, "")
+        : createBoxShadow(value);
+      return (tokens += `--${name}: ${token};\n`);
+    }, "");
+
+  return _tokens;
 };
 
 /**
@@ -526,11 +570,13 @@ module.exports = {
   getKeyIcons,
   dataFilesScss,
   generateUtils,
+  createBoxShadow,
   generateIconFont,
   generateSvgSprites,
   setCreationTimeFile,
   isReferenceTokenStudio,
   createCustomProperties,
   managementDataFileScss,
+  createCustomPropertiesBoxShadow,
   translateReferenceToCustomProperty,
 };

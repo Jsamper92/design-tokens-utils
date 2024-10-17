@@ -50,7 +50,10 @@ const createTokens = async (
       const icons = await Promise.all(
         _icons.map(async (_icon) => {
           const [brand, value] = Object.entries(_icon)[0];
-          return await getIcons(value.icons, tokenSetOrder, path, brand);
+
+          const response = await getIcons(value.icons, tokenSetOrder, path, brand);
+
+          return response;
         })
       );
       _iconsFonts = await Promise.all(
@@ -215,12 +218,14 @@ const buildIconFont = async (
       }));
     }
 
-    const allIcons = icons.concat(coreIcons).filter(item => !item.name.includes('.DS_Store')).reduce((acc, curr) => {
-      if (!acc.find((item) => item.name === curr.name)) {
-        acc.push(curr);
-      }
-      return acc;
-    }, []);
+    const allIcons = icons.concat(coreIcons)
+      .filter(item => !item.name.includes('.DS_Store'))
+      .reduce((acc, curr) => {
+        if (!acc.find((item) => item.name === curr.name)) {
+          acc.push(curr);
+        }
+        return acc;
+      }, []);
 
     if (allIcons.length > 0) {
       if (!disableUtils) await generateUtils({ icons: allIcons, path, brand });
