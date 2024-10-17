@@ -121,14 +121,28 @@ const styleDictionary = (modes, brands) => {
  * This functions include to styleDictionary the *-base-tokens-parsed.json for dark/light mode
  * @param {Object} brandMode
  */
-const getIncludes = () => [
-  route.resolve(
-    __dirname,
-    "..",
-    "tokens",
-    `core.json`
-  )
-];
+const getIncludes = () => {
+  const { tokens } = config();
+  const isMultiFile = fs.statSync(route.resolve(process.cwd(), tokens)).isDirectory();
+
+  return isMultiFile
+    ? fs.readdirSync(route.resolve(process.cwd(), tokens))
+      .filter(file => file.includes(".json") && !file.includes("$"))
+      .map(file => route.resolve(process.cwd(), tokens, file))
+    : fs.readdirSync(route.resolve(
+      __dirname,
+      "..",
+      "build",
+      "tokens"
+    ))
+      .filter(file => file.includes(".json") && !file.includes("$"))
+      .map(file => route.resolve(
+        __dirname,
+        "..",
+        "build",
+        "tokens",
+        file));
+}
 
 /**
  * This function is used to return style dictionary configuration by brand
