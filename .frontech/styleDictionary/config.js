@@ -87,14 +87,14 @@ const coreScss = {
         },
         ...configSTD,
       },
-      {
+/*       {
         destination: "tools/_functions.scss",
         format: "custom/mediaqueries",
         filter: {
           type: "sizing",
         },
         ...configSTD,
-      },
+      }, */
     ],
   },
 };
