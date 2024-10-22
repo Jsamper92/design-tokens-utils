@@ -10,6 +10,7 @@ const [fs, utils, styleDictionary, route] = [
 const {
   config,
   messages,
+  keysDevices,
   generateIconFont,
   generateSvgSprites,
   generateUtils,
@@ -158,7 +159,9 @@ const getTokensBrand = (data) => {
  */
 const getBrandsWithMode = (tokensBrand) =>
   Object.keys(tokensBrand).flatMap((brand) =>
-    Object.keys(tokensBrand[brand]).map((mode) => ({ brand, mode }))
+    Object.keys(tokensBrand[brand]).map((mode) =>
+      ({ brand, mode, device: keysDevices.includes(brand) ? brand : null })
+    )
   );
 
 /**

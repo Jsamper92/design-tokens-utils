@@ -17,64 +17,73 @@ const configSTD = {
 
 const matchSourceToken = (brand, mode, filePath) => filePath.includes(brand) && filePath.includes(mode);
 
-const settings = (brand, mode) => ([
-  {
-    destination: "settings/_color.scss",
-    format: "custom/variables-colors",
-    filter: ({ type, filePath }) => {
-      return matchSourceToken(brand, mode, filePath) && type === "color";
-    },
-    ...configSTD,
-  },
-  {
-    destination: "settings/_typography.scss",
-    format: "custom/variables",
-    filter: ({ attributes, type, filePath }) =>
-      matchSourceToken(brand, mode, filePath) &&
-      ["fontFamilies", "fontWeights"].includes(type) ||
-      attributes.category === "font",
-    ...configSTD,
-  },
-  {
-    destination: "settings/_opacity.scss",
-    format: "css/variables",
-    filter: ({ type, filePath }) => {
-      return matchSourceToken(brand, mode, filePath) && type === "opacity";
-    },
-    ...configSTD,
-  },
-  {
-    destination: "settings/_spacing.scss",
-    format: "custom/spacing",
-    filter: ({ type, filePath }) => {
-      return matchSourceToken(brand, mode, filePath) && type === "spacing";
-    },
-    ...configSTD,
-  },
-  {
-    destination: "settings/_border.scss",
-    format: "custom/variables",
-    filter: ({ attributes, filePath }) => {
-      return matchSourceToken(brand, mode, filePath) && attributes.category.includes("border");
-    },
-    ...configSTD,
-  },
-  {
-    destination: "settings/_shadow.scss",
-    format: "custom/boxShadow",
-    filter: ({ type, filePath }) => {
-      return matchSourceToken(brand, mode, filePath) && type === "boxShadow";
-    },
-    ...configSTD,
-  }
-]);
+const settings = (brand, mode, device) => {
 
-const coreScss = (brand, mode) => ({
+  return [
+    {
+      device,
+      destination: "settings/_color.scss",
+      format: "custom/variables-colors",
+      filter: ({ type, filePath }) => {
+        return matchSourceToken(brand, mode, filePath) && type === "color";
+      },
+      ...configSTD,
+    },
+    {
+      device,
+      destination: "settings/_typography.scss",
+      format: "custom/variables",
+      filter: ({ attributes, type, filePath }) =>
+        matchSourceToken(brand, mode, filePath) &&
+        ["fontFamilies", "fontWeights"].includes(type) ||
+        attributes.category === "font",
+      ...configSTD,
+    },
+    {
+      device,
+      destination: "settings/_opacity.scss",
+      format: "css/variables",
+      filter: ({ type, filePath }) => {
+        return matchSourceToken(brand, mode, filePath) && type === "opacity";
+      },
+      ...configSTD,
+    },
+    {
+      device,
+      destination: "settings/_spacing.scss",
+      format: "custom/spacing",
+      filter: ({ type, filePath }) => {
+        return matchSourceToken(brand, mode, filePath) && type === "spacing";
+      },
+      ...configSTD,
+    },
+    {
+      device,
+      destination: "settings/_border.scss",
+      format: "custom/variables",
+      filter: ({ attributes, filePath }) => {
+        return matchSourceToken(brand, mode, filePath) && attributes.category.includes("border");
+      },
+      ...configSTD,
+    },
+    {
+      device,
+      destination: "settings/_shadow.scss",
+      format: "custom/boxShadow",
+      filter: ({ type, filePath }) => {
+        return matchSourceToken(brand, mode, filePath) && type === "boxShadow";
+      },
+      ...configSTD,
+    }
+  ]
+};
+
+const coreScss = (brand, mode, device) => ({
   scss: {
     transformGroup: "scss",
     buildPath: `${buildPath}/library/scss/core/`,
     files: [
-      ...settings(brand, mode),
+      ...settings(brand, mode, device),
       {
         destination: "utilities/_grid.scss",
         format: "custom/grid",
@@ -95,11 +104,11 @@ const coreScss = (brand, mode) => ({
   },
 });
 
-const customScss = (brand, mode) => ({
+const customScss = (brand, mode, device) => ({
   scss: {
     transformGroup: "scss",
     buildPath: `${buildPath}/library/scss/${brand}/`,
-    files: settings(brand, mode),
+    files: settings(brand, mode, device),
   },
 });
 

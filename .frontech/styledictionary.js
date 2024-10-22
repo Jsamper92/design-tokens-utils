@@ -53,7 +53,9 @@ const styleDictionary = (modes, brands) => {
 
   StyleDictionary.registerFormat({
     name: "custom/variables",
-    formatter: customVariablesCommon,
+    formatter: (dictionary) => {
+      return customVariablesCommon(dictionary, brands)
+    }
   });
 
   StyleDictionary.registerFormat({
@@ -151,13 +153,13 @@ const setTokensConfig = (brandMode) => {
   if (!theme) {
     return brandMode.mode === "base"
       ? brandMode.brand === "core"
-        ? coreTokensConfig(brandMode.brand, brandMode.mode)
-        : customTokensConfig(brandMode.brand, brandMode.mode)
+        ? coreTokensConfig(brandMode.brand, brandMode.mode, brandMode.device)
+        : customTokensConfig(brandMode.brand, brandMode.mode, brandMode.device)
       : modeTokensConfig(brandMode.brand, brandMode.mode, theme);
   }
 
   return brandMode.mode === "base"
-    ? customTokensConfig(brandMode.brand, brandMode.mode)
+    ? customTokensConfig(brandMode.brand, brandMode.mode, brandMode.device)
     : modeTokensConfig(brandMode.brand, brandMode.mode, true);
 };
 

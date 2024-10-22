@@ -604,11 +604,14 @@ const createCustomProperties = (tokens) => {
   }, "");
 };
 
+const keysDevices = ["mobile", "desktop"];
+
 module.exports = {
   config,
   getIcons,
   messages,
   createFile,
+  keysDevices,
   buildTokens,
   getKeyIcons,
   dataFilesScss,

@@ -15,14 +15,29 @@ const {
   translateReferenceToCustomProperty,
 } = utils;
 
+
+/**
+ * Generates a string containing CSS tokens for a specified device.
+ *
+ * @param {keysDevices} device - The device type to target (e.g., 'mobile', 'desktop'). Interface keysDevices in utils file.
+ * @param {string} tokens - The CSS tokens to be included in the output.
+ * @returns {string} A string containing the CSS tokens, wrapped in a :root selector and optionally scoped to a specific device.
+ */
+const setContentTokens = (device, tokens) => {
+  if (device) {
+    return `${setCreationTimeFile()}:root{\nbody[data-device="${device}"]{\n${tokens}}}`
+  }
+  return `${setCreationTimeFile()}:root{\n${tokens}}`;
+};
 /**
  * This function is used to translate tokens in create custom properties css
  * @param {{dictionary: {allTokens: {[key:string]: string}}}} param0
  * @returns {string}
  */
-const customVariablesCommon = ({ dictionary: { allTokens } }) => {
+const customVariablesCommon = ({ dictionary: { allTokens }, file: { device } }) => {
   const _tokens = createCustomProperties(allTokens);
-  return `${setCreationTimeFile()}:root{\n${_tokens}}`;
+
+  return setContentTokens(device, _tokens);
 };
 
 /**
@@ -31,7 +46,7 @@ const customVariablesCommon = ({ dictionary: { allTokens } }) => {
  * @returns {string}
  */
 const customVariablesColors = ({
-  dictionary: { allTokens, usesReference },
+  dictionary: { allTokens, usesReference }, file: { device }
 }) => {
   const _tokens = allTokens
     .map((item) => {
@@ -56,7 +71,7 @@ const customVariablesColors = ({
       return (tokens += `--${name}: ${getValueToken()};\n`);
     }, "");
 
-  return `${setCreationTimeFile()}:root{\n${_tokens}}`;
+  return setContentTokens(device, _tokens);
 };
 
 /**
@@ -251,23 +266,20 @@ const customMode = ({ dictionary: { allTokens, usesReference } }, mode) => {
 
 
 
-  if(mode){
+  if (mode) {
     return `${setCreationTimeFile()}:root{\nbody.${mode}{\n${_tokens}}}`;
   }
 
-
   return `${setCreationTimeFile()}:root{\n${_tokens}}`;
-
 };
 
 
 
-const customBoxShadow = ({ dictionary: { allTokens } }) => {
+const customBoxShadow = ({ dictionary: { allTokens }, file: { device } }) => {
 
   const _tokens = createCustomPropertiesBoxShadow(allTokens);
 
-
-  return `${setCreationTimeFile()}:root{\n${_tokens}}`;
+  return setContentTokens(device, _tokens);
 };
 
 module.exports = {
