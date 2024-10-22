@@ -75,7 +75,7 @@ const customFontFace = ({ dictionary: { allTokens } }) => {
 
   const _families = allTokens
     .filter(({ type }) => type === "fontFamilies")
-    .map(({ value }) => value.split(",")[0]);
+    .map(({ value }) => value.split(",")[0].replace(/\s+/g, ''));
 
   const _weights = allTokens
     .filter(({ type }) => type === "fontWeights")

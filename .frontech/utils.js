@@ -164,6 +164,45 @@ const generateSvgSprites = (icons, path, brand) => {
   });
 };
 
+const buildThemeUtils = ({ modes }) => {
+  const themes = modes
+    .reduce((acc, { brand, mode }) => {
+      if (!acc[brand]) {
+        acc[brand] = [];
+      }
+      if (!['base'].includes(mode)) acc[brand].push(mode);
+
+      return acc;
+    }, {});
+  return Object
+    .entries(themes)
+    .filter(([_, modes]) => modes.length > 0)
+    .reduce((acc, [brand, modes]) => ({ ...acc, [brand]: {themes: modes} }), {})
+};
+
+const generateThemeUtils = async ({ path, modes }) => {
+  return new Promise(async (resolve) => {
+    const output = route.resolve(
+      process.cwd(),
+      path,
+      `library/json`
+    );
+
+    if (modes) {
+      messages.print("process transformation themes utils started");
+      const files = await createFile(`${path}/library/json/themes/`, 'themes.json', JSON.stringify(modes), true);
+      if (files) {
+        messages.success(`✔︎ ${route.resolve(output, "themes.json")}`);
+        messages.print("process transformation themes utils finished");
+        resolve(true);
+      }
+    } else {
+      resolve(true);
+    }
+
+  });
+};
+
 const generateJSONUtils = ({ icons, path, brand }) => {
   const { theme } = config();
   return new Promise(async (resolve) => {
@@ -188,11 +227,15 @@ const generateJSONUtils = ({ icons, path, brand }) => {
 
 const generateUtils = async ({ icons, path, brand }) => {
   return new Promise(async (resolve) => {
-    const promises = [generateJSONUtils({ path, icons, brand })];
+    const promises = [
+      generateJSONUtils({ path, icons, brand }),
+    ];
     const utils = await (
       await Promise.allSettled(promises)
     ).filter(({ status }) => status === "fulfilled");
-    if (utils) resolve(true);
+    if (utils) {
+      resolve(true);
+    }
   });
 };
 
@@ -369,7 +412,7 @@ const getIcons = async (data, tokenSetOrder, path, brand) => {
   return new Promise(async (resolve) => {
     messages.print("process import icons tokens started");
 
-    
+
     const response = await figmaIconsTokens({
       tokenSetOrder,
       path: route.resolve(path, `images/icons/${brandName}`),
@@ -571,8 +614,10 @@ module.exports = {
   dataFilesScss,
   generateUtils,
   createBoxShadow,
+  buildThemeUtils,
   generateIconFont,
   generateSvgSprites,
+  generateThemeUtils,
   setCreationTimeFile,
   isReferenceTokenStudio,
   createCustomProperties,

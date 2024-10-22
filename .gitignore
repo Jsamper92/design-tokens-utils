@@ -8,7 +8,7 @@ dist/
 .idea
 .env
 
-assets/
 build/
 .frontech.json
 config.json
+/assets

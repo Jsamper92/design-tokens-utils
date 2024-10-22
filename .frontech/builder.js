@@ -1,3 +1,5 @@
+
+
 const [fs, utils, styleDictionary, route] = [
   require("fs-extra"),
   require("./utils"),
@@ -5,14 +7,17 @@ const [fs, utils, styleDictionary, route] = [
   require("path"),
 ];
 
-const { messages } = utils;
 const {
+  config,
+  messages,
   generateIconFont,
   generateSvgSprites,
   generateUtils,
   getIcons,
   buildTokens,
   getKeyIcons,
+  buildThemeUtils,
+  generateThemeUtils
 } = utils;
 const { buildStyleDictionary } = styleDictionary;
 
@@ -44,6 +49,7 @@ const createTokens = async (
       messages.success(`${utils.config().theme || bm.brand} - ${bm.mode}`);
     });
 
+    const themes = buildThemeUtils({ modes });
     let _iconsFonts;
 
     if (_icons.length > 0 && !disableIconsFigma) {
@@ -65,7 +71,7 @@ const createTokens = async (
               disableIconFont,
               disableIconSprites,
               disableUtils,
-              brand
+              brand,
             );
           }
         })
@@ -83,6 +89,8 @@ const createTokens = async (
         })
       );
     }
+
+    await generateThemeUtils({ path: config().path, modes: themes });
 
     if (_tokens.length > 0 && _iconsFonts.length > 0) {
       buildStyleDictionary(path, brands, modes);
@@ -228,7 +236,9 @@ const buildIconFont = async (
       }, []);
 
     if (allIcons.length > 0) {
-      if (!disableUtils) await generateUtils({ icons: allIcons, path, brand });
+      if (!disableUtils) {
+        await generateUtils({ icons: allIcons, path, brand });
+      };
       if (!disableIconFont) {
         const iconFont = await generateIconFont(
           path,

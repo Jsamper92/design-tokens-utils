@@ -97,6 +97,8 @@ const styleDictionary = (modes, brands) => {
     });
 
   modes.forEach(brandMode => {
+
+    utils.messages.print(`Creating settings for ${brandMode.brand} ${brandMode.mode} mode`);
     StyleDictionary.extend({
       source: [
         route.resolve(
@@ -111,7 +113,7 @@ const styleDictionary = (modes, brands) => {
       include: getIncludes(),
       platforms: setTokensConfig(brandMode),
     }).buildAllPlatforms();
-
+    utils.messages.print(`Settings for ${brandMode.brand} ${brandMode.mode} mode created`);
   });
 
   utils.messages.print("Settings creation process finished");
@@ -154,14 +156,14 @@ const setTokensConfig = (brandMode) => {
   if (!theme) {
     return brandMode.mode === "base"
       ? brandMode.brand === "core"
-        ? coreTokensConfig
-        : customTokensConfig(brandMode.brand)
-      : modeTokensConfig(brandMode.brand, brandMode.mode);
+        ? coreTokensConfig(brandMode.brand, brandMode.mode)
+        : customTokensConfig(brandMode.brand, brandMode.mode)
+      : modeTokensConfig(brandMode.brand, brandMode.mode, theme);
   }
 
   return brandMode.mode === "base"
-    ? customTokensConfig(theme)
-    : modeTokensConfig(theme, brandMode.mode, true);
+    ? customTokensConfig(brandMode.brand, brandMode.mode)
+    : modeTokensConfig(brandMode.brand, brandMode.mode, true);
 };
 
 /**

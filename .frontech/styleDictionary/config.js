@@ -15,19 +15,22 @@ const configSTD = {
   },
 };
 
-const settings = [
+const matchSourceToken = (brand, mode, filePath) => filePath.includes(brand) && filePath.includes(mode);
+
+const settings = (brand, mode) => ([
   {
     destination: "settings/_color.scss",
     format: "custom/variables-colors",
-    filter: {
-      type: "color",
+    filter: ({ type, filePath }) => {
+      return matchSourceToken(brand, mode, filePath) && type === "color";
     },
     ...configSTD,
   },
   {
     destination: "settings/_typography.scss",
     format: "custom/variables",
-    filter: ({ attributes, type }) =>
+    filter: ({ attributes, type, filePath }) =>
+      matchSourceToken(brand, mode, filePath) &&
       ["fontFamilies", "fontWeights"].includes(type) ||
       attributes.category === "font",
     ...configSTD,
@@ -35,45 +38,48 @@ const settings = [
   {
     destination: "settings/_opacity.scss",
     format: "css/variables",
-    filter: {
-      type: "opacity",
+    filter: ({ type, filePath }) => {
+      return matchSourceToken(brand, mode, filePath) && type === "opacity";
     },
     ...configSTD,
   },
   {
     destination: "settings/_spacing.scss",
     format: "custom/spacing",
-    filter: {
-      type: "spacing",
+    filter: ({ type, filePath }) => {
+      return matchSourceToken(brand, mode, filePath) && type === "spacing";
     },
     ...configSTD,
   },
   {
     destination: "settings/_border.scss",
     format: "custom/variables",
-    filter: ({ attributes }) => attributes.category.includes("border"),
+    filter: ({ attributes, filePath }) => {
+      return matchSourceToken(brand, mode, filePath) && attributes.category.includes("border");
+    },
     ...configSTD,
   },
   {
     destination: "settings/_shadow.scss",
     format: "custom/boxShadow",
-    filter: {
-      type: "boxShadow",
+    filter: ({ type, filePath }) => {
+      return matchSourceToken(brand, mode, filePath) && type === "boxShadow";
     },
     ...configSTD,
   }
-];
+]);
 
-const coreScss = {
+const coreScss = (brand, mode) => ({
   scss: {
     transformGroup: "scss",
     buildPath: `${buildPath}/library/scss/core/`,
     files: [
-      ...settings,
+      ...settings(brand, mode),
       {
         destination: "base/_font-face.scss",
         format: "custom/font-face",
-        filter: ({ type }) =>
+        filter: ({ type, filePath }) =>
+          matchSourceToken(brand, mode, filePath) &&
           ["lineHeights", "fontWeights", "fontSizes", "fontFamilies"].includes(
             type
           ),
@@ -82,28 +88,28 @@ const coreScss = {
       {
         destination: "utilities/_grid.scss",
         format: "custom/grid",
-        filter: {
-          type: "sizing",
+        filter: ({ type, filePath }) => {
+          return matchSourceToken(brand, mode, filePath) && type === "grid";
         },
         ...configSTD,
       },
-/*       {
-        destination: "tools/_functions.scss",
-        format: "custom/mediaqueries",
-        filter: {
-          type: "sizing",
-        },
-        ...configSTD,
-      }, */
+      /*       {
+              destination: "tools/_functions.scss",
+              format: "custom/mediaqueries",
+              filter: {
+                type: "sizing",
+              },
+              ...configSTD,
+            }, */
     ],
   },
-};
+});
 
-const customScss = (brand) => ({
+const customScss = (brand, mode) => ({
   scss: {
     transformGroup: "scss",
     buildPath: `${buildPath}/library/scss/${brand}/`,
-    files: settings,
+    files: settings(brand, mode),
   },
 });
 
@@ -115,10 +121,11 @@ const customModeScss = (brand, mode, isTheme = false) => ({
       {
         destination: `settings/_mode-${mode}.scss`,
         format: `custom/mode-${mode}`,
-        filter: ({ filePath }) =>
-          filePath.endsWith(
+        filter: ({ filePath }) => {
+          return matchSourceToken(brand, mode, filePath) && filePath.endsWith(
             `/${isTheme ? "core" : brand}-${mode}-tokens-parsed.json`
-          ),
+          )
+        },
         ...configSTD,
       }
     ],
