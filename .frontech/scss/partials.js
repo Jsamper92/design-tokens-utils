@@ -91,8 +91,8 @@ const createBasePartials = (path) => {
     {
       origin: route.resolve(_root),
       name: "base.scss",
-      data: `@forward 'reset';\n${[..._nameBasePartials]
-        .filter((file) => !file.includes("_reset.scss"))
+      data: `@forward 'reset';\n@forward 'font-face';\n${[..._nameBasePartials]
+        .filter((file) => !file.includes("_reset.scss") || !file.includes("_font-face.scss"))
         .map((file) => file.replace("_", "").replace(".scss", ""))
         .reduce((acc, current) => (acc += `@forward '${current}';\n`), "")}`,
       force: false,
@@ -166,6 +166,12 @@ const createCoreFiles = (root, path) => {
     {
       root,
       force: false,
+      name: `_font-face.scss`,
+      path: route.resolve(root, `library/scss/core/base/`),
+    },
+    {
+      root,
+      force: false,
       name: `_functions.scss`,
       path: route.resolve(root, `library/scss/core/tools/`),
     },
@@ -188,9 +194,8 @@ const createCoreFiles = (root, path) => {
       path: route.resolve(root, `library/scss/core/elements/`),
     },
     {
-      data: `${dataFilesScss(config()).defaultVariables}${
-        dataFilesScss(config()).settingsGeneral
-      }\n`,
+      data: `${dataFilesScss(config()).defaultVariables}${dataFilesScss(config()).settingsGeneral
+        }\n`,
       root,
       force: false,
       name: `abstracts.scss`,
@@ -199,8 +204,9 @@ const createCoreFiles = (root, path) => {
   ];
 
   const files = getFiles(paths, "core", path);
+  createFiles(files, []);
   const partials = createImportDynamicPartials(path, "core");
-  createFiles(files, partials);
+  createFiles([], partials);
 };
 
 const createCustomFiles = (root, path, brands) => {
@@ -211,9 +217,8 @@ const createCustomFiles = (root, path, brands) => {
         iconsTemplate(root, "custom"),
         settingsGeneralTemplate(root, brand, "custom"),
         {
-          data: `${dataFilesScss(config()).defaultVariables}${
-            dataFilesScss(config(), brand).settingsGeneralByBrand
-          }\n`,
+          data: `${dataFilesScss(config()).defaultVariables}${dataFilesScss(config(), brand).settingsGeneralByBrand
+            }\n`,
           root,
           force: false,
           name: `abstracts.scss`,
@@ -231,9 +236,8 @@ const createThemeFiles = (root, path, theme) => {
     iconsTemplate(root, "custom"),
     settingsGeneralTemplate(root, theme, "custom"),
     {
-      data: `${dataFilesScss(config()).defaultVariables}${
-        dataFilesScss(config(), theme).settingsGeneralByTheme
-      }\n`,
+      data: `${dataFilesScss(config()).defaultVariables}${dataFilesScss(config(), theme).settingsGeneralByTheme
+        }\n`,
       root,
       force: false,
       name: `abstracts.scss`,
@@ -256,8 +260,8 @@ const settingsGeneralTemplate = (root, brand, folder = "core") => ({
   data: theme
     ? dataFilesScss(config()).themeVariables
     : brand === "core"
-    ? dataFilesScss(config()).defaultVariables
-    : dataFilesScss(config()).customVariables,
+      ? dataFilesScss(config()).defaultVariables
+      : dataFilesScss(config()).customVariables,
   root,
   force: false,
   name: `_variables.scss`,

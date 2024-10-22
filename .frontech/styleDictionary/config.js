@@ -76,16 +76,6 @@ const coreScss = (brand, mode) => ({
     files: [
       ...settings(brand, mode),
       {
-        destination: "base/_font-face.scss",
-        format: "custom/font-face",
-        filter: ({ type, filePath }) =>
-          matchSourceToken(brand, mode, filePath) &&
-          ["lineHeights", "fontWeights", "fontSizes", "fontFamilies"].includes(
-            type
-          ),
-        ...configSTD,
-      },
-      {
         destination: "utilities/_grid.scss",
         format: "custom/grid",
         filter: ({ type, filePath }) => {

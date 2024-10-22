@@ -67,11 +67,6 @@ const styleDictionary = (modes, brands) => {
   });
 
   StyleDictionary.registerFormat({
-    name: "custom/font-face",
-    formatter: dictionary => customFontFace(dictionary, brands),
-  });
-
-  StyleDictionary.registerFormat({
     name: "custom/grid",
     formatter: customGrid,
   });
