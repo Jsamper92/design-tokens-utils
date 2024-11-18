@@ -1,0 +1,74 @@
+{
+  "font": {
+    "table": {
+      "td": {
+        "sm": {
+          "value": {
+            "fontSize": "$font.table.td.size.sm",
+            "fontWeight": "Regular",
+            "lineHeight": "$font.table.td.line-height.sm",
+            "fontFamily": "$font.family.secondary",
+            "letterSpacing": "$font.letter-spacing.0",
+            "paragraphSpacing": "$font.paragraph-spacing.0",
+            "paragraphIndent": "$font.paragraph-indent.0",
+            "textDecoration": "$font.text-decoration.none",
+            "textCase": "$font.text-case.none"
+          },
+          "type": "typography"
+        },
+        "weight": {
+          "sm": {
+            "value": "$font.weight.regular",
+            "type": "fontWeights"
+          }
+        },
+        "line-height": {
+          "sm": {
+            "value": "$font.line-height.03",
+            "type": "lineHeights"
+          }
+        },
+        "size": {
+          "sm": {
+            "value": "$font.size.03",
+            "type": "fontSizes"
+          }
+        }
+      },
+      "th": {
+        "sm": {
+          "value": {
+            "fontSize": "$font.table.td.size.sm",
+            "fontWeight": "Medium",
+            "lineHeight": "$font.table.td.line-height.sm",
+            "fontFamily": "$font.family.primary",
+            "letterSpacing": "$font.letter-spacing.0",
+            "paragraphSpacing": "$font.paragraph-spacing.0",
+            "paragraphIndent": "$font.paragraph-indent.0",
+            "textDecoration": "$font.text-decoration.none",
+            "textCase": "$font.text-case.none"
+          },
+          "type": "typography"
+        },
+        "weight": {
+          "sm": {
+            "value": "$font.weight.medium",
+            "type": "fontWeights"
+          }
+        },
+        "line-height": {
+          "sm": {
+            "value": "$font.line-height.03",
+            "type": "lineHeights"
+          }
+        },
+        "size": {
+          "sm": {
+            "value": "$font.size.03",
+            "type": "fontSizes"
+          }
+        }
+      }
+    }
+  }
+}

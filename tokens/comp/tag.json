@@ -1,0 +1,384 @@
+{
+  "font": {
+    "tag": {
+      "size": {
+        "xs": {
+          "value": "$font.size.02",
+          "type": "fontSizes"
+        },
+        "sm": {
+          "value": "$font.size.03",
+          "type": "fontSizes"
+        }
+      },
+      "weight": {
+        "xs": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        },
+        "sm": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        }
+      },
+      "line-height": {
+        "xs": {
+          "value": "$font.line-height.02",
+          "type": "lineHeights"
+        },
+        "sm": {
+          "value": "$font.line-height.04",
+          "type": "lineHeights"
+        }
+      },
+      "xs": {
+        "value": {
+          "fontFamily": "$font.family.tag",
+          "fontWeight": "Medium",
+          "fontSize": "$font.tag.size.xs",
+          "lineHeight": "$font.tag.line-height.xs",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "textDecoration": "$font.text-decoration.none",
+          "paragraphIndent": "$font.paragraph-indent.0"
+        },
+        "type": "typography"
+      },
+      "sm": {
+        "value": {
+          "fontFamily": "$font.family.tag",
+          "fontWeight": "Medium",
+          "fontSize": "$font.tag.size.sm",
+          "lineHeight": "$font.tag.line-height.sm",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "textDecoration": "$font.text-decoration.none",
+          "paragraphIndent": "$font.paragraph-indent.0"
+        },
+        "type": "typography"
+      }
+    },
+    "family": {
+      "tag": {
+        "value": "$font.family.primary",
+        "type": "fontFamilies"
+      }
+    }
+  },
+  "color": {
+    "tag": {
+      "primary": {
+        "fg": {
+          "value": "$color.fg.inverse",
+          "type": "color"
+        },
+        "bg": {
+          "value": "$color.primary.emphasis",
+          "type": "color"
+        },
+        "border": {
+          "value": "$color.primary.emphasis",
+          "type": "color"
+        },
+        "tonal": {
+          "fg": {
+            "value": "$color.fg.accent.emphasis",
+            "type": "color"
+          },
+          "bg": {
+            "value": "$color.primary.muted",
+            "type": "color"
+          },
+          "border": {
+            "value": "$color.primary.muted",
+            "type": "color"
+          }
+        }
+      },
+      "success": {
+        "fg": {
+          "value": "{color.fg.default}",
+          "type": "color"
+        },
+        "bg": {
+          "value": "$color.success.default",
+          "type": "color"
+        },
+        "border": {
+          "value": "$color.success.default",
+          "type": "color"
+        },
+        "tonal": {
+          "fg": {
+            "value": "$color.success.heavy",
+            "type": "color"
+          },
+          "bg": {
+            "value": "$color.success.subtle",
+            "type": "color"
+          },
+          "border": {
+            "value": "$color.success.subtle",
+            "type": "color"
+          }
+        }
+      },
+      "error": {
+        "fg": {
+          "value": "{color.fg.default}",
+          "type": "color"
+        },
+        "bg": {
+          "value": "$color.error.default",
+          "type": "color"
+        },
+        "border": {
+          "value": "$color.error.default",
+          "type": "color"
+        },
+        "tonal": {
+          "fg": {
+            "value": "$color.error.heavy",
+            "type": "color"
+          },
+          "bg": {
+            "value": "$color.error.subtle",
+            "type": "color"
+          },
+          "border": {
+            "value": "$color.error.subtle",
+            "type": "color"
+          }
+        }
+      },
+      "info": {
+        "fg": {
+          "value": "{color.fg.inverse}",
+          "type": "color"
+        },
+        "bg": {
+          "value": "$color.info.heavy",
+          "type": "color"
+        },
+        "border": {
+          "value": "$color.info.heavy",
+          "type": "color"
+        },
+        "tonal": {
+          "fg": {
+            "value": "$color.info.heavy",
+            "type": "color"
+          },
+          "bg": {
+            "value": "$color.info.subtle",
+            "type": "color"
+          },
+          "border": {
+            "value": "$color.info.subtle",
+            "type": "color"
+          }
+        }
+      },
+      "warning": {
+        "fg": {
+          "value": "{color.fg.default}",
+          "type": "color"
+        },
+        "bg": {
+          "value": "$color.warning.default",
+          "type": "color"
+        },
+        "border": {
+          "value": "$color.warning.default",
+          "type": "color"
+        },
+        "tonal": {
+          "fg": {
+            "value": "$color.warning.heavy",
+            "type": "color"
+          },
+          "bg": {
+            "value": "$color.warning.subtle",
+            "type": "color"
+          },
+          "border": {
+            "value": "$color.warning.subtle",
+            "type": "color"
+          }
+        }
+      },
+      "dark": {
+        "fg": {
+          "value": "{color.fg.inverse}",
+          "type": "color"
+        },
+        "bg": {
+          "value": "$color.neutral.heavy",
+          "type": "color"
+        },
+        "border": {
+          "value": "$color.neutral.heavy",
+          "type": "color"
+        },
+        "tonal": {
+          "fg": {
+            "value": "{color.fg.inverse}",
+            "type": "color"
+          },
+          "bg": {
+            "value": "$color.neutral.notable",
+            "type": "color"
+          },
+          "border": {
+            "value": "$color.neutral.notable",
+            "type": "color"
+          }
+        }
+      },
+      "light": {
+        "fg": {
+          "value": "{color.fg.accent.default}",
+          "type": "color"
+        },
+        "bg": {
+          "value": "$color.neutral.subtle",
+          "type": "color"
+        },
+        "border": {
+          "value": "$color.neutral.subtle",
+          "type": "color"
+        },
+        "tonal": {
+          "fg": {
+            "value": "{color.fg.accent.default}",
+            "type": "color"
+          },
+          "bg": {
+            "value": "$color.neutral.pale",
+            "type": "color"
+          },
+          "border": {
+            "value": "$color.neutral.pale",
+            "type": "color"
+          }
+        }
+      },
+      "neutral": {
+        "fg": {
+          "value": "{color.fg.default}",
+          "type": "color"
+        },
+        "bg": {
+          "value": "$color.neutral.subtle",
+          "type": "color"
+        },
+        "border": {
+          "value": "$color.neutral.subtle",
+          "type": "color"
+        },
+        "tonal": {
+          "fg": {
+            "value": "$color.fg.default",
+            "type": "color"
+          },
+          "bg": {
+            "value": "$color.neutral.pale",
+            "type": "color"
+          },
+          "border": {
+            "value": "$color.neutral.pale",
+            "type": "color"
+          }
+        }
+      }
+    }
+  },
+  "spacing": {
+    "tag": {
+      "padding-x": {
+        "xs": {
+          "value": "$spacing.around.2xs",
+          "type": "spacing"
+        },
+        "sm": {
+          "value": "$spacing.around.2xs",
+          "type": "spacing"
+        }
+      },
+      "padding-y": {
+        "xs": {
+          "value": "$spacing.around.2xs",
+          "type": "spacing"
+        },
+        "sm": {
+          "value": "$spacing.around.2xs",
+          "type": "spacing"
+        }
+      },
+      "col-gap": {
+        "value": "$spacing.02",
+        "type": "spacing"
+      }
+    }
+  },
+  "border-radius": {
+    "tag": {
+      "all": {
+        "value": "$border-radius.3xs",
+        "type": "borderRadius",
+        "description": "$border-radius.2xs"
+      },
+      "top": {
+        "value": "$border-radius.3xs $border-radius.3xs 0rem 0rem",
+        "type": "borderRadius"
+      },
+      "bottom-right": {
+        "value": "0rem 0rem $border-radius.3xs 0rem",
+        "type": "borderRadius",
+        "description": "0rem 0rem $border-radius.3xs 0rem"
+      },
+      "bottom": {
+        "value": "0rem 0rem $border-radius.3xs $border-radius.3xs",
+        "type": "borderRadius",
+        "description": "0rem 0rem $border-radius.3xs $border-radius.3xs"
+      },
+      "right": {
+        "value": "0rem $border-radius.3xs $border-radius.3xs 0rem",
+        "type": "borderRadius",
+        "description": "0rem $border-radius.3xs $border-radius.3xs 0rem"
+      },
+      "left": {
+        "value": "$border-radius.3xs 0rem 0rem $border-radius.3xs",
+        "type": "borderRadius",
+        "description": "$border-radius.3xs 0rem 0rem $border-radius.3xs"
+      },
+      "bottom-left": {
+        "value": "0rem 0rem 0rem $border-radius.3xs",
+        "type": "borderRadius",
+        "description": "0rem 0rem 0rem $border-radius.3xs"
+      },
+      "top-right": {
+        "value": "0rem $border-radius.3xs 0rem 0rem",
+        "type": "borderRadius",
+        "description": "0rem $border-radius.3xs 0rem 0rem"
+      },
+      "top-left": {
+        "value": "$border-radius.3xs 0rem 0rem 0rem",
+        "type": "borderRadius",
+        "description": "$border-radius.3xs 0rem 0rem 0rem"
+      }
+    }
+  },
+  "border-width": {
+    "tag": {
+      "value": "$border-width.sm",
+      "type": "borderWidth"
+    }
+  },
+  "border-style": {
+    "tag": {
+      "value": "$border-style.solid",
+      "type": "border"
+    }
+  }
+}

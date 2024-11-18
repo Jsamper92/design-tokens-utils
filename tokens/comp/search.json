@@ -1,0 +1,106 @@
+{
+  "spacing": {
+    "search": {
+      "padding": {
+        "lg": {
+          "value": "$spacing.around.md",
+          "type": "spacing"
+        }
+      },
+      "col-gap": {
+        "value": "$spacing.03",
+        "type": "spacing"
+      }
+    },
+    "search-field": {
+      "col-gap": {
+        "value": "$spacing.05",
+        "type": "spacing"
+      }
+    }
+  },
+  "color": {
+    "search": {
+      "fg": {
+        "default": {
+          "value": "$color.neutral.heavy",
+          "type": "color"
+        },
+        "placeholder": {
+          "value": "$color.neutral.notable",
+          "type": "color"
+        },
+        "caret": {
+          "value": "$color.primary.default",
+          "type": "color"
+        }
+      },
+      "bg": {
+        "default": {
+          "value": "$color.neutral.muted",
+          "type": "color"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "$color.neutral.muted",
+          "type": "color"
+        }
+      }
+    }
+  },
+  "border-radius": {
+    "search": {
+      "value": "$border-radius.full",
+      "type": "borderRadius"
+    }
+  },
+  "border-width": {
+    "search": {
+      "value": "$border-width.sm",
+      "type": "borderWidth"
+    }
+  },
+  "border-style": {
+    "search": {
+      "value": "$border-style.solid",
+      "type": "border"
+    }
+  },
+  "font": {
+    "search": {
+      "size": {
+        "lg": {
+          "value": "$font.size.05",
+          "type": "fontSizes"
+        }
+      },
+      "line-height": {
+        "lg": {
+          "value": "$font.line-height.05",
+          "type": "lineHeights"
+        }
+      },
+      "weight": {
+        "lg": {
+          "value": "$font.weight.medium",
+          "type": "fontWeights"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "Medium",
+          "fontSize": "$font.search.size.lg",
+          "lineHeight": "$font.search.line-height.lg",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textDecoration": "$font.text-decoration.none",
+          "textCase": "$font.text-case.none"
+        },
+        "type": "typography"
+      }
+    }
+  }
+}

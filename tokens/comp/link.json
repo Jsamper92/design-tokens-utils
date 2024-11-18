@@ -1,0 +1,218 @@
+{
+  "font": {
+    "link": {
+      "sm": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "Bold",
+          "lineHeight": "$font.link.line-height.sm",
+          "fontSize": "$font.link.size.sm",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group link-sm"
+      },
+      "md": {
+        "value": {
+          "fontFamily": "$font.family.primary",
+          "fontWeight": "Bold",
+          "lineHeight": "$font.link.line-height.md",
+          "fontSize": "$font.link.size.md",
+          "letterSpacing": "$font.letter-spacing.0",
+          "paragraphSpacing": "$font.paragraph-spacing.0",
+          "paragraphIndent": "$font.paragraph-indent.0",
+          "textCase": "$font.text-case.none",
+          "textDecoration": "$font.text-decoration.none"
+        },
+        "type": "typography",
+        "description": "specific group link-md"
+      },
+      "underline": {
+        "sm": {
+          "value": {
+            "fontFamily": "$font.family.primary",
+            "fontWeight": "Bold",
+            "lineHeight": "$font.link.line-height.sm",
+            "fontSize": "$font.link.size.sm",
+            "letterSpacing": "$font.letter-spacing.0",
+            "paragraphSpacing": "$font.paragraph-spacing.0",
+            "paragraphIndent": "$font.paragraph-indent.0",
+            "textCase": "$font.text-case.none",
+            "textDecoration": "$font.text-decoration.underline"
+          },
+          "type": "typography",
+          "description": "specific group link-sm"
+        },
+        "md": {
+          "value": {
+            "fontFamily": "$font.family.primary",
+            "fontWeight": "Bold",
+            "lineHeight": "$font.link.line-height.md",
+            "fontSize": "$font.link.size.md",
+            "letterSpacing": "$font.letter-spacing.0",
+            "paragraphSpacing": "$font.paragraph-spacing.0",
+            "paragraphIndent": "$font.paragraph-indent.0",
+            "textCase": "$font.text-case.none",
+            "textDecoration": "$font.text-decoration.underline"
+          },
+          "type": "typography",
+          "description": "specific group link-md"
+        }
+      },
+      "size": {
+        "sm": {
+          "value": "$font.size.03",
+          "type": "fontSizes"
+        },
+        "md": {
+          "value": "$font.size.04",
+          "type": "fontSizes"
+        }
+      },
+      "weight": {
+        "sm": {
+          "value": "$font.weight.bold",
+          "type": "fontWeights"
+        },
+        "md": {
+          "value": "$font.weight.bold",
+          "type": "fontWeights"
+        }
+      },
+      "line-height": {
+        "sm": {
+          "value": "$font.line-height.03",
+          "type": "lineHeights"
+        },
+        "md": {
+          "value": "$font.line-height.04",
+          "type": "lineHeights"
+        }
+      }
+    }
+  },
+  "spacing": {
+    "link": {
+      "padding": {
+        "value": "$spacing.around.2xs",
+        "type": "spacing"
+      },
+      "col-gap": {
+        "value": "$spacing.02",
+        "type": "spacing"
+      }
+    }
+  },
+  "color": {
+    "link": {
+      "fg": {
+        "default-inverse": {
+          "value": "$color.fg.inverse",
+          "type": "color"
+        },
+        "hover-inverse": {
+          "value": "$color.gray.200",
+          "type": "color"
+        },
+        "visited-inverse": {
+          "value": "$color.fg.inverse",
+          "type": "color"
+        },
+        "active-inverse": {
+          "value": "$color.fg.inverse",
+          "type": "color"
+        }
+      },
+      "primary": {
+        "fg": {
+          "default": {
+            "value": "$color.primary.default",
+            "type": "color"
+          },
+          "hover": {
+            "value": "$color.primary.emphasis",
+            "type": "color"
+          },
+          "visited": {
+            "value": "$color.primary.strong",
+            "type": "color"
+          },
+          "active": {
+            "value": "$color.primary.strong",
+            "type": "color"
+          }
+        }
+      },
+      "secondary": {
+        "fg": {
+          "default": {
+            "value": "$color.neutral.heavy",
+            "type": "color"
+          },
+          "hover": {
+            "value": "$color.neutral.strong",
+            "type": "color"
+          },
+          "visited": {
+            "value": "$color.neutral.emphasis",
+            "type": "color"
+          },
+          "active": {
+            "value": "$color.neutral.emphasis",
+            "type": "color"
+          }
+        }
+      }
+    }
+  },
+  "border-radius": {
+    "link": {
+      "focus": {
+        "value": "$border-radius.3xs",
+        "type": "borderRadius"
+      }
+    }
+  },
+  "border-width": {
+    "link": {
+      "focus": {
+        "value": "$border-width.sm",
+        "type": "borderWidth"
+      }
+    }
+  },
+  "border-style": {
+    "link": {
+      "focus": {
+        "value": "$border-style.solid",
+        "type": "border"
+      }
+    }
+  },
+  "shadow-link-focus": {
+    "value": {
+      "x": "0",
+      "y": "0",
+      "blur": "0",
+      "spread": "2",
+      "color": "{color.border.focus.default}",
+      "type": "dropShadow"
+    },
+    "type": "boxShadow"
+  },
+  "shadow-link-focus-inverse": {
+    "value": {
+      "x": "0",
+      "y": "0",
+      "blur": "0",
+      "spread": "2",
+      "color": "{color.border.focus.inverse}",
+      "type": "dropShadow"
+    },
+    "type": "boxShadow"
+  }
+}

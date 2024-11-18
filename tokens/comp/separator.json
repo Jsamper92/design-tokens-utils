@@ -1,0 +1,36 @@
+{
+  "color": {
+    "separator": {
+      "bg": {
+        "default": {
+          "value": "{color.neutral.muted}",
+          "type": "color"
+        }
+      }
+    }
+  },
+  "border-radius": {
+    "separator": {
+      "round": {
+        "value": "$border-radius.full",
+        "type": "borderRadius"
+      },
+      "square": {
+        "value": "$border-radius.none",
+        "type": "borderRadius"
+      }
+    }
+  },
+  "size": {
+    "separator": {
+      "xs": {
+        "value": "0.063rem",
+        "type": "sizing"
+      },
+      "sm": {
+        "value": "0.125rem",
+        "type": "sizing"
+      }
+    }
+  }
+}

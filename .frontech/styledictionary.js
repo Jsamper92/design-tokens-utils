@@ -44,13 +44,6 @@ const styleDictionary = (modes, brands) => {
     transformer: sizePx,
   });
 
-  StyleDictionary.registerTransform({
-    name: "size/rem",
-    type: "value",
-    matcher: StyleDictionary.transform["size/px"].matcher,
-    transformer: sizePx,
-  });
-
   StyleDictionary.registerFormat({
     name: "custom/variables",
     formatter: (dictionary) => {

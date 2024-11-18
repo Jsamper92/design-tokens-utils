@@ -1,0 +1,120 @@
+{
+  "size": {
+    "badge": {
+      "dot": {
+        "xs": {
+          "value": "0.5rem",
+          "type": "sizing"
+        },
+        "sm": {
+          "value": "0.75rem",
+          "type": "sizing"
+        }
+      }
+    }
+  },
+  "border-radius": {
+    "badge": {
+      "value": "{border-radius.full}",
+      "type": "borderRadius"
+    }
+  },
+  "spacing": {
+    "badge": {
+      "numeric": {
+        "padding-x": {
+          "xs": {
+            "value": "{spacing.around.2xs}",
+            "type": "spacing"
+          },
+          "sm": {
+            "value": "{spacing.around.2xs}",
+            "type": "spacing"
+          }
+        }
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "badge": {
+        "value": "{font.family.primary}",
+        "type": "fontFamilies"
+      }
+    },
+    "badge": {
+      "weight": {
+        "xs": {
+          "value": "{font.weight.medium}",
+          "type": "fontWeights"
+        },
+        "sm": {
+          "value": "{font.weight.medium}",
+          "type": "fontWeights"
+        }
+      },
+      "line-height": {
+        "xs": {
+          "value": "{font.line-height.02}",
+          "type": "lineHeights"
+        },
+        "sm": {
+          "value": "{font.line-height.04}",
+          "type": "lineHeights"
+        }
+      },
+      "size": {
+        "xs": {
+          "value": "{font.size.01}",
+          "type": "fontSizes"
+        },
+        "sm": {
+          "value": "{font.size.01}",
+          "type": "fontSizes"
+        }
+      },
+      "xs": {
+        "value": {
+          "fontFamily": "{font.family.badge}",
+          "fontWeight": "Medium",
+          "fontSize": "{font.badge.size.xs}",
+          "lineHeight": "{font.badge.line-height.xs}",
+          "letterSpacing": "{font.letter-spacing.0}",
+          "paragraphSpacing": "{font.paragraph-spacing.0}",
+          "paragraphIndent": "{font.paragraph-indent.0}",
+          "textDecoration": "{font.text-decoration.none}",
+          "textCase": "{font.text-case.none}"
+        },
+        "type": "typography"
+      },
+      "sm": {
+        "value": {
+          "fontFamily": "{font.family.badge}",
+          "fontWeight": "Medium",
+          "fontSize": "{font.badge.size.sm}",
+          "lineHeight": "{font.badge.line-height.sm}",
+          "letterSpacing": "{font.letter-spacing.0}",
+          "paragraphSpacing": "{font.paragraph-spacing.0}",
+          "paragraphIndent": "{font.paragraph-indent.0}",
+          "textDecoration": "{font.text-decoration.none}",
+          "textCase": "{font.text-case.none}"
+        },
+        "type": "typography"
+      }
+    }
+  },
+  "color": {
+    "badge": {
+      "primary": {
+        "bg": {
+          "value": "{color.primary.default}",
+          "type": "color"
+        },
+        "fg": {
+          "value": "{color.fg.inverse}",
+          "type": "color"
+        }
+      }
+    }
+  }
+}

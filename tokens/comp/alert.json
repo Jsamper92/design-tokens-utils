@@ -1,0 +1,73 @@
+{
+  "color": {
+    "alert": {
+      "fg": {
+        "default": {
+          "value": "$color.fg.default",
+          "type": "color",
+          "description": "$color.default"
+        }
+      },
+      "bg": {
+        "error": {
+          "value": "$color.error.default",
+          "type": "color"
+        },
+        "error-light": {
+          "value": "$color.error.subtle",
+          "type": "color"
+        },
+        "success": {
+          "value": "$color.success.default",
+          "type": "color"
+        },
+        "success-light": {
+          "value": "$color.success.subtle",
+          "type": "color"
+        },
+        "info": {
+          "value": "$color.info.default",
+          "type": "color"
+        },
+        "info-light": {
+          "value": "$color.info.subtle",
+          "type": "color"
+        },
+        "warning": {
+          "value": "$color.warning.default",
+          "type": "color"
+        },
+        "warning-light": {
+          "value": "$color.warning.subtle",
+          "type": "color"
+        }
+      }
+    }
+  },
+  "border-radius": {
+    "alert": {
+      "value": "$border-radius.xs",
+      "type": "borderRadius"
+    }
+  },
+  "spacing": {
+    "alert": {
+      "padding": {
+        "value": "$spacing.around.md",
+        "type": "spacing"
+      },
+      "padding-y": {
+        "value": "$spacing.around.xs",
+        "type": "spacing"
+      },
+      "col-gap": {
+        "value": "$spacing.05",
+        "type": "spacing"
+      },
+      "row-gap": {
+        "value": "$spacing.03",
+        "type": "spacing"
+      }
+    }
+  }
+}

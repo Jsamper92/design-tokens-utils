@@ -1,0 +1,36 @@
+{
+  "color": {
+    "primary": {
+      "subtle": {
+        "value": "$color.red-mahou.100",
+        "type": "color",
+        "description": "$color.red-mahou.50"
+      },
+      "muted": {
+        "value": "$color.red-mahou.200",
+        "type": "color",
+        "description": "$color.red-mahou.200"
+      },
+      "default": {
+        "value": "$color.red-mahou.300",
+        "type": "color",
+        "description": "$color.red-mahou.300"
+      },
+      "emphasis": {
+        "value": "$color.red-mahou.400",
+        "type": "color",
+        "description": "$color.red-mahou.400"
+      },
+      "strong": {
+        "value": "$color.red-mahou.500",
+        "type": "color",
+        "description": "$color.red-mahou.500"
+      },
+      "heavy": {
+        "value": "$color.red-mahou.800",
+        "type": "color",
+        "description": "$color.red-mahou.800"
+      }
+    }
+  }
+}

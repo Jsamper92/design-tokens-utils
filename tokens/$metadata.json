@@ -1,0 +1,25 @@
+{
+  "tokenSetOrder": [
+    "core",
+    "semantic",
+    "comp/icon",
+    "comp/input",
+    "comp/action",
+    "comp/tag",
+    "comp/spinner",
+    "comp/overlay",
+    "comp/alert",
+    "comp/snackbar",
+    "comp/chip",
+    "comp/scroll",
+    "comp/link",
+    "comp/table",
+    "comp/separator",
+    "comp/search",
+    "comp/card",
+    "comp/badge",
+    "dark",
+    "brand-1/light",
+    "device/desktop"
+  ]
+}

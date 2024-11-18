@@ -1,0 +1,1262 @@
+{
+  "color": {
+    "fg": {
+      "default": {
+        "value": "$color.gray.50",
+        "type": "color",
+        "description": "$color.gray.50\nUsed to: Text default"
+      },
+      "subtle": {
+        "value": "$color.gray.100",
+        "type": "color",
+        "description": "$color.gray.100\nUsed to: non-emphasis texts"
+      },
+      "heavy": {
+        "value": "$color.white",
+        "type": "color",
+        "description": "$color.white\nUsed to: heading "
+      },
+      "disabled": {
+        "value": "$color.gray.400",
+        "type": "color",
+        "description": "$color.gray.500\nUsed to: text disabled"
+      },
+      "inverse": {
+        "value": "$color.gray.800",
+        "type": "color",
+        "description": "$color.gray.50\nUsed to: Text default"
+      },
+      "subtle-inverse": {
+        "value": "$color.gray.500",
+        "type": "color",
+        "description": "$color.gray.100\nUsed to: non-emphasis texts"
+      },
+      "white": {
+        "value": "$color.gray.900",
+        "type": "color",
+        "description": "$color.white\nUsed to: heading "
+      },
+      "disabled-inverse": {
+        "value": "$color.gray.400",
+        "type": "color",
+        "description": "$color.gray.500\nUsed to: text disabled"
+      }
+    },
+    "bg": {
+      "surface-00": {
+        "value": "$color.gray.900",
+        "type": "color",
+        "description": "$color.900\nBackground surface light"
+      },
+      "surface-50": {
+        "value": "$color.gray.800",
+        "type": "color",
+        "description": "$color.gray.800\nBackground surface light"
+      },
+      "surface-100": {
+        "value": "$color.gray.700",
+        "type": "color",
+        "description": "$color.gray.700\nBackground surface light"
+      },
+      "surface-200": {
+        "value": "$color.gray.500",
+        "type": "color",
+        "description": "$color.gray.600\nBackground surface light"
+      },
+      "surface-300": {
+        "value": "$color.gray.200",
+        "type": "color",
+        "description": "$color.gray.200\nBackground surface light"
+      },
+      "surface-700": {
+        "value": "$color.gray.100",
+        "type": "color",
+        "description": "$color.gray.700\nBackground surface on-dark"
+      },
+      "surface-800": {
+        "value": "$color.gray.50",
+        "type": "color",
+        "description": "$color.gray.800\nBackground surface on-dark"
+      },
+      "surface-900": {
+        "value": "$color.white",
+        "type": "color",
+        "description": "$color.white"
+      },
+      "active": {
+        "value": "$color.black-alpha.800",
+        "type": "color",
+        "description": "$color.black.alpha-800\n"
+      },
+      "hover": {
+        "value": "$color.black-alpha.600",
+        "type": "color",
+        "description": "$color.black.alpha.600\nBackground hover on-dark"
+      },
+      "disabled": {
+        "default": {
+          "value": "$color.gray.500",
+          "type": "color",
+          "description": "$color.gray.600\nUsed to: bg disabled on dark"
+        }
+      },
+      "readonly": {
+        "default": {
+          "value": "$color.indigo.25",
+          "type": "color",
+          "description": "$color.indigo.25"
+        }
+      }
+    },
+    "border": {
+      "subtle": {
+        "value": "$color.gray.700",
+        "type": "color",
+        "description": "$color.gray.900"
+      },
+      "muted": {
+        "value": "$color.gray.400",
+        "type": "color",
+        "description": "$color.gray.100"
+      },
+      "default": {
+        "value": "$color.gray.200",
+        "type": "color",
+        "description": "$color.white"
+      },
+      "disabled": {
+        "default": {
+          "value": "$color.gray.400",
+          "type": "color",
+          "description": "$color.gray.500"
+        }
+      },
+      "readonly": {
+        "default": {
+          "value": "$color.indigo.25",
+          "type": "color",
+          "description": "$color.indigo.25"
+        }
+      },
+      "focus": {
+        "default": {
+          "value": "$color.indigo.200",
+          "type": "color",
+          "description": "$color.indigo.300\nBorder focus"
+        }
+      }
+    },
+    "primary": {
+      "subtle": {
+        "value": "$color.red-mahou.100",
+        "type": "color",
+        "description": "$color.red-mahou.50"
+      },
+      "muted": {
+        "value": "$color.red-mahou.200",
+        "type": "color",
+        "description": "$color.red-mahou.200"
+      },
+      "default": {
+        "value": "$color.red-mahou.200",
+        "type": "color",
+        "description": "$color.red-mahou.300"
+      },
+      "emphasis": {
+        "value": "$color.red-mahou.300",
+        "type": "color",
+        "description": "$color.red-mahou.400"
+      },
+      "strong": {
+        "value": "$color.red-mahou.400",
+        "type": "color",
+        "description": "$color.red-mahou.500"
+      },
+      "heavy": {
+        "value": "$color.red-mahou.100",
+        "type": "color",
+        "description": "$color.red-mahou.800"
+      }
+    },
+    "secondary": {
+      "subtle": {
+        "value": "$color.coral.50",
+        "type": "color",
+        "description": "$color.coral.50"
+      },
+      "muted": {
+        "value": "$color.coral.200",
+        "type": "color",
+        "description": "$color.coral.100"
+      },
+      "default": {
+        "value": "$color.coral.200",
+        "type": "color",
+        "description": "$color.coral.300"
+      },
+      "emphasis": {
+        "value": "$color.coral.300",
+        "type": "color",
+        "description": "$color.coral.400"
+      },
+      "strong": {
+        "value": "$color.coral.400",
+        "type": "color",
+        "description": "$color.coral.500"
+      },
+      "heavy": {
+        "value": "$color.coral.100",
+        "type": "color",
+        "description": "$color.coral.800"
+      }
+    },
+    "error": {
+      "subtle": {
+        "value": "$color.red.100",
+        "type": "color",
+        "description": "$color.red.100"
+      },
+      "muted": {
+        "value": "$color.red.200",
+        "type": "color",
+        "description": "$color.red.200"
+      },
+      "default": {
+        "value": "$color.red.400",
+        "type": "color",
+        "description": "$color.red.500"
+      },
+      "emphasis": {
+        "value": "$color.red.500",
+        "type": "color",
+        "description": "$color.red.600"
+      },
+      "strong": {
+        "value": "$color.red.600",
+        "type": "color",
+        "description": "$color.red.700"
+      },
+      "heavy": {
+        "value": "$color.red.400",
+        "type": "color",
+        "description": "$color.red.800"
+      }
+    },
+    "success": {
+      "subtle": {
+        "value": "$color.green.100",
+        "type": "color",
+        "description": "$color.green.100"
+      },
+      "muted": {
+        "value": "$color.green.200",
+        "type": "color",
+        "description": "$color.green.200"
+      },
+      "default": {
+        "value": "$color.green.400",
+        "type": "color",
+        "description": "$color.green.400"
+      },
+      "emphasis": {
+        "value": "$color.green.600",
+        "type": "color",
+        "description": "$color.green.500"
+      },
+      "strong": {
+        "value": "$color.green.700",
+        "type": "color",
+        "description": "$color.green.700"
+      },
+      "heavy": {
+        "value": "$color.green.500",
+        "type": "color",
+        "description": "$color.green.800"
+      }
+    },
+    "info": {
+      "subtle": {
+        "value": "$color.blue.100",
+        "type": "color",
+        "description": "$color.blue.100"
+      },
+      "muted": {
+        "value": "$color.blue.200",
+        "type": "color",
+        "description": "$color.blue.200"
+      },
+      "default": {
+        "value": "$color.blue.300",
+        "type": "color",
+        "description": "$color.blue.300"
+      },
+      "emphasis": {
+        "value": "$color.blue.400",
+        "type": "color",
+        "description": "$color.blue.400"
+      },
+      "strong": {
+        "value": "$color.blue.500",
+        "type": "color",
+        "description": "$color.blue.500"
+      },
+      "heavy": {
+        "value": "$color.blue.300",
+        "type": "color",
+        "description": "$color.blue.800"
+      }
+    },
+    "warning": {
+      "subtle": {
+        "value": "$color.yellow.100",
+        "type": "color",
+        "description": "$color.yellow.100"
+      },
+      "muted": {
+        "value": "$color.yellow.200",
+        "type": "color",
+        "description": "$color.yellow.200"
+      },
+      "default": {
+        "value": "$color.yellow.500",
+        "type": "color",
+        "description": "$color.yellow.500"
+      },
+      "emphasis": {
+        "value": "$color.yellow.600",
+        "type": "color",
+        "description": "$color.yellow.600"
+      },
+      "strong": {
+        "value": "$color.yellow.700",
+        "type": "color",
+        "description": "$color.yellow.700"
+      },
+      "heavy": {
+        "value": "$color.yellow.500",
+        "type": "color",
+        "description": "$color.yellow.800"
+      }
+    },
+    "neutral": {
+      "subtle": {
+        "value": "$color.gray.100",
+        "type": "color",
+        "description": "$color.gray.100"
+      },
+      "muted": {
+        "value": "$color.gray.200",
+        "type": "color",
+        "description": "$color.gray.200"
+      },
+      "default": {
+        "value": "$color.gray.300",
+        "type": "color",
+        "description": "$color.gray.300"
+      },
+      "emphasis": {
+        "value": "$color.gray.700",
+        "type": "color",
+        "description": "$color.gray.700"
+      },
+      "strong": {
+        "value": "$color.gray.800",
+        "type": "color",
+        "description": "$color.gray.800"
+      },
+      "heavy": {
+        "value": "$color.gray.900",
+        "type": "color",
+        "description": "$color.gray.900"
+      }
+    },
+    "action": {
+      "bg": {
+        "hover": {
+          "value": "$color.tag.bg.hover",
+          "type": "color",
+          "description": "$color.bg.surface.100\nUsed to: bg to action button"
+        },
+        "active": {
+          "value": "$color.tag.bg.active",
+          "type": "color",
+          "description": "$color.bg.surface.100\nUsed to: bg to action button"
+        },
+        "hover-inverse": {
+          "value": "$color.bg.hover-inverse",
+          "type": "color",
+          "description": "$color.bg.hover-inverse\nUsed to: fg to action button"
+        },
+        "active-inverse": {
+          "value": "$color.bg.active-inverse",
+          "type": "color",
+          "description": "$color.bg.active-inverse\nUsed to: fg to action button"
+        }
+      },
+      "primary": {
+        "fg": {
+          "default": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "hover": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "active": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "on-clear": {
+            "value": "$color.primary.default",
+            "type": "color",
+            "description": "$color.primary.300\nUsed to: fg to action button"
+          },
+          "on-clear-inverse": {
+            "value": "$color.primary.subtle",
+            "type": "color",
+            "description": "$color.fg.primary-inverse\nUsed to: fg to action button"
+          },
+          "inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.primary.300\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.fg.primary-inverse\nUsed to: fg to action button"
+          }
+        },
+        "bg": {
+          "default": {
+            "value": "$color.primary.default",
+            "type": "color",
+            "description": "$color.indigo.300\nUsed to: bg to action button"
+          },
+          "hover": {
+            "value": "$color.primary.emphasis",
+            "type": "color",
+            "description": "$color.indigo.400\nUsed to: bg to action button"
+          },
+          "active": {
+            "value": "$color.primary.strong",
+            "type": "color",
+            "description": "$color.indigo.500\nUsed to: bg to action button"
+          },
+          "inverse": {
+            "value": "$color.primary.muted",
+            "type": "color",
+            "description": "$color.bg.primary-inverse\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.primary.default",
+            "type": "color",
+            "description": "$color.bg.primary-hover-inverse\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.primary.emphasis",
+            "type": "color",
+            "description": "$color.bg.primary-active-inverse\nUsed to: fg to action button"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "$color.primary.default",
+            "type": "color",
+            "description": "$color.indigo.300\nUsed to: border to action button"
+          },
+          "hover": {
+            "value": "$color.primary.emphasis",
+            "type": "color",
+            "description": "$color.indigo.400\nUsed to: border to action button"
+          },
+          "active": {
+            "value": "$color.primary.strong",
+            "type": "color",
+            "description": "$color.indigo.500\nUsed to: border to action button"
+          },
+          "inverse": {
+            "value": "$color.primary.muted",
+            "type": "color",
+            "description": "$color.border.primary-inverse\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.primary.default",
+            "type": "color",
+            "description": "$color.border.primary-hover-inverse\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.primary.emphasis",
+            "type": "color",
+            "description": "$color.border.primary-active-inverse\nUsed to: fg to action button"
+          }
+        }
+      },
+      "secondary": {
+        "fg": {
+          "default": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "hover": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "active": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "on-clear": {
+            "value": "$color.secondary.heavy",
+            "type": "color",
+            "description": "$color.secondary.300\nUsed to: fg to action button"
+          },
+          "on-clear-inverse": {
+            "value": "$color.secondary.muted",
+            "type": "color",
+            "description": "$color.fg.secondary,subtle\nUsed to: fg to action button"
+          }
+        },
+        "bg": {
+          "default": {
+            "value": "$color.secondary.default",
+            "type": "color",
+            "description": "$color.coral.300\nUsed to: bg to action button"
+          },
+          "hover": {
+            "value": "$color.secondary.emphasis",
+            "type": "color",
+            "description": "$color.secondary.emphasis\nUsed to: bg to action button"
+          },
+          "active": {
+            "value": "$color.secondary.strong",
+            "type": "color",
+            "description": "$color.secondary.strong\nUsed to: bg to action button"
+          },
+          "inverse": {
+            "value": "$color.secondary.muted",
+            "type": "color",
+            "description": "$color.secondary.muted\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.secondary.default",
+            "type": "color",
+            "description": "$color.secondar.default\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.secondary.emphasis",
+            "type": "color",
+            "description": "$color.secondary.emphasis\nUsed to: fg to action button"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "$color.secondary.default",
+            "type": "color",
+            "description": "$color.secondary.default\nUsed to: border to action button"
+          },
+          "hover": {
+            "value": "$color.secondary.emphasis",
+            "type": "color",
+            "description": "$color.secondary.emphasis\nUsed to: border to action button"
+          },
+          "active": {
+            "value": "$color.secondary.strong",
+            "type": "color",
+            "description": "$color.secondary.strong\nUsed to: border to action button"
+          },
+          "inverse": {
+            "value": "$color.secondary.muted",
+            "type": "color",
+            "description": "$color.secondary.default\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.secondary.default",
+            "type": "color",
+            "description": "$color.secondary.default\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.secondary.emphasis",
+            "type": "color",
+            "description": "$color.secondary.emphasis\nUsed to: fg to action button"
+          }
+        }
+      },
+      "error": {
+        "fg": {
+          "default": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "hover": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "active": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "on-clear-inverse": {
+            "value": "$color.error.default",
+            "type": "color",
+            "description": "$color.fg.secondary,subtle\nUsed to: fg to action button"
+          },
+          "on-clear": {
+            "value": "$color.error.emphasis",
+            "type": "color",
+            "description": "$color.secondary.300\nUsed to: fg to action button"
+          },
+          "inverse": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          }
+        },
+        "bg": {
+          "default": {
+            "value": "$color.error.emphasis",
+            "type": "color",
+            "description": "color.error.emphasis\nUsed to: bg to action button"
+          },
+          "hover": {
+            "value": "$color.error.strong",
+            "type": "color",
+            "description": "$color.error.strongs\nUsed to: bg to action button"
+          },
+          "active": {
+            "value": "$color.error.heavy",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: bg to action button"
+          },
+          "inverse": {
+            "value": "$color.error.emphasis",
+            "type": "color",
+            "description": "$color.error.emphasis\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.error.strong",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.error.heavy",
+            "type": "color",
+            "description": "$color.error.heavy\nUsed to: fg to action button"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "$color.error.emphasis",
+            "type": "color",
+            "description": "color.error.emphasis\nUsed to: border to action button"
+          },
+          "hover": {
+            "value": "$color.error.strong",
+            "type": "color",
+            "description": "$color.error.strongs\nUsed to: border to action button"
+          },
+          "active": {
+            "value": "$color.error.heavy",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: border to action button"
+          },
+          "inverse": {
+            "value": "$color.error.emphasis",
+            "type": "color",
+            "description": "$color.error.emphasis\nUsed to: border to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.error.strong",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: border to action button"
+          },
+          "active-inverse": {
+            "value": "$color.error.heavy",
+            "type": "color",
+            "description": "$color.error.heavy\nUsed to: border to action button"
+          }
+        }
+      },
+      "success": {
+        "fg": {
+          "default": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "hover": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "active": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "on-clear": {
+            "value": "$color.success.heavy",
+            "type": "color",
+            "description": "$color.success.300\nUsed to: fg to action button"
+          },
+          "on-clear-inverse": {
+            "value": "$color.success.default",
+            "type": "color",
+            "description": "$color.fg.success,subtle\nUsed to: fg to action button"
+          }
+        },
+        "bg": {
+          "default": {
+            "value": "$color.success.default",
+            "type": "color",
+            "description": "color.success.default\nUsed to: bg to action button"
+          },
+          "hover": {
+            "value": "$color.success.emphasis",
+            "type": "color",
+            "description": "$color.success.emphasis\nUsed to: bg to action button"
+          },
+          "active": {
+            "value": "$color.success.strong",
+            "type": "color",
+            "description": "$color.success.strong\nUsed to: bg to action button"
+          },
+          "inverse": {
+            "value": "$color.success.default",
+            "type": "color",
+            "description": "$color.success.emphasis\nUsed to: bg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.success.emphasis",
+            "type": "color",
+            "description": "$color.success.emphasis\nUsed to: bg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.success.strong",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: bg to action button"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "$color.success.default",
+            "type": "color",
+            "description": "color.success.default\nUsed to: border to action button"
+          },
+          "hover": {
+            "value": "$color.success.emphasis",
+            "type": "color",
+            "description": "$color.success.emphasis\nUsed to: border to action button"
+          },
+          "active": {
+            "value": "$color.success.strong",
+            "type": "color",
+            "description": "$color.success.strong\nUsed to: border to action button"
+          },
+          "inverse": {
+            "value": "$color.success.default",
+            "type": "color",
+            "description": "$color.success.emphasis\nUsed to: border to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.success.emphasis",
+            "type": "color",
+            "description": "$color.success.emphasis\nUsed to: border to action button"
+          },
+          "active-inverse": {
+            "value": "$color.success.strong",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: border to action button"
+          }
+        }
+      },
+      "warning": {
+        "fg": {
+          "default": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "hover": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "active": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "on-clear": {
+            "value": "$color.warning.heavy",
+            "type": "color",
+            "description": "$color.warning.300\nUsed to: fg to action button"
+          },
+          "on-clear-inverse": {
+            "value": "$color.warning.default",
+            "type": "color",
+            "description": "$color.fg.warning,subtle\nUsed to: fg to action button"
+          },
+          "inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          }
+        },
+        "bg": {
+          "default": {
+            "value": "$color.warning.default",
+            "type": "color",
+            "description": "color.warning.default\nUsed to: bg to action button"
+          },
+          "hover": {
+            "value": "$color.warning.emphasis",
+            "type": "color",
+            "description": "$color.warning.emphasis\nUsed to: bg to action button"
+          },
+          "active": {
+            "value": "$color.warning.strong",
+            "type": "color",
+            "description": "$color.warning.strong\nUsed to: bg to action button"
+          },
+          "inverse": {
+            "value": "$color.warning.default",
+            "type": "color",
+            "description": "$color.warning.emphasis\nUsed to: bg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.warning.emphasis",
+            "type": "color",
+            "description": "$color.warning.emphasis\nUsed to: bg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.warning.strong",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: bg to action button"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "$color.warning.default",
+            "type": "color",
+            "description": "color.warning.default\nUsed to: border to action button"
+          },
+          "hover": {
+            "value": "$color.warning.emphasis",
+            "type": "color",
+            "description": "$color.warning.emphasis\nUsed to: border to action button"
+          },
+          "active": {
+            "value": "$color.warning.strong",
+            "type": "color",
+            "description": "$color.warning.strong\nUsed to: border to action button"
+          },
+          "inverse": {
+            "value": "$color.warning.default",
+            "type": "color",
+            "description": "$color.warning.emphasis\nUsed to: border to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.warning.emphasis",
+            "type": "color",
+            "description": "$color.warning.emphasis\nUsed to: border to action button"
+          },
+          "active-inverse": {
+            "value": "$color.warning.strong",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: border to action button"
+          }
+        }
+      },
+      "info": {
+        "fg": {
+          "default": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "hover": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "active": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "on-clear": {
+            "value": "$color.info.heavy",
+            "type": "color",
+            "description": "$color.info.300\nUsed to: fg to action button"
+          },
+          "on-clear-inverse": {
+            "value": "$color.info.default",
+            "type": "color",
+            "description": "$color.fg.info,subtle\nUsed to: fg to action button"
+          },
+          "inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          }
+        },
+        "bg": {
+          "default": {
+            "value": "$color.info.default",
+            "type": "color",
+            "description": "color.info.default\nUsed to: bg to action button"
+          },
+          "hover": {
+            "value": "$color.info.emphasis",
+            "type": "color",
+            "description": "$color.info.emphasis\nUsed to: bg to action button"
+          },
+          "active": {
+            "value": "$color.info.strong",
+            "type": "color",
+            "description": "$color.info.strong\nUsed to: bg to action button"
+          },
+          "inverse": {
+            "value": "$color.info.default",
+            "type": "color",
+            "description": "$color.info.emphasis\nUsed to: bg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.info.emphasis",
+            "type": "color",
+            "description": "$color.info.emphasis\nUsed to: bg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.info.strong",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: bg to action button"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "$color.info.default",
+            "type": "color",
+            "description": "color.info.default\nUsed to: border to action button"
+          },
+          "hover": {
+            "value": "$color.info.emphasis",
+            "type": "color",
+            "description": "$color.info.emphasis\nUsed to: border to action button"
+          },
+          "active": {
+            "value": "$color.info.strong",
+            "type": "color",
+            "description": "$color.info.strong\nUsed to: border to action button"
+          },
+          "inverse": {
+            "value": "$color.info.default",
+            "type": "color",
+            "description": "$color.info.emphasis\nUsed to: border to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.info.emphasis",
+            "type": "color",
+            "description": "$color.info.emphasis\nUsed to: border to action button"
+          },
+          "active-inverse": {
+            "value": "$color.info.strong",
+            "type": "color",
+            "description": "$color.error.strong\nUsed to: border to action button"
+          }
+        }
+      },
+      "light": {
+        "fg": {
+          "default": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "hover": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "active": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "on-clear": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "on-clear-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          }
+        },
+        "bg": {
+          "default": {
+            "value": "$color.neutral.subtle",
+            "type": "color",
+            "description": "$color.neutral.muted\nUsed to: bg to action button"
+          },
+          "hover": {
+            "value": "$color.neutral.muted",
+            "type": "color",
+            "description": "$color.neutral.subtle\nUsed to: bg to action button"
+          },
+          "active": {
+            "value": "$color.neutral.default",
+            "type": "color",
+            "description": "$color.neutral.default\nUsed to: bg to action button"
+          },
+          "inverse": {
+            "value": "$color.neutral.subtle",
+            "type": "color",
+            "description": "$color.neutral.muted\nUsed to: bg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.neutral.muted",
+            "type": "color",
+            "description": "$color.neutral.subtle\nUsed to: bg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.neutral.default",
+            "type": "color",
+            "description": "$color.neutral.default\nUsed to: bg to action button"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "$color.neutral.subtle",
+            "type": "color",
+            "description": "$color.neutral.muted\nUsed to: border to action button"
+          },
+          "hover": {
+            "value": "$color.neutral.muted",
+            "type": "color",
+            "description": "$color.neutral.subtle\nUsed to: border to action button"
+          },
+          "active": {
+            "value": "$color.neutral.default",
+            "type": "color",
+            "description": "$color.neutral.default\nUsed to: border to action button"
+          },
+          "inverse": {
+            "value": "$color.neutral.subtle",
+            "type": "color",
+            "description": "$color.neutral.muted\nUsed to: border to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.neutral.muted",
+            "type": "color",
+            "description": "$color.neutral.subtle\nUsed to: border to action button"
+          },
+          "active-inverse": {
+            "value": "$color.neutral.default",
+            "type": "color",
+            "description": "$color.neutral.default\nUsed to: border to action button"
+          }
+        }
+      },
+      "dark": {
+        "fg": {
+          "default": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "hover": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "active": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.gray.50\nUsed to: fg to action button"
+          },
+          "on-clear": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "on-clear-inverse": {
+            "value": "$color.fg.default",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.fg.white",
+            "type": "color",
+            "description": "$color.fg.heavy\nUsed to: fg to action button"
+          }
+        },
+        "bg": {
+          "default": {
+            "value": "$color.neutral.subtle",
+            "type": "color",
+            "description": "$color.neutral.muted\nUsed to: bg to action button"
+          },
+          "hover": {
+            "value": "$color.neutral.muted",
+            "type": "color",
+            "description": "$color.neutral.subtle\nUsed to: bg to action button"
+          },
+          "active": {
+            "value": "$color.neutral.default",
+            "type": "color",
+            "description": "$color.neutral.default\nUsed to: bg to action button"
+          },
+          "inverse": {
+            "value": "$color.neutral.subtle",
+            "type": "color",
+            "description": "$color.neutral.muted\nUsed to: bg to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.neutral.muted",
+            "type": "color",
+            "description": "$color.neutral.subtle\nUsed to: bg to action button"
+          },
+          "active-inverse": {
+            "value": "$color.neutral.default",
+            "type": "color",
+            "description": "$color.neutral.default\nUsed to: bg to action button"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "$color.neutral.subtle",
+            "type": "color",
+            "description": "$color.neutral.muted\nUsed to: border to action button"
+          },
+          "hover": {
+            "value": "$color.neutral.muted",
+            "type": "color",
+            "description": "$color.neutral.subtle\nUsed to: border to action button"
+          },
+          "active": {
+            "value": "$color.neutral.default",
+            "type": "color",
+            "description": "$color.neutral.default\nUsed to: border to action button"
+          },
+          "inverse": {
+            "value": "$color.neutral.subtle",
+            "type": "color",
+            "description": "$color.neutral.muted\nUsed to: border to action button"
+          },
+          "hover-inverse": {
+            "value": "$color.neutral.muted",
+            "type": "color",
+            "description": "$color.neutral.subtle\nUsed to: border to action button"
+          },
+          "active-inverse": {
+            "value": "$color.neutral.default",
+            "type": "color",
+            "description": "$color.neutral.default\nUsed to: border to action button"
+          }
+        }
+      }
+    }
+  }
+}
