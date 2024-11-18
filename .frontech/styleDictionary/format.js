@@ -25,7 +25,7 @@ const {
  */
 const setContentTokens = (device, tokens) => {
   if (device) {
-    return `${setCreationTimeFile()}:root{\body[data-device="${device}"]{\n${tokens}}}`
+    return `${setCreationTimeFile()}:root{\nbody[data-device="${device}"]{\n${tokens}}}`
   }
   return `${setCreationTimeFile()}:root{\n${tokens}}`;
 };
