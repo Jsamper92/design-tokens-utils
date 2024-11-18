@@ -267,7 +267,7 @@ const customMode = ({ dictionary: { allTokens, usesReference } }, mode) => {
 
 
   if (mode) {
-    return `${setCreationTimeFile()}:root{\body[data-mode="${mode}"]{\n${_tokens}}}`;
+    return `${setCreationTimeFile()}:root{\nbody[data-mode="${mode}"]{\n${_tokens}}}`;
   }
 
   return `${setCreationTimeFile()}:root{\n${_tokens}}`;
