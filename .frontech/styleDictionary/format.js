@@ -25,7 +25,7 @@ const {
  */
 const setContentTokens = (device, tokens) => {
   if (device) {
-    return `${setCreationTimeFile()}:root{\div[data-device="${device}"]{\n${tokens}}}`
+    return `${setCreationTimeFile()}:root{\body[data-device="${device}"]{\n${tokens}}}`
   }
   return `${setCreationTimeFile()}:root{\n${tokens}}`;
 };
@@ -267,7 +267,7 @@ const customMode = ({ dictionary: { allTokens, usesReference } }, mode) => {
 
 
   if (mode) {
-    return `${setCreationTimeFile()}:root{\div[data-mode="${mode}"]{\n${_tokens}}}`;
+    return `${setCreationTimeFile()}:root{\body[data-mode="${mode}"]{\n${_tokens}}}`;
   }
 
   return `${setCreationTimeFile()}:root{\n${_tokens}}`;
